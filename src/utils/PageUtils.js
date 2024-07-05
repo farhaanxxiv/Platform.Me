@@ -3,50 +3,50 @@
 
 const PageUtils = {
     getPageData: () => {
-        const page_data = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page_data')) : null;
+        const page = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page')) : null;
 
-        return page_data;
+        return page;
     },
 
     setPageName: (pageName) => {
-        const page_data = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page_data')) : null;
+        const page = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page')) : null;
 
         if (typeof window !== 'undefined') {
-            if (page_data) {
-                page_data.page_name = pageName;
-                localStorage.setItem('page_data', JSON.stringify(page_data));
+            if (page) {
+                page.page_name = pageName;
+                localStorage.setItem('page', JSON.stringify(page));
             } else {
                 const newJSON = {
                     page_name: pageName
                 };
-                localStorage.setItem('page_data', JSON.stringify(newJSON));
+                localStorage.setItem('page', JSON.stringify(newJSON));
             }
         }
     },
     setPageTitle: (pageTagline) => {
-        const page_data = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page_data')) : null;
+        const page = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page')) : null;
 
         if (typeof window !== 'undefined') {
-            if (page_data) {
-                page_data.page_tagline = pageTagline;
-                localStorage.setItem('page_data', JSON.stringify(page_data));
+            if (page) {
+                page.page_tagline = pageTagline;
+                localStorage.setItem('page', JSON.stringify(page));
             } else {
                 const newJSON = {
                     page_tagline: pageTagline
                 };
-                localStorage.setItem('page_data', JSON.stringify(newJSON));
+                localStorage.setItem('page', JSON.stringify(newJSON));
             }
         } else {
             console.log('noooo')
         }
     },
     getPageName: () => {
-        const page_data = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page_data')) : null;
+        const page = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page')) : null;
 
         if (typeof window !== 'undefined') {
-            const page_data = JSON.parse(localStorage.getItem('page_data'));
-            if (page_data) {
-                const page_name = page_data.page_name;
+            const page = JSON.parse(localStorage.getItem('page'));
+            if (page) {
+                const page_name = page.page_name;
                 return page_name;
             }
         }
@@ -54,10 +54,10 @@ const PageUtils = {
     },
 
     getPageTagline: () => {
-        const page_data = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page_data')) : null;
+        const page = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page')) : null;
 
-        if (page_data) {
-            const page_tagline = page_data.page_tagline;
+        if (page) {
+            const page_tagline = page.page_tagline;
             return page_tagline;
         } else {
             return null;
@@ -65,11 +65,11 @@ const PageUtils = {
     },
 
     isPageDataAvailable: () => {
-        const page_data = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page_data')) : null;
+        const page = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page')) : null;
 
         if (typeof window !== 'undefined') {
-            const page_data = localStorage.getItem('page_data');
-            return !!page_data;
+            const page = localStorage.getItem('page');
+            return !!page;
         }
         return false;
     }

@@ -6,7 +6,7 @@ import { SectionIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PageCreationProvider } from "@/providers/PageCreationContext";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
@@ -14,74 +14,114 @@ import { userCompany, user_company } from '@/states/user_state';
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useSession } from "next-auth/react"
-import { signIn } from 'next-auth/react';
 import PageUtils from '@/utils/PageUtils';
 import { FaGoogle } from 'react-icons/fa';
+import { AuthContextProvider, AuthProvider, useAuth } from '@/providers/AuthProvider';
+import { signInWithPopup } from 'firebase/auth';
+import { auth } from './layout';
+import { GoogleAuthProvider } from "firebase/auth";
+import User from '@/firebase/User';
+import useAsync from '@/hooks/useAsync';
+import { LayoutManagerProvider, useLayoutManager } from '@/providers/LayoutManager';
 
 export default function Home() {
 
+  return (
+    <AuthProvider>
+
+      <LayoutManagerProvider>
+        <HomeComponent />
+      </LayoutManagerProvider>
+    </AuthProvider>
+
+  )
+
+}
+
+function HomeComponent() {
+
   const router = useRouter()
-  const { data: session, status } = useSession();
-
+  const { userData, setUserData } = useLayoutManager()
+  const { user, loading } = useAuth()
   const [websiteName, setWebsiteName] = useAtom(user_company)
-
-  const WebsiteNameSchema = Yup.object().shape({
-    page_name: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('*Required')
-  });
-
-  const savedWebsiteData = localStorage.getItem('page_data');
+  const [fetchingUserLoader, setFetchingUserLoader] = useState(true)
 
 
-  const formik = useFormik({
-    initialValues: {
-      page_name: ''
-    },
-    validationSchema: WebsiteNameSchema,
-    onSubmit: values => {
-      setWebsiteName(values.page_name)
-      PageUtils.setPageName(values.page_name)
-      try {
-        router.push('/app')
+  function signInWithFirebase() {
 
-      } catch (e) {
-        console.log(e)
-      }
-    },
-  });
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(async (result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        const uid = user.uid
+        fetchUserData(uid)
 
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  }
 
+  async function fetchUserData(uid) {
+    const fetchedUser = await User.isUser(uid)
+    setUserData(fetchedUser)
+    setFetchingUserLoader(false)
+  }
+
+  useEffect(() => {
+    if (user != null) {
+      fetchUserData(user.uid)
+    }
+  }, [user])
 
 
   return (
+
+
     <>
       <section>
 
         <h2 className="text-black text-4xl font-semibold text-center">Create Your Website In 60 Seconds</h2>
 
         <div className='mt-12 text-center'>
-          {
-            savedWebsiteData ? <Button onClick={() => router.push('/app')}>Continue Building {JSON.parse(savedWebsiteData).page_name}</Button>
-              :
-              <div className=''>
-                <h3 className='font-semibold text-3xl'>Sign Up Now To Start Building Your Page</h3>
-                <Button className='mt-4' onClick={() => { signIn('google') }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
-              </div>
-            // <form onSubmit={formik.handleSubmit}>
-            //   <div className="flex gap-4 mt-4">
-            //     <Input id="page_name"
-            //       name="page_name"
-            //       onChange={formik.handleChange}
-            //       value={formik.values.page_name}
-            //       type="text"
-            //       placeholder="Enter Your Website Name" />
-            //     <Button variant="outline" type='submit'>Submit</Button>
-            //   </div>
-            //   {formik.errors.page_name && formik.touched.page_name ? <div className="text-[red] text-xs mt-2">{formik.errors.page_name}</div> : null}
 
-            // </form>
+          {
+            loading ?
+              <p>Loading Auth</p>
+              :
+              user != null ?
+                <>
+                  {fetchingUserLoader ?
+                    <p>Fetching User</p>
+                    :
+
+                    <Button onClick={() => router.push('/app')}>
+                      {userData == null ? ' Create Page' : 'Continue Creating'}
+                    </Button>
+
+                  }
+                </>
+                :
+                <div className=''>
+                  <h3 className='font-semibold text-3xl'>Sign Up Now To Start Building Your Page</h3>
+                  <Button className='mt-4' onClick={() => { signInWithFirebase() }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
+
+                </div>
+          }
+
+          {
+
+
           }
         </div>
       </section >
@@ -101,7 +141,7 @@ export default function Home() {
           </div>
         </ul>
       </section >
-
     </>
+
   );
 }

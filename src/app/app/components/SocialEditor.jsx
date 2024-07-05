@@ -6,9 +6,10 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import { currentSelectedSection, currentUserLayout } from "@/states/ui_state"
 import { toast } from "@/components/ui/use-toast";
+import { useLayoutManager } from "@/providers/LayoutManager";
 
 export default function SocialEditor({ section }) {
-    const [userLayout, updateCurrentLayout] = useAtom(currentUserLayout)
+    const { userLayout, updateUserLayout } = useLayoutManager()
 
     const [socialLink, setSocialLink] = useState(section.link)
 
@@ -28,8 +29,8 @@ export default function SocialEditor({ section }) {
             }
         }
         console.log('Layout After Updating Social Links', finalLayout)
-        updateCurrentLayout(finalLayout)
-        localStorage.setItem('layout', JSON.stringify(finalLayout))
+        updateUserLayout(finalLayout)
+        // localStorage.setItem('layout', JSON.stringify(finalLayout))
         toast({
             title: `Updated Image To : ${socialLink}`
         })

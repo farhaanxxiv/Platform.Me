@@ -1,35 +1,65 @@
 'use client'
-import { user_company } from "@/states/user_state"
-import { useAtom } from "jotai"
 import EnterTagline from "./components/EnterTagline"
 import Header from "./components/Header"
-import UserNavbar from "./components/Navbar"
 import BentoLayout from "./components/BentoLayout"
 import SectionEditor from "./components/SectionEditor"
 import { SectionEditorProvider } from "@/providers/SectionEditorProvider"
 import EditorHeader from "./components/EditorHeader"
 import { BentoEditorProvider } from "@/providers/BentoEditorMode"
 import { FormEditorProvider } from "@/providers/FormEditorProvider"
-import { useSession } from "next-auth/react"
+import { AuthProvider, useAuth } from "@/providers/AuthProvider"
+import { LayoutManagerProvider, useLayoutManager } from "@/providers/LayoutManager"
+import { useEffect, useState } from "react"
+
 
 export default function App() {
 
-    const [pageName, setPageName] = useAtom(user_company)
-    const { data: session, status } = useSession();
+    return (
 
-    console.log('Login Status : ', session, status)
+        <AuthProvider>
+
+            <LayoutManagerProvider>
+                <BentoEditorProvider>
+                    <SectionEditorProvider>
+                        <FormEditorProvider>
+
+                            <LayoutEditPage />
+
+                        </FormEditorProvider>
+                    </SectionEditorProvider>
+                </BentoEditorProvider>
+            </LayoutManagerProvider>
+
+        </AuthProvider>
+    )
+
+}
+
+function LayoutEditPage() {
+    const { loading } = useAuth()
+    const { validateLocalAndDBLayouts } = useLayoutManager()
+    const [loadingState, setLoadingState] = useState(true)
+
+    async function getState() {
+        console.log('call state')
+        validateLocalAndDBLayouts()
+    }
+
+
+    useEffect(() => {
+        if (!loading) getState()
+    }, [loading])
+
 
     return (
         <>
-            <BentoEditorProvider>
-                <SectionEditorProvider>
-                    <FormEditorProvider>
-                        <Header />
 
-                        {
-                            pageName != '' &&
-                            <EnterTagline />
-                        }
+            {
+                loadingState ?
+                    <>
+
+                        <Header />
+                        <EnterTagline />
                         <EditorHeader />
 
                         <section>
@@ -37,10 +67,15 @@ export default function App() {
                             <SectionEditor />
 
                             <BentoLayout />
+
                         </section>
-                    </FormEditorProvider>
-                </SectionEditorProvider>
-            </BentoEditorProvider>
+                    </>
+                    :
+                    <p > <b> Loading State :  </b>(Synchronising Local & DB States)</p>
+            }
+
         </>
+
+
     )
 } 

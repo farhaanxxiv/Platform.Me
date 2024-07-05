@@ -3,11 +3,15 @@ import { useBentoEditorMode } from "@/providers/BentoEditorMode"
 import { useEffect } from "react"
 import UserNavbar from "./Navbar"
 import { Button } from "@/components/ui/button"
+import { useLayoutManager } from "@/providers/LayoutManager"
+import { useAuth } from "@/providers/AuthProvider"
 
 
 export default function EditorHeader() {
 
     const { editorMode, setEditorMode, editorDevice, setEditorDevice } = useBentoEditorMode()
+    const { enableSave, setEnableSave, updateLayoutInDB } = useLayoutManager()
+    const { user } = useAuth()
 
     return (
 
@@ -47,8 +51,8 @@ export default function EditorHeader() {
                     <TabsContent value="password">Change your password here.</TabsContent> */}
                     </Tabs>
                 </div>
-                <Button disabled>Save Changes</Button>
-            </div>
-        </section>
+                <Button onClick={() => { updateLayoutInDB(user.uid) }} disabled={!enableSave}>Save Changes</Button>
+            </div >
+        </section >
     )
 }

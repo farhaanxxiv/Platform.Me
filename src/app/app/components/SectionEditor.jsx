@@ -14,11 +14,12 @@ import FormEditor from "./FormEditor"
 import { useAtom } from "jotai"
 import { currentSelectedSection, currentUserLayout } from "@/states/ui_state"
 import SocialEditor from "./SocialEditor"
+import { useLayoutManager } from "@/providers/LayoutManager"
 
 
 export default function SectionEditor() {
 
-    const [userLayout, updateCurrentLayout] = useAtom(currentUserLayout)
+    const { userLayout, updateUserLayout } = useLayoutManager()
     const [userSelectedSection, updateUserSelectedSection] = useAtom(currentSelectedSection)
 
     const { sectionEditorOpen, toggleSectionEditor, closeSectionEditor } = useSectionEditor()
@@ -32,7 +33,7 @@ export default function SectionEditor() {
         // Filtering out the JSON object with the specific ID
         const layoutAfterDeletion = copyLayout.filter(obj => obj.id !== sectionID);
 
-        updateCurrentLayout(layoutAfterDeletion)
+        updateUserLayout(layoutAfterDeletion)
     }
 
     return (

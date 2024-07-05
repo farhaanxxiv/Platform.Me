@@ -1,11 +1,41 @@
-'use client'
+// AuthContext.js
+import { createContext, useContext, useState, useEffect } from 'react';
+import { auth } from '@/app/layout';
+import { onAuthStateChanged } from 'firebase/auth';
+import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
-import { SessionProvider } from 'next-auth/react'
+const AuthContext = createContext();
 
-export default function AuthProvider({ children, session }) {
+export const AuthProvider = ({ children }) => {
+    const router = useRouter()
+
+
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+                setLoading(false);
+                // router.push('/app')
+
+            } else {
+                setUser(null);
+                setLoading(false);
+                router.push('/')
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+
     return (
-        <SessionProvider session={session}>
+        <AuthContext.Provider value={{ user, loading }}>
             {children}
-        </SessionProvider>
-    )
-}
+        </AuthContext.Provider>
+    );
+};
+
+export const useAuth = () => useContext(AuthContext);

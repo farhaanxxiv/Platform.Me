@@ -37,6 +37,7 @@ import { GripVertical } from "lucide-react"
 import { useEffect, useState } from "react"
 import FormUtils from "@/utils/FormUtils"
 import { useSectionEditor } from "@/providers/SectionEditorProvider"
+import { useLayoutManager } from "@/providers/LayoutManager"
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
@@ -45,7 +46,7 @@ export default function FormEditor({ section }) {
     console.log('Section Received in FormEditor Component', section)
     const { } = useFormEditor()
     const { closeSectionEditor } = useSectionEditor()
-    const [userLayout, updateUserLayout] = useAtom(currentUserLayout)
+    const { userLayout, updateUserLayout } = useLayoutManager()
     const [editingFormSection, setEditingFormSection] = useState([])
 
     const [formLayout, setFormLayout] = useState([]);
@@ -65,7 +66,7 @@ export default function FormEditor({ section }) {
         console.log('Update Form', formLayout, newLayout)
 
         updateUserLayout(newLayout)
-        localStorage.setItem('layout', JSON.stringify(newLayout))
+        // localStorage.setItem('layout', JSON.stringify(newLayout))
 
     }
 

@@ -2,6 +2,7 @@ import BentoForm from '@/components/app/navbars/BentoElements/BentoForm';
 import BentoSocial from '@/components/app/navbars/BentoElements/BentoSocial';
 import BentoImage from '@/components/app/navbars/BentoElements/Image';
 import { useBentoEditorMode } from '@/providers/BentoEditorMode';
+import { useLayoutManager } from '@/providers/LayoutManager';
 import { useSectionEditor } from '@/providers/SectionEditorProvider';
 import { currentSelectedSection, currentUserLayout } from '@/states/ui_state';
 import clsx from 'clsx';
@@ -17,7 +18,9 @@ const ResponsiveGridLayout = WidthProvider(GridLayout);
 
 const BentoLayout = () => {
     const [defaultLayoutsLoaded, setDefaultLayoutsLoaded] = useState(false)
-    const [userLayout, updateUserLayout] = useAtom(currentUserLayout)
+
+    const { userLayout, updateUserLayout } = useLayoutManager()
+
     const [selectedSection, updateSelectedSection] = useAtom(currentSelectedSection)
     const { editorMode, editorDevice } = useBentoEditorMode()
     const { openSectionEditor } = useSectionEditor()
@@ -27,19 +30,15 @@ const BentoLayout = () => {
 
     function updateUserLayoutAtom(newLayout) {
 
-        console.log('id')
 
         const updatedLayout = userLayout
 
-        console.log(updatedLayout)
 
         newLayout.forEach(layout => {
 
             for (let i = 0; i < updatedLayout.length; i++) {
-                console.log('layoutId : ', layout.i, 'updatedLayoutId: ', updatedLayout[i].id)
 
                 if (layout.i == updatedLayout[i].id) {
-                    console.log('layoutId : ', layout.i, 'updatedLayoutId: ', updatedLayout[i].id)
                     if (editorDevice == 'desktop')
                         updatedLayout[i].layout.desktop = layout
                     else
@@ -51,35 +50,29 @@ const BentoLayout = () => {
 
         updateUserLayout(updatedLayout)
 
-        localStorage.setItem('layout', JSON.stringify(updatedLayout))
+        // localStorage.setItem('layout', JSON.stringify(updatedLayout))
 
     }
 
-    useLayoutEffect(() => {
-        checkIfLocalAndUpdateLayout();
-    }, []);
+    // useLayoutEffect(() => {
+    //     checkIfLocalAndUpdateLayout();
+    // }, []);
 
-    function checkIfLocalAndUpdateLayout() {
-        const savedLayout = localStorage.getItem('layout');
+    // function checkIfLocalAndUpdateLayout() {
+    //     const savedLayout = localStorage.getItem('layout');
 
-        if (savedLayout) {
-            console.log('Saved layout found');
-            updateUserLayout(JSON.parse(savedLayout));
-        } else {
-            console.log('No saved layout found, using default layout');
-            updateUserLayout([]);
-        }
+    //     if (savedLayout) {
+    //         updateUserLayout(JSON.parse(savedLayout));
+    //     } else {
+    //         updateUserLayout([]);
+    //     }
 
-        setDefaultLayoutsLoaded(true)
-    }
+    //     setDefaultLayoutsLoaded(true)
+    // }
 
     const onLayoutChange = (newLayout) => {
 
-        if (defaultLayoutsLoaded) {
-            console.log('Layout updated:', newLayout);
-            updateUserLayoutAtom(newLayout)
-
-        }
+        updateUserLayoutAtom(newLayout)
 
     };
 
@@ -103,6 +96,7 @@ const BentoLayout = () => {
                 className={`layout ${editorDevice == 'mobile' && 'w-[450px] mx-auto'} transition border-2 border-black border-solid`}
                 layout={userLayout}
                 onLayoutChange={onLayoutChange}
+                onResize={onLayoutChange}
                 cols={12}
                 rowHeight={30}
                 draggableHandle=".draggable"
@@ -114,7 +108,6 @@ const BentoLayout = () => {
                     (userLayout.length !== 0 || userLayout == undefined) && userLayout.map((section) => {
 
                         let bentoID, bentoGrid
-                        console.log('Editor Device While Rendering : ', editorDevice)
 
                         if (editorDevice == 'desktop') {
                             bentoID = section.layout?.desktop.i
@@ -124,9 +117,6 @@ const BentoLayout = () => {
                             bentoGrid = section.layout?.mobile
                         }
 
-                        console.log('Bento Grid On Render : ', editorDevice, bentoGrid)
-
-                        // console.log(section.layout?.desktop);
                         return (
 
                             <div onClick={() => handleSectionClick(section)} id={bentoID} key={bentoID} className={`${editorMode == 'bento' && 'draggable'} ${selectedSection.id == section.id && 'border-2 border-solid border-black'}`} data-grid={bentoGrid} >

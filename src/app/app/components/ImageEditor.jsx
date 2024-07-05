@@ -6,10 +6,11 @@ import { useEffect } from "react";
 import { useSectionEditor } from "@/providers/SectionEditorProvider";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button";
+import { useLayoutManager } from "@/providers/LayoutManager";
 
 
 export default function ImageEditor({ section }) {
-    const [userLayout, updateCurrentLayout] = useAtom(currentUserLayout)
+    const { userLayout, updateUserLayout } = useLayoutManager()
 
     //for updating img url
 
@@ -35,9 +36,9 @@ export default function ImageEditor({ section }) {
             }
         }
         console.log('Layout After Sving Image src', finalLayout)
-        updateCurrentLayout(finalLayout)
-        localStorage.setItem('layout', JSON.stringify(finalLayout))
-        toast({
+        updateUserLayout(finalLayout)
+        // localStorage.setItem('layout', JSON.stringify(finalLayout))
+        toast({ 
             title: `Updated Image To : ${values.imgSrc}`
         })
     }

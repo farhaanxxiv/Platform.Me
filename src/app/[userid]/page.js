@@ -5,10 +5,7 @@ import BentoSocial from "@/components/app/navbars/BentoElements/BentoSocial"
 import BentoImage from "@/components/app/navbars/BentoElements/Image"
 import MainHeader from "@/components/main/MainHeader"
 import useWindowSize from "@/providers/useWindowSize"
-import { currentUserLayout } from "@/states/ui_state"
-import { useAtom } from "jotai"
 import { useEffect, useState } from "react"
-import { Responsive } from "react-grid-layout"
 import GridLayout from 'react-grid-layout';
 import { WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';

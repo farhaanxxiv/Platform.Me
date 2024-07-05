@@ -22,12 +22,13 @@ import { DeleteIcon, Trash2, Pencil } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import { useSectionEditor } from "@/providers/SectionEditorProvider"
 import { useFormEditor } from "@/providers/FormEditorProvider"
+import { useLayoutManager } from "@/providers/LayoutManager"
 
 
 export default function UserNavbar() {
 
 
-  const [userLayout, updateUserLayout] = useAtom(currentUserLayout)
+  const { userLayout, updateUserLayout } = useLayoutManager()
   const [selectedSection, updateSelectedSection] = useAtom(currentSelectedSection)
   const { toggleSectionEditor } = useSectionEditor()
   const { openFormEditor } = useFormEditor()

@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Skeleton } from "@/components/ui/skeleton"
-import { tagline_open } from "@/states/ui_state"
 import { user_company, user_company_tagline } from "@/states/user_state"
 import PageUtils from "@/utils/PageUtils"
 import { useAtom } from "jotai"
@@ -9,13 +8,17 @@ import { Check, Divide, Pencil, X } from "lucide-react"
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
+import { useAuth, useAuthContext } from "@/providers/AuthProvider"
+import User from "@/firebase/User"
+import { useLayoutManager } from "@/providers/LayoutManager"
 
 export default function Header() {
 
-    const { data: session, status } = useSession();
+    const { userPage, updateUserPage } = useLayoutManager()
+
+    const { user, loading } = useAuth();
 
     const [pageName, setPageName] = useState(PageUtils.getPageName());
-
     const [pageTagline, setPageTagline] = useState(PageUtils.getPageTagline());
 
     const handleTaglineChange = (event) => {
@@ -26,23 +29,33 @@ export default function Header() {
         setPageName(event.target.value);
     };
 
-
     const [pageNameEdit, setPageNameEdit] = useState(false)
     const [pageTaglineEdit, setPageTaglineEdit] = useState(false)
+
+
+    function setPageNameGlobal() {
+        const newPageName = document.getElementById('page_name_input').value
+        PageUtils.setPageName(newPageName)
+        setPageName(PageUtils.getPageName())
+        setPageNameEdit(false)
+
+        const user_page = userPage
+        user_page.page_name = newPageName
+        updateUserPage(user_page)
+    }
 
     function setPageTaglineGlobal() {
         const newPageTagline = document.getElementById('page_tagline_input').value
         PageUtils.setPageTitle(newPageTagline)
         setPageTagline(PageUtils.getPageTagline())
         setPageTaglineEdit(false)
+
+
+        const user_page = userPage
+        user_page.page_tagline = newPageTagline
+        updateUserPage(user_page)
     }
 
-    function setPageNameGlobal() {
-        const newPageTagline = document.getElementById('page_name_input').value
-        PageUtils.setPageName(newPageTagline)
-        setPageName(PageUtils.getPageName())
-        setPageNameEdit(false)
-    }
 
     return (
         <section className="py-6 border-b-2  border-black ">
@@ -93,7 +106,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div>
-                    {status == 'loading' ?
+                    {loading ?
                         <div className="flex items-center space-x-4">
                             <div className="space-y-2">
                                 <Skeleton className="h-4 w-[20vw]" />
@@ -104,15 +117,15 @@ export default function Header() {
                         :
                         <div className="flex items-center space-x-3">
                             <div className="space-y-1">
-                                <p className="text-xs text-right font-bold">{session?.user?.name}</p>
-                                <p className="text-xs text-right ">{session?.user?.email}</p>
+                                <p className="text-xs text-right font-bold">{user?.displayName}</p>
+                                <p className="text-xs text-right ">{user?.email}</p>
                             </div>
                             <Image
                                 width={60}
                                 height={60}
                                 className="rounded-[50%] border border-solid border-black"
-                                loader={() => session?.user?.image}
-                                src={session?.user?.image}
+                                loader={() => user?.photoURL}
+                                src={user?.photoURL}
                             />
                         </div>
                     }
