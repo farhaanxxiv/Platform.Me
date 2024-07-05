@@ -1,5 +1,6 @@
 import { db } from "@/app/layout";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import Layout from "./Layout";
 
 
 const User = {
@@ -45,6 +46,7 @@ const User = {
                 uid: uid,
                 page_id: 'page-' + uid,
                 last_update: null,
+                slug: null
             });
 
             return true
@@ -56,6 +58,9 @@ const User = {
     },
 
     updatePage: async (uid, page, layout) => {
+        if (uid === undefined || page === undefined || layout === undefined
+            || uid === null || page === null || layout === null
+        ) return false
 
         console.log('page, layout :', page, layout);
 
@@ -64,29 +69,30 @@ const User = {
         console.log('uid :', uid);
         const docRef = doc(db, "Pages", pageID);
 
+        console.log('docRef :', docRef);
+
+
+        const sanitizedPage = Object.fromEntries(
+            Object.entries(page).map(([key, value]) => [key, value !== undefined ? value : null])
+        );
+
+        // Ensure `layout` array does not contain undefined values
+        const sanitizedLayout = Layout.replaceUndefinedWithNull(layout)
+        console.log('sanitizedLayout :', sanitizedLayout);
+
         try {
-            const sanitizedPage = Object.fromEntries(
-                Object.entries(page).map(([key, value]) => [key, value !== undefined ? value : null])
-            );
-
-            // Ensure `layout` array does not contain undefined values
-            const sanitizedLayout = layout.map(item =>
-                // Ensure each item in the array does not contain undefined values
-                Object.fromEntries(
-                    Object.entries(item).map(([key, value]) => [key, value !== undefined ? value : null])
-                )
-            );
-
-            console.log('sanitizedLayout :', sanitizedLayout);
 
             await updateDoc(docRef, {
-                page: sanitizedPage,
-                layout: sanitizedLayout
+
+                "layout": sanitizedLayout,
+                "page": sanitizedPage,
+
             });
 
             return true;
+
         } catch (e) {
-            console.log(e);
+            console.error(e);
             return false;
         }
     },

@@ -25,6 +25,22 @@ const Layout = {
         const defaultlayout = []
         return defaultlayout
     },
+    getLocalPage: () => {
+        let localLayout = localStorage.getItem('layout')
+        if (localLayout) localLayout = JSON.parse(localLayout)
+        else return false
+
+        let localPage = localStorage.getItem('page')
+        if (localPage) localPage = JSON.parse(localPage)
+        else return false
+
+        const page_data = {
+            page: localPage,
+            layout: localLayout
+        }
+
+        return page_data
+    },
 
     getLocalHash: async () => {
 
@@ -68,6 +84,18 @@ const Layout = {
             }
         }
 
+    },
+
+    replaceUndefinedWithNull: (obj) => {
+        if (Array.isArray(obj)) {
+            return obj.map(item => Layout.replaceUndefinedWithNull(item));
+        } else if (obj !== null && typeof obj === 'object') {
+            return Object.keys(obj).reduce((acc, key) => {
+                acc[key] = obj[key] === undefined ? null : Layout.replaceUndefinedWithNull(obj[key]);
+                return acc;
+            }, {});
+        }
+        return obj;
     }
 }
 

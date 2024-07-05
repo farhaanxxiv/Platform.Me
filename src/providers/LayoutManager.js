@@ -27,8 +27,17 @@ export const LayoutManagerProvider = ({ children }) => {
     useEffect(() => {
         if (user != null) {
 
-            localStorage.setItem('layout', JSON.stringify(userLayout))
-            localStorage.setItem('page', JSON.stringify(userPage))
+
+            const sanitizedPage = Object.fromEntries(
+                Object.entries(userPage).map(([key, value]) => [key, value !== undefined ? value : null])
+            );
+
+            // Ensure `layout` array does not contain undefined values
+            const sanitizedLayout = Layout.replaceUndefinedWithNull(userLayout)
+
+            localStorage.setItem('layout', JSON.stringify(sanitizedLayout))
+            localStorage.setItem('page', JSON.stringify(sanitizedPage))
+
 
             const newHash = Layout.getLocalHash();
 
@@ -48,7 +57,16 @@ export const LayoutManagerProvider = ({ children }) => {
     async function updateLayoutInDB(uid) {
 
         //generate Hash for page and layout
-        const pageData = { page: userPage, layout: userLayout }
+
+        const sanitizedPage = Object.fromEntries(
+            Object.entries(userPage).map(([key, value]) => [key, value !== undefined ? value : null])
+        );
+
+        // Ensure `layout` array does not contain undefined values
+        const sanitizedLayout = Layout.replaceUndefinedWithNull(userLayout)
+
+
+        const pageData = { page: sanitizedPage, layout: sanitizedLayout }
         const newHash = Layout.generateHash(pageData);
 
 
@@ -73,15 +91,39 @@ export const LayoutManagerProvider = ({ children }) => {
         const dbHash = await Layout.getDBHash(undefined, uid)
 
         console.log('local & db hash', localHash, dbHash)
+
+
         if (localHash == dbHash) {
             console.log('same, proceed')
+            const localPageData = Layout.getLocalPage()
+            if (localPageData) {
+
+                const localLayout = localPageData.layout
+                const localPage = localPageData.page
+
+                updateUserLayout(localLayout)
+                updateUserPage(localPage)
+
+            } else {
+
+                console.log('set db layout after local check')
+                const dbPageData = await User.getLayout(uid)
+                const dbLayout = dbPageData.layout
+                console.log('dbLayout after local check :', dbLayout);
+                const dbPage = dbPageData.page
+                console.log('dbPage after local check :', dbPage);
+
+                setHash(dbHash)
+                updateUserLayout(dbLayout)
+                updateUserPage(dbPage)
+            }
         } else {
             if (dbHash == null) return
 
             console.log('set db layout')
             const dbPageData = await User.getLayout(uid)
             const dbLayout = dbPageData.layout
-            console.log('dbLayout :', typeof dbLayout);
+            console.log('dbLayout :', dbLayout);
             const dbPage = dbPageData.page
             console.log('dbPage :', dbPage);
 
@@ -91,6 +133,8 @@ export const LayoutManagerProvider = ({ children }) => {
 
         }
     }
+
+
     return (
         <LayoutManagerContext.Provider
             value={{
