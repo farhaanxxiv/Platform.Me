@@ -21,7 +21,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
                 mobile: {
                     //need to find a gap here. must use cp lol
@@ -31,7 +40,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }
             }
         }
@@ -54,7 +72,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
                 'mobile': {
                     //need to find a gap here. must use cp lol
@@ -64,7 +91,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }
             }
         }
@@ -87,7 +123,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
                 mobile: {
                     "w": 7,
@@ -96,7 +141,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }
             }
         }
@@ -117,7 +171,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
                 mobile: {
                     "w": 7,
@@ -126,7 +189,16 @@ const BentoUtils = {
                     "y": 3,
                     "i": uid,
                     "moved": false,
-                    "static": false
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': true,
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }
             }
         }

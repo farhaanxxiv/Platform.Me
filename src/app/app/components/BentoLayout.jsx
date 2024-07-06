@@ -50,7 +50,6 @@ const BentoLayout = () => {
 
         updateUserLayout(updatedLayout)
 
-        // localStorage.setItem('layout', JSON.stringify(updatedLayout))
 
     }
 
@@ -72,6 +71,7 @@ const BentoLayout = () => {
 
     const onLayoutChange = (newLayout) => {
 
+        console.log('newLayout :', newLayout);
         updateUserLayoutAtom(newLayout)
 
     };
@@ -96,7 +96,6 @@ const BentoLayout = () => {
                 className={`layout ${editorDevice == 'mobile' && 'w-[450px] mx-auto'} transition border-2 border-black border-solid`}
                 layout={userLayout}
                 onLayoutChange={onLayoutChange}
-                onResize={onLayoutChange}
                 cols={12}
                 rowHeight={30}
                 draggableHandle=".draggable"

@@ -11,15 +11,18 @@ import Image from "next/image"
 import { useAuth, useAuthContext } from "@/providers/AuthProvider"
 import User from "@/firebase/User"
 import { useLayoutManager } from "@/providers/LayoutManager"
+import config from "../../../../config"
 
 export default function Header() {
 
-    const { userPage, updateUserPage } = useLayoutManager()
+    const { userPage, updateUserPage, updateUserSlug, userSlug } = useLayoutManager()
 
     const { user, loading } = useAuth();
 
     const [pageName, setPageName] = useState(PageUtils.getPageName());
     const [pageTagline, setPageTagline] = useState(PageUtils.getPageTagline());
+    const [pageSlug, setPageSlug] = useState(PageUtils.getPageSlug());
+
 
     const handleTaglineChange = (event) => {
         setPageTagline(event.target.value);
@@ -28,15 +31,19 @@ export default function Header() {
     const handlePageNameChange = (event) => {
         setPageName(event.target.value);
     };
+    const handlePageSlugChange = (event) => {
+        setPageSlug(event.target.value);
+    };
+
 
     const [pageNameEdit, setPageNameEdit] = useState(false)
     const [pageTaglineEdit, setPageTaglineEdit] = useState(false)
-
+    const [pageSlugEdit, setPageSlugEdit] = useState(false)
 
     function setPageNameGlobal() {
         const newPageName = document.getElementById('page_name_input').value
-        PageUtils.setPageName(newPageName)
-        setPageName(PageUtils.getPageName())
+
+        setPageName(newPageName)
         setPageNameEdit(false)
 
         const user_page = userPage
@@ -46,19 +53,26 @@ export default function Header() {
 
     function setPageTaglineGlobal() {
         const newPageTagline = document.getElementById('page_tagline_input').value
-        PageUtils.setPageTitle(newPageTagline)
-        setPageTagline(PageUtils.getPageTagline())
-        setPageTaglineEdit(false)
 
+        setPageTagline(newPageTagline)
+        setPageTaglineEdit(false)
 
         const user_page = userPage
         user_page.page_tagline = newPageTagline
         updateUserPage(user_page)
     }
 
+    function setPageSlugGlobal() {
+        const newPageSlug = document.getElementById('page_slug_input').value
+
+        setPageSlug(newPageSlug)
+        setPageSlugEdit(false)
+
+        updateUserSlug(newPageSlug)
+    }
 
     return (
-        <section className="py-6 border-b-2  border-black ">
+        <section className="py-6 border-b-2 border-black">
 
             <div className="flex justify-between">
                 <div className=" flex flex-col gap-3">
@@ -79,7 +93,8 @@ export default function Header() {
                             <div className="flex gap-2">
                                 <h3 className="text-xl font-bold">{pageName == null ? <Button onClick={() => setPageNameEdit(true)} className='text-xs leading-[0.1] h-6 py-0'>Set Page Name</Button> : pageName}</h3>
                                 <Pencil onClick={() => setPageNameEdit(true)} className="hover:bg-black hover:text-white my-auto border border-black rounded-sm p-0.5" size={20} />
-                            </div>}
+                            </div>
+                        }
                     </div>
 
                     <div>
@@ -101,6 +116,29 @@ export default function Header() {
                                 <div className="flex gap-2">
                                     <p className="text-sm">{pageTagline == null ? <Button onClick={() => setPageTaglineEdit(true)} className='text-xs leading-[0.1] h-6 py-0'>Set Tagline</Button> : pageTagline}</p>
                                     <Pencil onClick={() => setPageTaglineEdit(true)} className="hover:bg-black hover:text-white my-auto border border-black rounded-sm p-0.5" size={20} />
+                                </div>
+                        }
+                    </div>
+                    <div className="flex">
+                        <p className="text-sm font-semibold">{config.DOMAIN_URL}/</p>
+                        {
+                            pageSlugEdit ?
+
+                                <div className="flex gap-1">
+                                    <Input
+                                        placeholder='Enter Tagline'
+                                        className='text-xs p-2 w-fit'
+                                        id='page_slug_input'
+                                        value={pageSlug}
+                                        onChange={handlePageSlugChange}
+                                    />
+                                    <X onClick={() => setPageSlugEdit(false)} className="my-auto" />
+                                    <Check onClick={() => setPageSlugGlobal()} className="my-auto" />
+                                </div>
+                                :
+                                <div className="flex gap-2">
+                                    <p className="text-sm">{pageSlug == null ? <Button onClick={() => setPageSlugEdit(true)} className='text-xs leading-[0.1] h-6 py-0'>Set Slug</Button> : pageSlug}</p>
+                                    <Pencil onClick={() => setPageSlugEdit(true)} className="hover:bg-black hover:text-white my-auto border border-black rounded-sm p-0.5" size={20} />
                                 </div>
                         }
                     </div>

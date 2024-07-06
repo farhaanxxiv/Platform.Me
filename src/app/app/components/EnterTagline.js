@@ -65,42 +65,39 @@ export default function EnterTagline() {
     });
 
     return (
-        <section>
 
-            <AlertDialog open={taglinePopup} onOpenChange={setTaglinePopup}>
+        <AlertDialog open={taglinePopup} onOpenChange={setTaglinePopup}>
 
-                <AlertDialogContent>
-                    <form onSubmit={formik.handleSubmit}>
+            <AlertDialogContent>
+                <form onSubmit={formik.handleSubmit}>
 
-                        <AlertDialogHeader>
-                            <AlertDialogTitle>{pageName} 🎉</AlertDialogTitle>
-                            <AlertDialogDescription>
-                                A simple tagline will make user's know more about your page
-                                <br />
-                            </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <Input
-                            className='my-4'
-                            id="tagline"
-                            name="tagline"
-                            onChange={formik.handleChange}
-                            value={formik.values.tagline}
-                            type="text"
-                            placeholder='Enter A Tagline For Your Page' />
-                        {formik.errors.tagline && formik.touched.tagline ? <div className="text-[red] text-xs mt-2">{formik.errors.tagline}</div> : null}
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{pageName} 🎉</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            A simple tagline will make user's know more about your page
+                            <br />
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <Input
+                        className='my-4'
+                        id="tagline"
+                        name="tagline"
+                        onChange={formik.handleChange}
+                        value={formik.values.tagline}
+                        type="text"
+                        placeholder='Enter A Tagline For Your Page' />
+                    {formik.errors.tagline && formik.touched.tagline ? <div className="text-[red] text-xs mt-2">{formik.errors.tagline}</div> : null}
 
-                        <AlertDialogFooter>
-                            <AlertDialogCancel type='button' variant="outline" onClick={() => { setPageTagline('skip') }} className=''>Skip</AlertDialogCancel>
-                            <AlertDialogAction type='submit' className=''>Submit</AlertDialogAction>
-                        </AlertDialogFooter>
-                    </form>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel type='button' variant="outline" onClick={() => { setPageTagline('skip') }} className=''>Skip</AlertDialogCancel>
+                        <AlertDialogAction type='submit' className=''>Submit</AlertDialogAction>
+                    </AlertDialogFooter>
+                </form>
 
-                </AlertDialogContent>
+            </AlertDialogContent>
 
-            </AlertDialog>
+        </AlertDialog>
 
-
-        </section>
     )
 
 }

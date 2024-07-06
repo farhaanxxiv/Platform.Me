@@ -11,11 +11,23 @@ const Layout = {
         return hash;
     },
 
+    generateHashPageAndLayout: (page, layout, slug) => {
+
+        const page_data = { page: page, layout: layout, slug: slug }
+        const json = page_data
+
+        // Convert JSON object to a string
+        const jsonString = JSON.stringify(json);
+
+        // Create a hash using SHA-256
+        const hash = CryptoJS.SHA256(jsonString).toString(CryptoJS.enc.Hex);
+        return hash;
+    },
+
     defaultPage: () => {
         const defaultpage = {
             'page_name': null,
-            'page_tagline': null
-
+            'page_tagline': null,
         }
         return defaultpage
     },
@@ -34,9 +46,14 @@ const Layout = {
         if (localPage) localPage = JSON.parse(localPage)
         else return false
 
+        let localSlug = localStorage.getItem('slug')
+        if (localSlug) localSlug = localSlug
+        else return false
+
         const page_data = {
             page: localPage,
-            layout: localLayout
+            layout: localLayout,
+            slug: localSlug
         }
 
         return page_data
@@ -53,11 +70,17 @@ const Layout = {
             let layout = localStorage.getItem('layout')
             if (!layout) layout = Layout.defaultLayout()
             else layout = JSON.parse(layout)
+
+            let slug = localStorage.getItem('slug')
+            if (!slug) slug = null
+            else slug = slug
+
             console.log('layout :', layout.length);
 
             const page_json = {
                 page: page,
-                layout: layout
+                layout: layout,
+                slug: slug
             }
 
             const hash = Layout.generateHash(page_json)
@@ -87,11 +110,28 @@ const Layout = {
     },
 
     replaceUndefinedWithNull: (obj) => {
+
+        const replaceUndefinedWith = null
+
         if (Array.isArray(obj)) {
             return obj.map(item => Layout.replaceUndefinedWithNull(item));
         } else if (obj !== null && typeof obj === 'object') {
             return Object.keys(obj).reduce((acc, key) => {
-                acc[key] = obj[key] === undefined ? null : Layout.replaceUndefinedWithNull(obj[key]);
+                acc[key] = obj[key] === undefined ? replaceUndefinedWith : Layout.replaceUndefinedWithNull(obj[key]);
+                return acc;
+            }, {});
+        }
+        return obj;
+    },
+    replaceTrueWithFalse: (obj) => {
+
+        const replaceWith = false
+
+        if (Array.isArray(obj)) {
+            return obj.map(item => Layout.replaceTrueWithFalse(item));
+        } else if (obj !== null && typeof obj === 'object') {
+            return Object.keys(obj).reduce((acc, key) => {
+                acc[key] = obj[key] === true ? replaceWith : Layout.replaceTrueWithFalse(obj[key]);
                 return acc;
             }, {});
         }

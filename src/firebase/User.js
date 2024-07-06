@@ -23,13 +23,11 @@ const User = {
         try {
 
             await setDoc(doc(db, "Pages", pageID), {
-                layout: null,
+                layout: Layout.defaultLayout(),
                 page_id: pageID,
-                page: {
-                    page_name: null,
-                    page_tagline: null
-                }
-            },);
+                page: Layout.defaultPage(),
+                slug: null
+            }, { merge: true });
 
             return true
 
@@ -57,10 +55,7 @@ const User = {
         }
     },
 
-    updatePage: async (uid, page, layout) => {
-        if (uid === undefined || page === undefined || layout === undefined
-            || uid === null || page === null || layout === null
-        ) return false
+    updatePage: async (uid, page, layout, slug) => {
 
         console.log('page, layout :', page, layout);
 
@@ -86,13 +81,23 @@ const User = {
 
                 "layout": sanitizedLayout,
                 "page": sanitizedPage,
+                'slug': slug
 
             });
 
             return true;
 
         } catch (e) {
-            console.error(e);
+            console.error(e.code);
+            if (e.code == 'not-found') {
+
+                await setDoc(docRef, {
+
+                    "layout": sanitizedLayout,
+                    "page": sanitizedPage,
+
+                });
+            }
             return false;
         }
     },
