@@ -112,7 +112,8 @@ const User = {
             const dbData = docSnap.data()
             const page_data = {
                 page: dbData.page,
-                layout: dbData.layout
+                layout: dbData.layout,
+                slug: dbData.slug
             }
             return page_data
 

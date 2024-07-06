@@ -14,6 +14,7 @@ import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { db } from "../layout"
 import Layout from "@/firebase/Layout"
+import MainFooter from "@/components/main/MainFooter"
 
 export default function Page() {
 
@@ -64,13 +65,11 @@ export default function Page() {
         getPageFromSlug()
     }, [])
 
-
     const ResponsiveGridLayout = WidthProvider(GridLayout);
-
 
     return (
 
-        <section>
+        <section className="pt-32">
             {loading ?
                 <p className="font-semibold">Loading...</p>
                 : userLayout == null ?
@@ -126,7 +125,7 @@ export default function Page() {
                         </ResponsiveGridLayout >
                     </>
             }
-
+            <MainFooter />
         </section >
     )
 }

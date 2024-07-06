@@ -5,7 +5,7 @@ const nextConfig = {
         serverComponentsExternalPackages: ["mongoose"] // <-- and this
     },
     images: {
-        domains: ['media.istockphoto.com', 'lh3.googleusercontent.com'],
+        domains: ['media.istockphoto.com', 'lh3.googleusercontent.com', 'firebasestorage.googleapis.com'],
     },
 };
 

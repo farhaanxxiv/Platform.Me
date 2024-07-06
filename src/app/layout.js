@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
+import { getStorage } from 'firebase/storage';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const storage = getStorage(app);
 export const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
   useFetchStreams: false,
