@@ -86,17 +86,23 @@ const BentoLayout = () => {
         router.refresh()
     }, [editorDevice])
 
+    const stopPropagation = (event) => {
+        event.stopPropagation();
+    };
+
     return (
-        <section className="pt-32 px-0 md:px-24">
+        <section className="pt-6 px-0 md:px-24">
             <div>
                 <ResponsiveGridLayout
-                    className={`layout  mx-auto transition px-0`}
+                    className={`layout  mx-auto transition px-0 border-2 border-black `}
                     layout={userLayout}
                     onLayoutChange={onLayoutChange}
                     cols={12}
                     rowHeight={30}
                     draggableHandle=".draggable"
                     isResizable={editorMode == 'bento' ? true : false}
+                    draggableCancel='.bento-edit-btn'
+                    
 
                 >
                     {
@@ -116,9 +122,10 @@ const BentoLayout = () => {
                             return (
 
                                 <div
-
+                                    onMouseDown={stopPropagation}
+                                    onTouchStart={stopPropagation}
                                     id={bentoID} key={bentoID} className={`${editorMode == 'bento' && 'draggable'}`} data-grid={bentoGrid} >
-                                    <Button className='absolute top-3 left-3 z-[10] bg-black rounded-full text-xs p-1 px-2' onClick={() => handleSectionClick(section)}>
+                                    <Button className='bento-edit-btn absolute top-3 left-3 z-[10] bg-black rounded-full text-xs p-1 px-2' onClick={() => handleSectionClick(section)}>
                                         Edit
                                     </Button>
                                     <div className='scale-[0.96] w-full h-full'>

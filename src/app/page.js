@@ -3,7 +3,7 @@
 import { useAtom } from 'jotai'
 import { RiCamera3Line } from "react-icons/ri";
 import { BsSunglasses } from "react-icons/bs";
-import { BiCodeAlt } from "react-icons/bi";
+import { BiCodeAlt, BiDownArrowAlt, BiSolidDownArrow } from "react-icons/bi";
 import { PiSuitcase } from "react-icons/pi";
 import { CgFileAdd } from "react-icons/cg";
 import { IoShareSocialOutline } from "react-icons/io5";
@@ -96,7 +96,7 @@ function HomeComponent() {
     <>
 
       <section className='h-[100vh] relative overflow-hidden'>
-        
+
         {/* <svg className='opacity-[0.1] absolute -top-[100%] md:-top-[60%] left-0 rotate-[-180deg]' width="598" height="764" viewBox="0 0 598 764" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M597.754 7.28092C489.053 -9.28692 256.037 0.134947 193.576 170.365C115.5 383.153 309.856 553.552 1.21313 762.398" stroke="black" stroke-width="3" />
         </svg>
@@ -147,6 +147,8 @@ function HomeComponent() {
             }
           </div>
         </div>
+        <div className='absolute bottom-16 left-1/2 -translate-x-1/2'><BiDownArrowAlt size={40} /></div>
+     
       </section >
 
       <section className='bg-black text-white'>
@@ -156,7 +158,7 @@ function HomeComponent() {
           <span className='block md:inline px-4 relative w-fit'>
             <span aria-hidden='true' className='absolute inset-0 -rotate-1 bg-white '>
             </span>
-            <span className='isolate text-black'>Platform.Me ?</span>
+            <span className='isolate text-black z-[10]'>Platform.Me ?</span>
           </span>
 
         </h2>

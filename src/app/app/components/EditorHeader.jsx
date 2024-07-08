@@ -16,8 +16,8 @@ export default function EditorHeader() {
     return (
 
         <section className="py-4 border-b-2 border-black ">
-            <div className="block md:flex justify-between">
-                <div className="block md:flex gap-4">
+            <div className="flex flex-col gap-4 md:flex-row justify-between">
+                <div className="flex flex-col md:flex-row gap-4">
                     <div>
                         <UserNavbar />
                     </div>
@@ -49,7 +49,7 @@ export default function EditorHeader() {
 
                     </Tabs> */}
                 </div>
-                <Button onClick={() => { updateLayoutInDB(user.uid) }} disabled={!enableSave}>Save Changes</Button>
+                <Button className='w-full md:w-fit' onClick={() => { updateLayoutInDB(user.uid) }} disabled={!enableSave}>Save Changes</Button>
             </div >
         </section >
     )
