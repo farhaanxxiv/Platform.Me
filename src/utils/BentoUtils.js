@@ -28,7 +28,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
@@ -47,7 +47,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }
@@ -79,7 +79,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
@@ -98,7 +98,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }
@@ -130,7 +130,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
@@ -148,7 +148,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }
@@ -178,7 +178,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 },
@@ -196,7 +196,7 @@ const BentoUtils = {
                     "maxH": 100000,
                     'isBounded': true,
                     'isDraggable': true,
-                    'isResizable': true,
+                    'isResizable': '',
                     'static': false,
                     'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
                 }

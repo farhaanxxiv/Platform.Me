@@ -74,7 +74,7 @@ export default function EnterTagline() {
                     <AlertDialogHeader>
                         <AlertDialogTitle>{pageName} 🎉</AlertDialogTitle>
                         <AlertDialogDescription>
-                            A simple tagline will make user's know more about your page
+                            A simple tagline will make user&apos;s know more about your page
                             <br />
                         </AlertDialogDescription>
                     </AlertDialogHeader>

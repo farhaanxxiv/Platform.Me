@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -25,6 +27,10 @@ import { useFormEditor } from "@/providers/FormEditorProvider"
 import { useLayoutManager } from "@/providers/LayoutManager"
 
 
+import { CiImageOn } from "react-icons/ci";
+import { MdOutlineTextsms } from "react-icons/md";
+
+
 export default function UserNavbar() {
 
 
@@ -50,14 +56,19 @@ export default function UserNavbar() {
     updateUserLayout([...userLayout, formLayout])
   }
 
+  function createText() {
+    const textLayout = BentoUtils.createText()
+    updateUserLayout([...userLayout, textLayout])
+  }
+
   function updateGlobalSectionAndOpenEditor(section) {
     updateSelectedSection(section)
     toggleSectionEditor()
   }
 
   return (
-    <div className="px-3">
 
+    <div className="px-3">
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -70,16 +81,17 @@ export default function UserNavbar() {
 
             <DropdownMenuItem onClick={() => createImage()}>
               Image
-              <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+              <DropdownMenuShortcut><CiImageOn size={18} />
+              </DropdownMenuShortcut>
             </DropdownMenuItem>
 
-            <DropdownMenuItem onClick={() => createForm()}>
+            {/* <DropdownMenuItem onClick={() => createForm()}>
               Form
               <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
             <DropdownMenuItem onClick={() => createText()}>
               Text
-              <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+              <DropdownMenuShortcut><MdOutlineTextsms size={18} /></DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>Social Media</DropdownMenuSubTrigger>
@@ -88,6 +100,8 @@ export default function UserNavbar() {
                   <DropdownMenuItem onClick={() => createSocialMedia('instagram')}>Instagram</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => createSocialMedia('facebook')}>Facebook</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => createSocialMedia('spotify')} >Spotify</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => createSocialMedia('github')} >Github</DropdownMenuItem>
+
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>
             </DropdownMenuSub>
@@ -96,5 +110,6 @@ export default function UserNavbar() {
       </DropdownMenu>
 
     </div>
+
   )
 }

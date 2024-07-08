@@ -15,6 +15,7 @@ import { useAtom } from "jotai"
 import { currentSelectedSection, currentUserLayout } from "@/states/ui_state"
 import SocialEditor from "./SocialEditor"
 import { useLayoutManager } from "@/providers/LayoutManager"
+import TextEditor from "./TextEditor"
 
 
 export default function SectionEditor() {
@@ -42,7 +43,7 @@ export default function SectionEditor() {
                 <SheetContent className='py-4 overflow-y-scroll '>
 
                     <SheetTitle className='uppercase'>{userSelectedSection.type}</SheetTitle>
-                    <SheetDescription className='text-black'>
+                    <SheetDescription className='text-black mt-4'>
                         {
                             userSelectedSection.type == 'image' ?
                                 <ImageEditor section={userSelectedSection} />
@@ -50,7 +51,9 @@ export default function SectionEditor() {
                                     <FormEditor section={userSelectedSection} />
                                     : userSelectedSection.type == 'social' ?
                                         <SocialEditor section={userSelectedSection} />
-                                        : <p>No Section Selected</p>
+                                        : userSelectedSection.type == 'text' ?
+                                            <TextEditor section={userSelectedSection} />
+                                            : <p>No Section Selected</p>
                         }
 
 

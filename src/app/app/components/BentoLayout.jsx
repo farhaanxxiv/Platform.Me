@@ -1,12 +1,15 @@
 import BentoForm from '@/components/app/navbars/BentoElements/BentoForm';
 import BentoSocial from '@/components/app/navbars/BentoElements/BentoSocial';
+import BentoText from '@/components/app/navbars/BentoElements/BentoText';
 import BentoImage from '@/components/app/navbars/BentoElements/Image';
+import { Button } from '@/components/ui/button';
 import { useBentoEditorMode } from '@/providers/BentoEditorMode';
 import { useLayoutManager } from '@/providers/LayoutManager';
 import { useSectionEditor } from '@/providers/SectionEditorProvider';
 import { currentSelectedSection, currentUserLayout } from '@/states/ui_state';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
+import { Edit } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import GridLayout from 'react-grid-layout';
@@ -31,7 +34,7 @@ const BentoLayout = () => {
     function updateUserLayoutAtom(newLayout) {
 
 
-        const updatedLayout = userLayout
+        const updatedLayout = userLayout.slice()
 
 
         newLayout.forEach(layout => {
@@ -52,22 +55,14 @@ const BentoLayout = () => {
 
 
     }
+    const [isDragging, setIsDragging] = useState(false);
+    const [startPos, setStartPos] = useState({ x: 0, y: 0 });
 
-    // useLayoutEffect(() => {
-    //     checkIfLocalAndUpdateLayout();
-    // }, []);
+    const handleMouseDown = (event) => {
+        setIsDragging(false);
+        setStartPos({ x: event.clientX, y: event.clientY });
+    };
 
-    // function checkIfLocalAndUpdateLayout() {
-    //     const savedLayout = localStorage.getItem('layout');
-
-    //     if (savedLayout) {
-    //         updateUserLayout(JSON.parse(savedLayout));
-    //     } else {
-    //         updateUserLayout([]);
-    //     }
-
-    //     setDefaultLayoutsLoaded(true)
-    // }
 
     const onLayoutChange = (newLayout) => {
 
@@ -78,70 +73,82 @@ const BentoLayout = () => {
 
     function handleSectionClick(section) {
 
-        if (editorMode == 'section') {
+        // if (editorMode == 'section') {
 
-            updateSelectedSection(section)
-            openSectionEditor()
-        }
+        updateSelectedSection(section)
+        openSectionEditor()
+        // }
 
     }
 
     useEffect(() => {
+        console.log('editorDevice :', editorDevice);
         router.refresh()
     }, [editorDevice])
 
     return (
-        <div>
-            <ResponsiveGridLayout
-                className={`layout ${editorDevice == 'mobile' && 'w-[450px] mx-auto'} transition border-2 border-black border-solid`}
-                layout={userLayout}
-                onLayoutChange={onLayoutChange}
-                cols={12}
-                rowHeight={30}
-                draggableHandle=".draggable"
-                isResizable={editorMode == 'bento' ? true : false}
+        <section className="pt-32 px-0 md:px-24">
+            <div>
+                <ResponsiveGridLayout
+                    className={`layout  mx-auto transition px-0`}
+                    layout={userLayout}
+                    onLayoutChange={onLayoutChange}
+                    cols={12}
+                    rowHeight={30}
+                    draggableHandle=".draggable"
+                    isResizable={editorMode == 'bento' ? true : false}
 
-            >
+                >
+                    {
+
+                        (userLayout.length !== 0 || userLayout == undefined) && userLayout.map((section) => {
+
+                            let bentoID, bentoGrid
+
+                            if (editorDevice == 'desktop') {
+                                bentoID = section.layout?.desktop.i
+                                bentoGrid = section.layout?.desktop
+                            } else {
+                                bentoID = section.layout?.mobile.i
+                                bentoGrid = section.layout?.mobile
+                            }
+
+                            return (
+
+                                <div
+
+                                    id={bentoID} key={bentoID} className={`${editorMode == 'bento' && 'draggable'}`} data-grid={bentoGrid} >
+                                    <Button className='absolute top-3 left-3 z-[10] bg-black rounded-full text-xs p-1 px-2' onClick={() => handleSectionClick(section)}>
+                                        Edit
+                                    </Button>
+                                    <div className='scale-[0.96] w-full h-full'>
+                                        {
+                                            section.type == 'image' ?
+                                                <BentoImage img={section} /> :
+                                                section.type == 'form' ?
+                                                    <BentoForm form={section} /> :
+                                                    section.type == 'social' ?
+                                                        <BentoSocial social={section} /> :
+                                                        section.type == 'text' ?
+                                                            <BentoText text={section} />
+                                                            : <p>Invalid Bento Type</p>
+                                        }
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+
+                </ResponsiveGridLayout >
+
                 {
-
-                    (userLayout.length !== 0 || userLayout == undefined) && userLayout.map((section) => {
-
-                        let bentoID, bentoGrid
-
-                        if (editorDevice == 'desktop') {
-                            bentoID = section.layout?.desktop.i
-                            bentoGrid = section.layout?.desktop
-                        } else {
-                            bentoID = section.layout?.mobile.i
-                            bentoGrid = section.layout?.mobile
-                        }
-
-                        return (
-
-                            <div onClick={() => handleSectionClick(section)} id={bentoID} key={bentoID} className={`${editorMode == 'bento' && 'draggable'} ${selectedSection.id == section.id && 'border-2 border-solid border-black'}`} data-grid={bentoGrid} >
-                                {
-                                    section.type == 'image' ?
-                                        <BentoImage img={section} /> :
-                                        section.type == 'form' ?
-                                            <BentoForm form={section} /> :
-                                            section.type == 'social' ?
-                                                <BentoSocial social={section} />
-                                                : <p>Invalid Bento Type</p>
-                                }
-                            </div>
-                        );
-                    })
+                    (userLayout.length == 0 || userLayout == undefined)
+                    &&
+                    <p className='font-bold text-2xl text-center'>Empty Layout</p>
                 }
 
-            </ResponsiveGridLayout >
-
-            {
-                (userLayout.length == 0 || userLayout == undefined)
-                &&
-                <p className='font-bold text-2xl text-center'>Empty Layout</p>
-            }
-
-        </div>
+            </div>
+        </section>
 
     );
 };

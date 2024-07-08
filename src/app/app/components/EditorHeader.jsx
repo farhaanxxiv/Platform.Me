@@ -16,8 +16,8 @@ export default function EditorHeader() {
     return (
 
         <section className="py-4 border-b-2 border-black ">
-            <div className="flex justify-between">
-                <div className="flex gap-4">
+            <div className="block md:flex justify-between">
+                <div className="block md:flex gap-4">
                     <div>
                         <UserNavbar />
                     </div>
@@ -30,14 +30,13 @@ export default function EditorHeader() {
                             className="">
                             <span className="text-xs font-semibold"> View :&nbsp;</span>
                             <TabsList>
-                                <TabsTrigger va lue="mobile">Mobile</TabsTrigger>
+                                <TabsTrigger value="mobile">Mobile</TabsTrigger>
                                 <TabsTrigger value="desktop">Desktop</TabsTrigger>
                             </TabsList>
-                            {/* <TabsContent value="account">Make changes to your account here.</TabsContent>
-                    <TabsContent value="password">Change your password here.</TabsContent> */}
+
                         </Tabs>
                     </div>
-                    <Tabs
+                    {/* <Tabs
                         defaultValue="bento"
                         value={editorMode}
                         onValueChange={(value) => setEditorMode(value)}
@@ -47,9 +46,8 @@ export default function EditorHeader() {
                             <TabsTrigger value="bento">Layout</TabsTrigger>
                             <TabsTrigger value="section">Edit</TabsTrigger>
                         </TabsList>
-                        {/* <TabsContent value="account">Make changes to your account here.</TabsContent>
-                    <TabsContent value="password">Change your password here.</TabsContent> */}
-                    </Tabs>
+
+                    </Tabs> */}
                 </div>
                 <Button onClick={() => { updateLayoutInDB(user.uid) }} disabled={!enableSave}>Save Changes</Button>
             </div >

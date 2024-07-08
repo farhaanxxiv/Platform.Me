@@ -5,7 +5,7 @@ import { user_company, user_company_tagline } from "@/states/user_state"
 import PageUtils from "@/utils/PageUtils"
 import { useAtom } from "jotai"
 import { Check, Divide, Pencil, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useAuth, useAuthContext } from "@/providers/AuthProvider"
@@ -22,6 +22,19 @@ export default function Header() {
     const [pageName, setPageName] = useState(PageUtils.getPageName());
     const [pageTagline, setPageTagline] = useState(PageUtils.getPageTagline());
     const [pageSlug, setPageSlug] = useState(PageUtils.getPageSlug());
+
+    useEffect(() => {
+        if (userPage) {
+            setPageName(userPage.page_name);
+            setPageTagline(userPage.page_tagline);
+        }
+    }, [userPage]);
+
+    useEffect(() => {
+        if (userSlug) {
+            setPageSlug(userSlug);
+        }
+    }, [userSlug]);
 
 
     const handleTaglineChange = (event) => {
@@ -147,25 +160,28 @@ export default function Header() {
                     {loading ?
                         <div className="flex items-center space-x-4">
                             <div className="space-y-2">
-                                <Skeleton className="h-4 w-[20vw]" />
+                                <Skeleton className="h-4 w-[20vw] hidden md:block" />
 
                             </div>
                             <Skeleton className="h-12 w-12 rounded-full" />
                         </div>
                         :
-                        <div className="flex items-center space-x-3">
-                            <div className="space-y-1">
-                                <p className="text-xs text-right font-bold">{user?.displayName}</p>
-                                <p className="text-xs text-right ">{user?.email}</p>
+                        <>
+                            <div className="flex items-center space-x-3">
+                                <div className="space-y-1 hidden md:block">
+                                    <p className="text-xs text-right font-bold">{user?.displayName}</p>
+                                    <p className="text-xs text-right ">{user?.email}</p>
+                                </div>
+                                <Image
+                                    width={60}
+                                    height={60}
+                                    className="rounded-[50%] border border-solid border-black"
+                                    loader={() => user?.photoURL}
+                                    src={user?.photoURL}
+                                />
                             </div>
-                            <Image
-                                width={60}
-                                height={60}
-                                className="rounded-[50%] border border-solid border-black"
-                                loader={() => user?.photoURL}
-                                src={user?.photoURL}
-                            />
-                        </div>
+                            {userSlug != null && <a target="_blank" href={`${config.WEBSITE_URL}/${userSlug}`}> <Button className='text-xs mt-3 float-right '>View Your Page</Button></a>}
+                        </>
                     }
                 </div>
             </div>

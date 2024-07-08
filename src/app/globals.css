@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: var(--font-space-grotesk);
+}
+
 @layer base {
 
   ul,
@@ -86,12 +90,12 @@
 }
 
 section {
-  padding: 4rem 6%;
+  padding: 8rem 6%;
 }
 
 @media only screen and (max-width: 500px) {
   section {
 
-    padding: 4rem 2%;
+    padding: 4rem 5%;
   }
 }

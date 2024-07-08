@@ -1,6 +1,12 @@
 'use client'
 
 import { useAtom } from 'jotai'
+import { RiCamera3Line } from "react-icons/ri";
+import { BsSunglasses } from "react-icons/bs";
+import { BiCodeAlt } from "react-icons/bi";
+import { PiSuitcase } from "react-icons/pi";
+import { CgFileAdd } from "react-icons/cg";
+import { IoShareSocialOutline } from "react-icons/io5";
 
 import { SectionIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
@@ -28,7 +34,6 @@ export default function Home() {
 
   return (
     <AuthProvider>
-
       <LayoutManagerProvider>
         <HomeComponent />
       </LayoutManagerProvider>
@@ -89,55 +94,123 @@ function HomeComponent() {
 
 
     <>
-      <section>
 
-        <h2 className="text-black text-4xl font-semibold text-center">Create Your Website In 60 Seconds</h2>
+      <section className='h-[100vh] relative overflow-hidden'>
+        
+        {/* <svg className='opacity-[0.1] absolute -top-[100%] md:-top-[60%] left-0 rotate-[-180deg]' width="598" height="764" viewBox="0 0 598 764" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M597.754 7.28092C489.053 -9.28692 256.037 0.134947 193.576 170.365C115.5 383.153 309.856 553.552 1.21313 762.398" stroke="black" stroke-width="3" />
+        </svg>
 
-        <div className='mt-12 text-center'>
+        <svg className='opacity-[0.1] absolute -bottom-[90%] md:-bottom-[60%] right-0 rotate-[-180deg]' width="598" height="764" viewBox="0 0 598 764" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M597.754 7.28092C489.053 -9.28692 256.037 0.134947 193.576 170.365C115.5 383.153 309.856 553.552 1.21313 762.398" stroke="black" stroke-width="3" />
+        </svg> */}
 
-          {
-            loading ?
-              <p>Loading Auth</p>
-              :
-              user != null ?
-                <>
-                  {fetchingUserLoader ?
-                    <p>Fetching User</p>
-                    :
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full'></div>
 
-                    <Button onClick={() => router.push('/app')}>
-                      {userData == null ? ' Create Page' : 'Continue Creating'}
-                    </Button>
+        <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full '>
+          <h2 className=" leading-tight text-blackstroke-2 text-4xl md:text-8xl font-extrabold text-center">
+            Create Your Page In
+            <br />
+            <span className='font-light'> 60 Seconds</span>
+          </h2>
 
-                  }
-                </>
+
+          <div className='mt-12 text-center'>
+
+            {
+              loading ?
+                <p>Loading Auth</p>
                 :
-                <div className=''>
-                  <h3 className='font-semibold text-3xl'>Sign Up Now To Start Building Your Page</h3>
-                  <Button className='mt-4' onClick={() => { signInWithFirebase() }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
+                user != null ?
+                  <>
+                    {fetchingUserLoader ?
+                      <p>Fetching User</p>
+                      :
 
-                </div>
-          }
+                      <Button onClick={() => router.push('/app')}>
+                        {userData == null ? ' Create Page' : 'Continue Creating'}
+                      </Button>
 
-          {
+                    }
+                  </>
+                  :
+                  <div className=''>
+                    <h3 className='font-semibold text-lg md:text-3xl w-1/2 mx-auto'>Sign Up Now To Start Building Your Page</h3>
+                    <Button className='mt-6 text-sm md:text-lg' onClick={() => { signInWithFirebase() }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
+                    <p className='text-xs mt-2'>*No Credit Card Required</p>
+                  </div>
+            }
+
+            {
 
 
-          }
+            }
+          </div>
         </div>
       </section >
 
+      <section className='bg-black text-white'>
+        <h2 className='font-bold text-3xl md:text-5xl md:text-center leading-normal'>
+          What Is&nbsp;
 
-      <section>
-        <h2>Start Your Thing Today, without having to worry about having everything. We have it all at one place.</h2>
+          <span className='block md:inline px-4 relative w-fit'>
+            <span aria-hidden='true' className='absolute inset-0 -rotate-1 bg-white '>
+            </span>
+            <span className='isolate text-black'>Platform.Me ?</span>
+          </span>
+
+        </h2>
+        <p className='md:text-center text-lg md:text-xl mt-6 font-medium'>You can create a page for yourself where you can showcase <b> yourself</b> /<b> your business</b> /<b> your portfolio</b> by sharing your page&apos;s link.
+          <br />
+          <br />
+          If you need a page for yourself ASAP, <b>Platform.Me</b> is here
+        </p>
       </section>
 
       <section>
-        <h2 className="text-3xl font-semibold">It has everything you require to start your website</h2>
+        <h2 className='font-bold text-3xl md:text-5xl md:text-center leading-normal'>What Can It Be Used For ?  </h2>
+        <p className='md:text-center text-lg md:text-xl mt-6 font-medium'>You can build these <span className='bg-black text-white px-2 py-1'> instantly</span></p>
+        <div className='flex flex-wrap md:justify-center gap-3 mt-12'>
+          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit'>
+            <PiSuitcase className='my-auto' />
+            <p className='font-medium'>Validate Your New Business Idea</p>
+          </div>
+
+          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit'>
+            <BiCodeAlt className='my-auto' />
+            <p className='font-medium'>Developer Portfolio</p>
+          </div>
+
+          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit'>
+            <RiCamera3Line className='my-auto' />
+            <p className='font-medium'>To Showcase Your Photography</p>
+          </div>
+
+          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit'>
+            <BsSunglasses className='my-auto' />
+            <p className='font-medium'>Model Portfolio</p>
+          </div>
+
+          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit'>
+            <CgFileAdd className='my-auto' />
+            <p className='font-medium'>Lead Generation (Coming Soon)</p>
+          </div>
+          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit'>
+            <IoShareSocialOutline className='my-auto' />
+            <p className='font-medium'>Share Social Media Links</p>
+          </div>
+
+        </div>
+
+      </section >
+
+      <section className='bg-black text-white'>
+        <h2 className='font-bold text-3xl md:text-5xl md:text-center leading-normal'>Why Us ? </h2>
         <ul className="list-disc mt-4">
-          <div className="pl-4">
-            <li>Page Analaytics (No.of Unique Visitors, )</li>
-            <li>Easy Form Builder (With Analytics for Each Form)</li>
-            <li>Create the website using Bento Layouts (For Both Desktop And Mobile)</li>
+          <div className="grid md:grid-cols-2 md:gap-y-2">
+            <li className='text-lg md:text-xl mt-6 font-medium'>Easy Drag & Drop Layout</li>
+            <li className='text-lg md:text-xl mt-6 font-medium'>Completely Free</li>
+            <li className='text-lg md:text-xl mt-6 font-medium'>Need Not Worry About Page Going Down if Inactive</li>
           </div>
         </ul>
       </section >

@@ -14,9 +14,6 @@ const MenuBar = () => {
         return null
     }
 
-    useEffect(() => {
-        console.log(editor)
-    }, [editor])
 
     return (
         <>
@@ -205,6 +202,7 @@ const extensions = [
 
 export default () => {
     return (
-        <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={'ads'}></EditorProvider>
+        <></>
+        // <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={'ads'}></EditorProvider>
     )
 }

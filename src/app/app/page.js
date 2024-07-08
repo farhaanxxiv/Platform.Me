@@ -59,16 +59,14 @@ function LayoutEditPage() {
                     <>
 
                         <Header />
-                        <EnterTagline />
+                        {/* <EnterTagline /> */}
                         <EditorHeader />
 
-                        <section>
 
-                            <SectionEditor />
+                        <SectionEditor />
 
-                            <BentoLayout />
+                        <BentoLayout />
 
-                        </section>
                     </>
                     :
                     <p > <b> Loading State :  </b>(Synchronising Local & DB States)</p>

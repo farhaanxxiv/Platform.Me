@@ -1,9 +1,10 @@
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
 import { getStorage } from 'firebase/storage';
 
-const inter = Inter({ subsets: ["latin"] });
+export const space_grotesk = Space_Grotesk({ subsets: ["latin"], variable: '--font-space-grotesk', }
+);
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -38,7 +39,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={space_grotesk.variable}>
 
         {children}
         <Toaster />
