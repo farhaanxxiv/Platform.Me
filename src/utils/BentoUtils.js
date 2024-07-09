@@ -11,11 +11,11 @@ const BentoUtils = {
         const img = {
             id: uid,
             type: 'image',
-            src: 'https://media.istockphoto.com/id/1489649103/photo/3d-rendering-of-a-misty-forest-illuminated-by-a-bright-television-surrounded-by-hanging-light.jpg?s=1024x1024&w=is&k=20&c=tJS3VwE2qrJGJvaiD4RdbnuWMV71OczHaAPryGx8MJg=',
+            src: '/assets/images/placeholder-image.png',
             layout: {
                 desktop: {
                     //need to find a gap here. must use cp lol
-                    "w": 7,
+                    "w": 6,
                     "h": 6,
                     "x": 0,
                     "y": 3,
@@ -34,7 +34,7 @@ const BentoUtils = {
                 },
                 mobile: {
                     //need to find a gap here. must use cp lol
-                    "w": 7,
+                    "w": 6,
                     "h": 6,
                     "x": 0,
                     "y": 3,

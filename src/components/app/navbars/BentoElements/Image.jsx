@@ -1,4 +1,5 @@
 import Image from "next/image";
+import placeHolder from '../../../../../public/assets/images/placeholder-image.jpg'
 
 export default function BentoImage({ img }) {
 
@@ -6,7 +7,7 @@ export default function BentoImage({ img }) {
         position: 'relative',
         width: '100%',
         height: '100%',
-        overflow: 'hidden',
+        overflow: 'hidden', 
     };
 
     const backgroundStyle = {
@@ -49,7 +50,7 @@ export default function BentoImage({ img }) {
                 <div style={foregroundStyle}>
                     <Image
                         fill={true}
-                        src={isValidImageURL(img.src) ? img.src : '/next.svg'}
+                        src={isValidImageURL(img.src) ? img.src : placeHolder}
                         style={{}}
                         className={`${img.cover == undefined || img.cover == '' || img.cover == 'contain' ? `object-contain` : 'object-contain'} `}
                     // `object-contain` : 'object-cover'

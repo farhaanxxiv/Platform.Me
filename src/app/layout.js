@@ -17,6 +17,7 @@ import { getFirestore, initializeFirestore } from "firebase/firestore";
 import {
   getAuth,
 } from 'firebase/auth';
+import Head from "next/head";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4vC_F5_6dtbDqY3rbfk_P_djFdE3i1QY",
@@ -40,6 +41,9 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <Head>
+        <title>Platform.Me</title>
+      </Head>
       <body className={space_grotesk.variable}>
         {children}
         <Toaster />

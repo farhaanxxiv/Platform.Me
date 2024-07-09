@@ -111,7 +111,7 @@ export default function Page() {
                                             return (
 
                                                 <div id={bentoID} key={bentoID} data-grid={bentoGrid} >
-                                                    <div className="scale-[0.96] w-full h-full hover:rotate-2 transition-all">
+                                                    <div className="scale-[0.96] w-full h-full lg:hover:rotate-2 transition-all">
                                                         {
                                                             section.type == 'image' ?
                                                                 <BentoImage img={section} /> :
