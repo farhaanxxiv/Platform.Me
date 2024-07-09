@@ -2,6 +2,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
 import { getStorage } from 'firebase/storage';
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const space_grotesk = Space_Grotesk({ subsets: ["latin"], variable: '--font-space-grotesk', }
 );
@@ -40,11 +41,10 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={space_grotesk.variable}>
-
         {children}
         <Toaster />
-
       </body>
+      {process.env.NODE_ENV === 'production' && <GoogleAnalytics gaId="G-0TPW3N70MF" />}
     </html>
   );
 }

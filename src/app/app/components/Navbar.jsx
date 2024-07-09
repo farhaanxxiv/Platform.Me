@@ -101,6 +101,7 @@ export default function UserNavbar() {
                   <DropdownMenuItem onClick={() => createSocialMedia('facebook')}>Facebook</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => createSocialMedia('spotify')} >Spotify</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => createSocialMedia('github')} >Github</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => createSocialMedia('youtube')} >YouTube</DropdownMenuItem>
 
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>

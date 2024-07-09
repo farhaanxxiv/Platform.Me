@@ -94,7 +94,7 @@ const BentoLayout = () => {
         <section className="pt-6 px-0 md:px-24">
             <div>
                 <ResponsiveGridLayout
-                    className={`layout  mx-auto transition px-0 border-2 border-black `}
+                    className={`layout  ${editorDevice == 'mobile' && 'w-[400px]'} mx-auto transition px-0 border-2 border-black `}
                     layout={userLayout}
                     onLayoutChange={onLayoutChange}
                     cols={12}
@@ -102,7 +102,7 @@ const BentoLayout = () => {
                     draggableHandle=".draggable"
                     isResizable={editorMode == 'bento' ? true : false}
                     draggableCancel='.bento-edit-btn'
-                    
+
 
                 >
                     {

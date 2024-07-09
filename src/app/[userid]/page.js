@@ -68,18 +68,11 @@ export default function Page() {
 
     const ResponsiveGridLayout = WidthProvider(GridLayout);
 
-
-    const styles = {
-
-        // width: width < 400 ? '350px' : width < 700 ? '400px' : width < 900 ? '450px' : width < 1000 ? '450px' : '1000px',
-        // margin: 'auto',
-
-    }
     return (
         <>
 
             <section className="pt-32 px-0 md:px-24">
-                <div style={styles}>
+                <div>
                     {loading ?
                         <p className="font-semibold">Loading...</p>
                         : userLayout == null ?
@@ -118,7 +111,7 @@ export default function Page() {
                                             return (
 
                                                 <div id={bentoID} key={bentoID} data-grid={bentoGrid} >
-                                                    <div className="scale-[0.96] w-full h-full">
+                                                    <div className="scale-[0.96] w-full h-full hover:rotate-2 transition-all">
                                                         {
                                                             section.type == 'image' ?
                                                                 <BentoImage img={section} /> :

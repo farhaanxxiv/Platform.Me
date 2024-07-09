@@ -5,11 +5,11 @@ import { isAtEndOfNode } from "@tiptap/react";
 import { useFormik } from "formik"
 import { Facebook, FacebookIcon } from 'lucide-react';
 import { usePathname } from "next/navigation";
-import { FaFacebookF, FaGithub, FaSpotify } from "react-icons/fa";
+import { FaFacebookF, FaGithub, FaSpotify, FaYoutube } from "react-icons/fa";
 
 export default function BentoSocial({ social }) {
-    
-    
+
+
     const pathName = usePathname()
 
 
@@ -24,6 +24,7 @@ export default function BentoSocial({ social }) {
     const facebookColor = { backgroundColor: '#0866ff' }
     const spotifyColor = { backgroundColor: '#1ed760' }
     const githubColor = { backgroundColor: '#000000' }
+    const youtubeColor = { backgroundColor: '#ff0000' }
 
 
     let bg = ''
@@ -33,6 +34,8 @@ export default function BentoSocial({ social }) {
     else if (social_media == 'facebook') bg = facebookColor
     else if (social_media == 'spotify') bg = spotifyColor
     else if (social_media == 'github') bg = githubColor
+    else if (social_media == 'youtube') bg = youtubeColor
+
 
 
 
@@ -53,6 +56,8 @@ export default function BentoSocial({ social }) {
                     <FaSpotify className="p-4  invert w-full h-full aspect-square " />
                 ) : social_media === 'github' ? (
                     <FaGithub className="p-3   invert w-full h-full aspect-square " />
+                ) : social_media === 'youtube' ? (
+                    <FaYoutube className="p-3   invert w-full h-full aspect-square " />
                 ) : (
                     <></>
                 )}
