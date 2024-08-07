@@ -26,6 +26,10 @@ export default function Page() {
     const [loading, setLoading] = useState(true)
     const pathName = usePathname()
 
+    useEffect(() => {
+        console.log('width :', width);
+    }, [width])
+
     async function getPageFromSlug() {
 
 

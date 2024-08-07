@@ -98,7 +98,7 @@ const BentoLayout = () => {
                     layout={userLayout}
                     onLayoutChange={onLayoutChange}
                     cols={12}
-                    rowHeight={30}
+                    rowHeight={30}  
                     draggableHandle=".draggable"
                     isResizable={editorMode == 'bento' ? true : false}
                     draggableCancel='.bento-edit-btn'
