@@ -147,7 +147,7 @@ function HomeComponent() {
             }
           </div>
         </div>
-        <div className='absolute bottom-16 left-1/2 -translate-x-1/2'><BiDownArrowAlt size={40} /></div>
+        <div className='absolute animate-bounce bottom-16 left-1/2 -translate-x-1/2'><BiDownArrowAlt size={40} /></div>
      
       </section >
 
@@ -158,7 +158,7 @@ function HomeComponent() {
           <span className='block md:inline px-4 relative w-fit'>
             <span aria-hidden='true' className='absolute inset-0 -rotate-1 bg-white '>
             </span>
-            <span className='isolate text-black z-[10]'>Platform.Me ?</span>
+            <span className=' invert z-[10]'>Platform.Me ?</span>
           </span>
 
         </h2>

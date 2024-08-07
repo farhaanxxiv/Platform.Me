@@ -12,6 +12,7 @@ import { useAuth, useAuthContext } from "@/providers/AuthProvider"
 import User from "@/firebase/User"
 import { useLayoutManager } from "@/providers/LayoutManager"
 import config from "../../../../config"
+import { auth } from "@/app/layout"
 
 export default function Header() {
 
@@ -168,9 +169,10 @@ export default function Header() {
                         :
                         <>
                             <div className="flex items-center space-x-3">
-                                <div className="space-y-1 hidden md:block">
-                                    <p className="text-xs text-right font-bold">{user?.displayName}</p>
-                                    <p className="text-xs text-right ">{user?.email}</p>
+                                <div className="space-y-1 ">
+                                    <p className="hidden md:block text-xs text-right font-bold">{user?.displayName}</p>
+                                    <p className="hidden md:block text-xs text-right ">{user?.email}</p>
+                                    <Button onClick={() => auth.signOut()} className="ml-auto block w-fit p-1 px-3 leading-tight h-fit text-xs text-right ">Logout</Button>
                                 </div>
                                 <Image
                                     width={60}

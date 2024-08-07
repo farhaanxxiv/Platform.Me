@@ -32,7 +32,7 @@ export default function SocialEditor({ section }) {
         updateUserLayout(finalLayout)
         // localStorage.setItem('layout', JSON.stringify(finalLayout))
         toast({
-            title: `Updated Image To : ${socialLink}`
+            title: `Updated To : ${socialLink}`
         })
     }
     return (
