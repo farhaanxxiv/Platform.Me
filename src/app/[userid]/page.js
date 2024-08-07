@@ -84,7 +84,7 @@ export default function Page() {
     return (
         <>
 
-            <section className="pt-32 px-0 md:px-24">
+            <section className="pt-32 px-0 md:px-24 overflow-x-hidden">
                 <div>
                     {loading ?
                         <p className="font-semibold">Loading...</p>
