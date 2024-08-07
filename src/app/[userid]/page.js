@@ -22,7 +22,7 @@ export default function Page() {
     const [userLayout, setUserLayout] = useState(null)
     const [userPage, setUserPage] = useState(null)
 
-    const { width, height } = useWindowSize();
+    // const { width, height } = useWindowSize();
     const [loading, setLoading] = useState(true)
     const pathName = usePathname()
 
