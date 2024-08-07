@@ -7,7 +7,7 @@ import MainHeader from "@/components/main/MainHeader"
 import useWindowSize from "@/providers/useWindowSize"
 import { collection, getDocs, query, where } from "firebase/firestore"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import GridLayout from 'react-grid-layout';
 import { WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
@@ -26,12 +26,21 @@ export default function Page() {
     const [loading, setLoading] = useState(true)
     const pathName = usePathname()
 
+
+
+
+    const [innerWidth, setInnerWidth] = useState(0)
+
+    useLayoutEffect(() => {
+        setInnerWidth(window.innerWidth)
+
+    }, [])
+    
     useEffect(() => {
-        console.log('width :', width);
-    }, [width])
+        console.log('innerWidth :', innerWidth);
+    }, [innerWidth])
 
     async function getPageFromSlug() {
-
 
         const slug = pathName.substring(1);
 
@@ -103,7 +112,7 @@ export default function Page() {
 
                                             let bentoID, bentoGrid
 
-                                            if (width > 767) {
+                                            if (innerWidth > 767) {
                                                 bentoID = section.layout?.desktop.i
                                                 bentoGrid = section.layout?.desktop
                                             } else {
