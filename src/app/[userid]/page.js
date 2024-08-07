@@ -84,7 +84,7 @@ export default function Page() {
     return (
         <>
 
-            <section className="pt-32 px-0 md:px-24 overflow-x-hidden w-[100dvw_!important]">
+            <section className="pt-32 px-0 md:px-24 overflow-x-hidden ">
                 <div>
                     {loading ?
                         <p className="font-semibold">Loading...</p>
@@ -94,7 +94,7 @@ export default function Page() {
                             <>
                                 <MainHeader page={userPage} />
                                 <ResponsiveGridLayout
-                                    className="w-[100dvw_!important] overflow-hidden"
+                                    className=" overflow-hidden"
                                     layout={userLayout}
                                     cols={12}
                                     rowHeight={30}
