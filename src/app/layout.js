@@ -39,7 +39,7 @@ export const db = initializeFirestore(app, {
 
 export default async function RootLayout({ children }) {
   if (process.env.NODE_ENV === 'production') {
-    window.console.log = () => { };
+    // window.console.log = () => { };
   }
 
   return (
