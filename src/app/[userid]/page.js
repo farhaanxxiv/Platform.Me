@@ -35,7 +35,7 @@ export default function Page() {
         setInnerWidth(window.innerWidth)
 
     }, [])
-    
+
     useEffect(() => {
         console.log('innerWidth :', innerWidth);
     }, [innerWidth])
@@ -84,7 +84,7 @@ export default function Page() {
     return (
         <>
 
-            <section className="pt-32 px-0 md:px-24 overflow-x-hidden">
+            <section className="pt-32 px-0 md:px-24 overflow-x-hidden w-[100dvw_!important]">
                 <div>
                     {loading ?
                         <p className="font-semibold">Loading...</p>
@@ -94,7 +94,7 @@ export default function Page() {
                             <>
                                 <MainHeader page={userPage} />
                                 <ResponsiveGridLayout
-
+                                    className="w-[100dvw_!important] overflow-hidden"
                                     layout={userLayout}
                                     cols={12}
                                     rowHeight={30}
@@ -102,8 +102,15 @@ export default function Page() {
                                     isResizable={false}
                                     isBounded={false}
                                     isDroppable={false}
-
-
+                                    autoSize={true}
+                                    onDragStart={()=>{return;}}
+                                    onDrag={()=>{return;}}
+                                    onDragStop={()=>{return;}}
+                                    onResizeStart={()=>{return;}}
+                                    onResize={()=>{return;}}
+                                    onResizeStop={()=>{return;}}
+                                    onDrop={()=>{return;}}
+                                    onDropDragOver={()=>{return;}}
                                 >
 
 
@@ -123,7 +130,7 @@ export default function Page() {
                                             // console.log(section.layout?.desktop);
                                             return (
 
-                                                <div id={bentoID} key={bentoID} data-grid={bentoGrid} >
+                                                <div className="w-[100dvw]" id={bentoID} key={bentoID} data-grid={bentoGrid} >
                                                     <div className="scale-[0.96] w-full h-full lg:hover:rotate-2 transition-all">
                                                         {
                                                             section.type == 'image' ?
