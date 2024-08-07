@@ -49,15 +49,33 @@ export default function BentoSocial({ social }) {
         >
             <div style={bg} className={`h-full w-full rounded-3xl border-2 border-solid ${social_media == 'github' && 'border-white'} border-black shadow-[3px_3px_black]`}>
                 {social_media === 'instagram' ? (
-                    <InstagramLogoIcon className="p-3 invert w-full h-full aspect-square " />
+                    <div className="w-full h-full  m-auto invert">
+                        <InstagramLogoIcon className="p-3  w-full h-full aspect-square " />
+                    </div>
                 ) : social_media === 'facebook' ? (
-                    <FaFacebookF className="p-5 invert w-full h-full aspect-square " />
+                    <div className="w-full h-full  m-auto invert">
+
+                        <FaFacebookF className="p-5 w-full h-full aspect-square " />
+                    </div>
+
                 ) : social_media === 'spotify' ? (
-                    <FaSpotify className="p-4  invert w-full h-full aspect-square " />
+                    <div className="w-full h-full  m-auto invert">
+
+                        <FaSpotify className="p-4  w-full h-full aspect-square " />
+                    </div>
+
                 ) : social_media === 'github' ? (
-                    <FaGithub className="p-3   invert w-full h-full aspect-square " />
+                    <div className="w-full h-full  m-auto invert">
+
+                        <FaGithub className="p-3  w-full h-full aspect-square " />
+                    </div>
+
                 ) : social_media === 'youtube' ? (
-                    <FaYoutube className="p-3   invert w-full h-full aspect-square " />
+                    <div className="w-full h-full  m-auto invert">
+
+                        <FaYoutube className="p-3  w-full h-full aspect-square " />
+                    </div>
+
                 ) : (
                     <></>
                 )}
