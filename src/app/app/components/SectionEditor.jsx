@@ -16,6 +16,7 @@ import { currentSelectedSection, currentUserLayout } from "@/states/ui_state"
 import SocialEditor from "./SocialEditor"
 import { useLayoutManager } from "@/providers/LayoutManager"
 import TextEditor from "./TextEditor"
+import SectionSectionEditor from "./SectionSectionEditor"
 
 
 export default function SectionEditor() {
@@ -53,7 +54,9 @@ export default function SectionEditor() {
                                         <SocialEditor section={userSelectedSection} />
                                         : userSelectedSection.type == 'text' ?
                                             <TextEditor section={userSelectedSection} />
-                                            : <p>No Section Selected</p>
+                                            : userSelectedSection.type == 'section' ?
+                                                <SectionSectionEditor section={userSelectedSection} />
+                                                : <p>No Section Selected</p>
                         }
 
 

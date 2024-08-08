@@ -61,6 +61,11 @@ export default function UserNavbar() {
     updateUserLayout([...userLayout, textLayout])
   }
 
+  function createSection() {
+    const sectionLayout = BentoUtils.createSection()
+    updateUserLayout([...userLayout, sectionLayout])
+  }
+
   function updateGlobalSectionAndOpenEditor(section) {
     updateSelectedSection(section)
     toggleSectionEditor()
@@ -92,6 +97,10 @@ export default function UserNavbar() {
             <DropdownMenuItem onClick={() => createText()}>
               Text
               <DropdownMenuShortcut><MdOutlineTextsms size={18} /></DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => createSection()}>
+              Section 
+              <DropdownMenuShortcut>---</DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>Social Media</DropdownMenuSubTrigger>

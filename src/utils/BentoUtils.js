@@ -4,7 +4,56 @@ import { useAtom } from "jotai"
 
 
 const BentoUtils = {
+    createSection: () => {
 
+        const uid = BentoUtils.generateUniqueId()
+        const img = {
+            id: uid,
+            type: 'section',
+            heading: '',
+            layout: {
+                desktop: {
+                    //need to find a gap here. must use cp lol
+                    "w": 12,
+                    "h": 6,
+                    "x": 0,
+                    "y": 3,
+                    "i": uid,
+                    "moved": false,
+                    "static": false,
+                    "minW": 12,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': '',
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                },
+                mobile: {
+                    //need to find a gap here. must use cp lol
+                    "w": 12,
+                    "h": 6,
+                    "x": 0,
+                    "y": 3,
+                    "i": uid,
+                    "moved": false,
+                    "static": false,
+                    "minW": 12,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': '',
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                }
+            }
+        }
+        return img
+    },
     createImageSection: () => {
 
         const uid = BentoUtils.generateUniqueId()

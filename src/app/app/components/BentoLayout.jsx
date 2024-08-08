@@ -1,4 +1,5 @@
 import BentoForm from '@/components/app/navbars/BentoElements/BentoForm';
+import BentoSection from '@/components/app/navbars/BentoElements/BentoSection';
 import BentoSocial from '@/components/app/navbars/BentoElements/BentoSocial';
 import BentoText from '@/components/app/navbars/BentoElements/BentoText';
 import BentoImage from '@/components/app/navbars/BentoElements/Image';
@@ -98,7 +99,7 @@ const BentoLayout = () => {
                     layout={userLayout}
                     onLayoutChange={onLayoutChange}
                     cols={12}
-                    rowHeight={30}  
+                    rowHeight={30}
                     draggableHandle=".draggable"
                     isResizable={editorMode == 'bento' ? true : false}
                     draggableCancel='.bento-edit-btn'
@@ -137,8 +138,10 @@ const BentoLayout = () => {
                                                     section.type == 'social' ?
                                                         <BentoSocial social={section} /> :
                                                         section.type == 'text' ?
-                                                            <BentoText text={section} />
-                                                            : <p>Invalid Bento Type</p>
+                                                            <BentoText text={section} /> :
+                                                            section.type == 'section' ?
+                                                                <BentoSection section={section} />
+                                                                : <p>Invalid Bento Type</p>
                                         }
                                     </div>
                                 </div>

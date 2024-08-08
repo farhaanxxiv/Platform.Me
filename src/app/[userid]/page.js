@@ -16,6 +16,7 @@ import { db } from "../layout"
 import Layout from "@/firebase/Layout"
 import MainFooter from "@/components/main/MainFooter"
 import BentoText from "@/components/app/navbars/BentoElements/BentoText"
+import BentoSection from "@/components/app/navbars/BentoElements/BentoSection"
 
 export default function Page() {
 
@@ -103,14 +104,14 @@ export default function Page() {
                                     isBounded={false}
                                     isDroppable={false}
                                     autoSize={true}
-                                    onDragStart={()=>{return;}}
-                                    onDrag={()=>{return;}}
-                                    onDragStop={()=>{return;}}
-                                    onResizeStart={()=>{return;}}
-                                    onResize={()=>{return;}}
-                                    onResizeStop={()=>{return;}}
-                                    onDrop={()=>{return;}}
-                                    onDropDragOver={()=>{return;}}
+                                    onDragStart={() => { return; }}
+                                    onDrag={() => { return; }}
+                                    onDragStop={() => { return; }}
+                                    onResizeStart={() => { return; }}
+                                    onResize={() => { return; }}
+                                    onResizeStop={() => { return; }}
+                                    onDrop={() => { return; }}
+                                    onDropDragOver={() => { return; }}
                                 >
 
 
@@ -143,7 +144,10 @@ export default function Page() {
                                                                         :
                                                                         section.type == 'text' ?
                                                                             <BentoText text={section} />
-                                                                            : <p>Invalid Bento Type</p>
+                                                                            :
+                                                                            section.type == 'section' ?
+                                                                                <BentoSection section={section} />
+                                                                                : <p>Invalid Bento Type</p>
                                                         }
                                                     </div>
                                                 </div>
