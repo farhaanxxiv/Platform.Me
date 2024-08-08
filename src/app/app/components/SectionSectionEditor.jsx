@@ -7,11 +7,14 @@ import { useState } from "react";
 import { currentSelectedSection, currentUserLayout } from "@/states/ui_state"
 import { toast } from "@/components/ui/use-toast";
 import { useLayoutManager } from "@/providers/LayoutManager";
-
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
 export default function SectionSectionEditor({ section }) {
     const { userLayout, updateUserLayout } = useLayoutManager()
 
     const [heading, setHeading] = useState(section.heading)
+
+
 
     function handleChange(e) {
         const newText = e.currentTarget.value
@@ -26,6 +29,7 @@ export default function SectionSectionEditor({ section }) {
         for (let i = 0; i < finalLayout.length; i++) {
             if (finalLayout[i].id == section.id) {
                 finalLayout[i].heading = heading
+                
             }
         }
 
@@ -47,7 +51,10 @@ export default function SectionSectionEditor({ section }) {
                 />
             </Label>
 
-            <Button onClick={() => updateHeading()} className='mt-2 ml-auto w-fit block' variant=''>Save Text</Button>
+            <Button onClick={() => updateHeading()} className='mt-2 ml-auto w-fit block' variant=''>Save</Button>
+
+ 
+
         </div>
     )
 }
