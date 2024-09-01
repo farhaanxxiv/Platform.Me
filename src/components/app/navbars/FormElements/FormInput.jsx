@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
     Select,
     SelectContent,
@@ -42,28 +43,31 @@ export default function FormInput({ type, getCustomFieldData, field }) {
                     :
                     type == 'custom' ?
                         <div className="w-full h-full block">
-                            <p className="text-xs font-semibold">Custom Field </p>
-
-                            <p className="text-xs font-semibold">Enter Title Of Custom Input</p>
-                            <Input
-                                placeholder=''
-                                type='text'
-                                onChange={handleChangeName}
-                                value={inputName}
-                            />
+                            <Label className='text-xs'>
+                                Title
+                                <Input
+                                    placeholder=''
+                                    type='text'
+                                    onChange={handleChangeName}
+                                    value={inputName}
+                                />
+                            </Label>
                             <br />
-                            <Select
-                                onValueChange={handleChangeType}
-                                value={inputType}
-                            >
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Field Type" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="text">Text</SelectItem>
-                                    <SelectItem value="number">Number</SelectItem>
-                                </SelectContent>
-                            </Select>
+                            <Label className='text-xs'>
+                                Input Type
+                                <Select
+                                    onValueChange={handleChangeType}
+                                    value={inputType}
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Select Field Type" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="text">Text</SelectItem>
+                                        <SelectItem value="number">Number</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </Label>
                         </div>
                         : type == 'phone' ?
                             < Input

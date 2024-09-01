@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import FormDBUtils from "@/firebase/Form";
+import { useAuth } from "@/providers/AuthProvider"
+import FormUtils from "@/utils/FormUtils";
 import { useFormik } from "formik"
 
-export default function BentoForm({ form }) {
-
+export default function BentoForm({ form, page_user_id }) {
     const formFields = form.form_fields
-    console.log('Form Fields While Rendering', formFields)
-
+    const formHeading = form.heading
     const initialValuesFormik = {}
 
     formFields.forEach(field => {
@@ -21,9 +22,9 @@ export default function BentoForm({ form }) {
     const formik = useFormik({
         initialValues: initialValuesFormik,
         onSubmit: (values) => {
-            alert(JSON.stringify(values))
-            console.log(mapResponses(values));
-            console.log(createFormResponseObject(values))
+            // console.log(mapResponses(values));
+            const formSubmission = createFormResponseObject(values)
+            FormDBUtils.addFormSubmission(page_user_id, formSubmission, formHeading)
         }
     })
 
@@ -39,13 +40,12 @@ export default function BentoForm({ form }) {
         }
 
         return updatingForm;
-
     }
 
     function createFormResponseObject(values) {
         let formResponse = {
             form_id: form.id,
-            reponses: []
+            responses: []
         }
 
         const fields_ids = Object.keys(values)
@@ -60,10 +60,15 @@ export default function BentoForm({ form }) {
             reponseFromFields.field_id = key;
             reponseFromFields.response = response;
 
+            const formField = formFields.find(form => form.id === key);
+            reponseFromFields.question = formField.type == 'custom' ? formField.inputName : formField.type;
+
             finalResponses.push(reponseFromFields);
         }
 
-        formResponse.reponses = finalResponses
+        formResponse.responses = finalResponses
+        formResponse.submittedAt = new Date()
+        console.log('formResponse :', formResponse);
 
         return formResponse
     }
@@ -71,7 +76,7 @@ export default function BentoForm({ form }) {
     return (
         <div className="bg-[#ffffff] border-2 border-black border-solid  text-2xl  rounded-3xl">
             <div className="p-6">
-                <h1 className="font-semibold mb-6">Contact Us For Instant Reservation</h1>
+                <h1 className="font-semibold mb-6">{form.heading == '' || !form.heading ? 'Edit To Add Heading' : form.heading}</h1>
                 <form onSubmit={formik.handleSubmit}>
                     <div className="flex flex-col gap-4 ">
                         {formFields != null ? formFields.map((field) => {
@@ -79,6 +84,7 @@ export default function BentoForm({ form }) {
                             return (
 
                                 field.type == 'name' ?
+
                                     <Input
                                         name={field.id}
                                         variant='outline'

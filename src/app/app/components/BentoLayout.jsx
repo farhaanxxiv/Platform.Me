@@ -4,6 +4,7 @@ import BentoSocial from '@/components/app/navbars/BentoElements/BentoSocial';
 import BentoText from '@/components/app/navbars/BentoElements/BentoText';
 import BentoImage from '@/components/app/navbars/BentoElements/Image';
 import { Button } from '@/components/ui/button';
+import { AuthProvider } from '@/providers/AuthProvider';
 import { useBentoEditorMode } from '@/providers/BentoEditorMode';
 import { useLayoutManager } from '@/providers/LayoutManager';
 import { useSectionEditor } from '@/providers/SectionEditorProvider';
@@ -20,7 +21,18 @@ import 'react-resizable/css/styles.css';
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
-const BentoLayout = () => {
+export default function BentoLayout() {
+
+    return (
+        <AuthProvider>
+            <BentoPage />
+        </AuthProvider>
+    )
+}
+
+
+
+const BentoPage = () => {
     const [defaultLayoutsLoaded, setDefaultLayoutsLoaded] = useState(false)
 
     const { userLayout, updateUserLayout } = useLayoutManager()
@@ -163,4 +175,3 @@ const BentoLayout = () => {
     );
 };
 
-export default BentoLayout;

@@ -99,7 +99,11 @@ export default function UserNavbar() {
               <DropdownMenuShortcut><MdOutlineTextsms size={18} /></DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => createSection()}>
-              Section 
+              Section
+              <DropdownMenuShortcut>---</DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => createForm()}>
+              Form
               <DropdownMenuShortcut>---</DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuSub>

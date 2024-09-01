@@ -1,8 +1,7 @@
 
 import { useAtom } from "jotai"
-
-
-
+    
+const yPosition = 9999
 const BentoUtils = {
     createSection: () => {
 
@@ -17,7 +16,7 @@ const BentoUtils = {
                     "w": 12,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -36,7 +35,7 @@ const BentoUtils = {
                     "w": 12,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -67,7 +66,7 @@ const BentoUtils = {
                     "w": 6,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -86,7 +85,7 @@ const BentoUtils = {
                     "w": 6,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -104,7 +103,6 @@ const BentoUtils = {
         }
         return img
     },
-
     createFormSection: () => {
 
         const uid = BentoUtils.generateUniqueId()
@@ -118,7 +116,7 @@ const BentoUtils = {
                     "w": 7,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -137,7 +135,7 @@ const BentoUtils = {
                     "w": 7,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -155,7 +153,6 @@ const BentoUtils = {
         }
         return form
     },
-
     createSocialMediaSection: (social_media) => {
 
         const uid = BentoUtils.generateUniqueId()
@@ -169,7 +166,7 @@ const BentoUtils = {
                     "w": 7,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -187,7 +184,7 @@ const BentoUtils = {
                     "w": 7,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -217,7 +214,7 @@ const BentoUtils = {
                     "w": 7,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -235,7 +232,7 @@ const BentoUtils = {
                     "w": 7,
                     "h": 6,
                     "x": 0,
-                    "y": 3,
+                    "y": yPosition,
                     "i": uid,
                     "moved": false,
                     "static": false,
@@ -274,12 +271,10 @@ const BentoUtils = {
 
         return uniqueId;
     },
-
     deleteSection: (sectionID) => {
 
         console.log(sectionID)
     }
-
 }
 
 

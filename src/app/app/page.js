@@ -10,14 +10,19 @@ import { FormEditorProvider } from "@/providers/FormEditorProvider"
 import { AuthProvider, useAuth } from "@/providers/AuthProvider"
 import { LayoutManagerProvider, useLayoutManager } from "@/providers/LayoutManager"
 import { useEffect, useState } from "react"
-
+import {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+} from "@/components/ui/tabs"
+import FormSubmissionsLayout from "./components/FormSubmissionsLayout"
 
 export default function App() {
 
     return (
 
         <AuthProvider>
-
             <LayoutManagerProvider>
                 <BentoEditorProvider>
                     <SectionEditorProvider>
@@ -29,7 +34,6 @@ export default function App() {
                     </SectionEditorProvider>
                 </BentoEditorProvider>
             </LayoutManagerProvider>
-
         </AuthProvider>
     )
 
@@ -59,13 +63,30 @@ function LayoutEditPage() {
                     <>
 
                         <Header />
-                        {/* <EnterTagline /> */}
-                        <EditorHeader />
+
+                        <Tabs
+                            defaultValue="layout"
+                            className="">
+                            <div className="px-20">
+
+                                <TabsList>
+                                    <TabsTrigger value="layout">Layout</TabsTrigger>
+                                    <TabsTrigger value="form-submissions">Form Submissions</TabsTrigger>
+                                </TabsList>
+                            </div>
+
+                            <TabsContent value="layout">
+                                <EditorHeader />
+                                <BentoLayout />
+                            </TabsContent>
+                            <TabsContent value="form-submissions">
+                                <FormSubmissionsLayout />
+                            </TabsContent>
+                        </Tabs>
 
 
                         <SectionEditor />
 
-                        <BentoLayout />
 
                     </>
                     :

@@ -52,6 +52,8 @@ export default function FormEditor({ section }) {
     const [formLayout, setFormLayout] = useState([]);
     const [reactLayout, setReactLayout] = useState([]);
 
+    const [formHeading, setFormHeading] = useState('')
+
     function updateForm() {
 
         const newLayout = userLayout
@@ -61,13 +63,13 @@ export default function FormEditor({ section }) {
                 console.log('yayyy')
 
                 newLayout[i].form_fields = formLayout
+                newLayout[i].heading = formHeading
+
             }
         }
         console.log('Update Form', formLayout, newLayout)
 
         updateUserLayout(newLayout)
-        // localStorage.setItem('layout', JSON.stringify(newLayout))
-
     }
 
     useEffect(() => {
@@ -84,9 +86,11 @@ export default function FormEditor({ section }) {
                 if (layout.i == toUpdateFormFields[i].id) {
                     toUpdateFormFields[i].layout = layout
                     toUpdateFormFields[i].layout.minW = 12
+
                 }
             }
         });
+
         setFormLayout(toUpdateFormFields)
     }
 
@@ -96,6 +100,7 @@ export default function FormEditor({ section }) {
 
 
     function createName() {
+
         const uid = FormUtils.generateUniqueId()
 
         const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'name', id: uid }]
@@ -107,6 +112,7 @@ export default function FormEditor({ section }) {
     }
 
     function createPhone() {
+
         const uid = FormUtils.generateUniqueId()
 
         const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'phone', id: uid }]
@@ -118,6 +124,7 @@ export default function FormEditor({ section }) {
     }
 
     function createCustom() {
+
         const uid = FormUtils.generateUniqueId()
 
         const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'custom', id: uid, inputName: '', inputType: '' }]
@@ -149,69 +156,81 @@ export default function FormEditor({ section }) {
 
     }
 
+    function handleChange(e) {
+        setFormHeading(e.target.value)
+    }
+
+
     return (
         <>
-            Form Editor
+
+
+            <Label>
+                Form Heading
+                <Input
+                    type='text'
+                    onChange={handleChange}
+                    value={formHeading}
+                />
+            </Label>
             <br />
-            Create Your Form Here
+            <div className="bg-[#00000022] p-3 rounded-lg">
+                <DropdownMenu>
 
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className='w-full'>New Field</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                    <DropdownMenuGroup>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline" className='w-full'>New Field</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56">
+                        <DropdownMenuGroup>
 
-                        <DropdownMenuItem onClick={() => createName()}>
-                            Name
-                        </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => createName()}>
+                                Name
+                            </DropdownMenuItem>
 
-                        <DropdownMenuItem onClick={() => createPhone()}>
-                            Phone
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => createCustom()}>
-                            Custom
-                        </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => createPhone()}>
+                                Phone
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => createCustom()}>
+                                Custom
+                            </DropdownMenuItem>
 
-                    </DropdownMenuGroup>
-                </DropdownMenuContent>
-            </DropdownMenu>
-            <ResponsiveGridLayout
-                className="layout"
-                layout={formLayout}
-                onLayoutChange={createFinalForm}
-                cols={1}
-                margin={[0, 20]}
-                draggableHandle=".draggable"
-                resizeHandle={false}
-                isResizable={false}
-                rowHeight={'auto'}
+                        </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+                <ResponsiveGridLayout
+                    className="layout"
+                    layout={formLayout}
+                    onLayoutChange={createFinalForm}
+                    cols={1}
+                    margin={[0, 20]}
+                    draggableHandle=".draggable"
+                    resizeHandle={false}
+                    isResizable={false}
+                >
+                    {
+                        (editingFormSection.length !== 0 ||
+                            (editingFormSection.form_fields && editingFormSection.form_fields.length !== 0))
+                            ?
+                            editingFormSection?.form_fields.map((field) => {
+                                console.log(field);
 
-            >
-                {
-                    (editingFormSection.length !== 0 ||
-                        (editingFormSection.form_fields && editingFormSection.form_fields.length !== 0))
-                        ?
-                        editingFormSection?.form_fields.map((field) => {
-                            console.log(field);
+                                return (
+                                    <div className="flex border border-black rounded-lg p-3" key={field.id} data-grid={field.layout}>
+                                        <GripVertical className="hover:cursor-grab draggable h-fit my-auto block" color="#a0a0a0" />
 
-                            return (
-                                <div className="flex " key={field.id} data-grid={field.layout}>
-                                    <GripVertical className="draggable h-fit my-auto block" color="#a0a0a0" />
+                                        <FormInput type={field.type} getCustomFieldData={getCustomFieldData} field={field} />
+                                    </div>
+                                );
 
-                                    <FormInput type={field.type} getCustomFieldData={getCustomFieldData} field={field} />
-                                </div>
-                            );
+                            })
+                            :
+                            <p>Add Form Fields To Get Started</p>
+                    }
 
-                        })
-                        :
-                        <p>Add Form Fields To Get Started</p>
-                }
-
-            </ResponsiveGridLayout>
-
+                </ResponsiveGridLayout>
+            </div>
             <DialogFooter>
-                <Button onClick={() => { updateForm(); closeSectionEditor(); }} type="submit">Save changes</Button>
+                <Button className='z-[9999]' onClick={() => { updateForm(); closeSectionEditor(); }} type="submit">Save changes</Button>
             </DialogFooter >
 
         </>

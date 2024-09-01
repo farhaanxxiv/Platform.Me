@@ -34,6 +34,7 @@ export default function Page() {
     const pathName = usePathname()
     const [innerWidth, setInnerWidth] = useState(0)
     const [navbarOpen, setNavbarOpen] = useState(false)
+    const [pageUserUID, setPageUserUID] = useState(null)
 
     useLayoutEffect(() => {
         setInnerWidth(window.innerWidth)
@@ -55,10 +56,14 @@ export default function Page() {
             querySnapshot.forEach(doc => {
                 pageData = doc.data();
             });
+            console.log('pageData :', pageData);
 
             const cleanLayout = Layout.replaceTrueWithFalse(pageData.layout);
             setUserLayout(cleanLayout);
             setUserPage(pageData.page);
+            const pageuserid = pageData.page_id
+            console.log('pageuserid :', pageuserid);
+            setPageUserUID(pageuserid.substring(5))
             setLoading(false);
         }
 
@@ -114,7 +119,7 @@ export default function Page() {
                                                 {section.type === 'image' ? (
                                                     <BentoImage img={section} />
                                                 ) : section.type === 'form' ? (
-                                                    <BentoForm form={section} />
+                                                    <BentoForm form={section} page_user_id={pageUserUID} />
                                                 ) : section.type === 'social' ? (
                                                     <BentoSocial social={section} />
                                                 ) : section.type === 'text' ? (
@@ -139,7 +144,7 @@ export default function Page() {
                             <div onClick={toggleNavbar} className={`absolute backdrop-blur-sm top-0 left-0 right-0 bottom-0 z-[9999] w-full h-full transition bg-[#00000099] ${navbarOpen ? 'opacity-1' : 'opacity-0'}`}></div>
                             <div className="absolute bottom-0 z-[9999] bg-white w-full py-16 md:py-24">
                                 <h5 className="font-semibold text-3xl mb-6 text-center">Navigate To</h5>
-                                <div className="flex justify-center">
+                                <div className="flex gap-4 flex-wrap justify-center">
                                     {sections.map(section => (
                                         <a className="bg-black text-white rounded-3xl px-3 py-1" key={section} onClick={toggleNavbar} href={`#${section}`}>{section}</a>
                                     ))}

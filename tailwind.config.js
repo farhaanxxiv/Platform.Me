@@ -60,6 +60,17 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+
+        "bounce-home-arrow": {
+          from: {
+            transform: 'translateY(-25%) translateX(-50%)',
+            'animation-timing-function': 'cubic- bezier(0.8, 0, 1, 1)'
+          },
+          to: {
+            transform: 'translateY(0%) translateX(-50%)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)'
+          }
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -70,6 +81,7 @@ module.exports = {
         },
       },
       animation: {
+        'arrow-bounce':'1s bounce-home-arrow infinite alternate',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

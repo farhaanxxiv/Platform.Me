@@ -36,18 +36,7 @@ export default function EditorHeader() {
 
                         </Tabs>
                     </div>
-                    {/* <Tabs
-                        defaultValue="bento"
-                        value={editorMode}
-                        onValueChange={(value) => setEditorMode(value)}
-                        className="">
-                        <span className="text-xs font-semibold"> Editing Mode :  &nbsp;</span>
-                        <TabsList>
-                            <TabsTrigger value="bento">Layout</TabsTrigger>
-                            <TabsTrigger value="section">Edit</TabsTrigger>
-                        </TabsList>
 
-                    </Tabs> */}
                 </div>
                 <Button className='w-full md:w-fit' onClick={() => { updateLayoutInDB(user.uid) }} disabled={!enableSave}>Save Changes</Button>
             </div >

@@ -204,7 +204,6 @@ export default function RichTextEditor() {
     return (
         <>
             <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={'ads'}></EditorProvider>
-
         </>
     )
 }

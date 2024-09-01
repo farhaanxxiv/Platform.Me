@@ -147,8 +147,8 @@ function HomeComponent() {
             }
           </div>
         </div>
-        <div className='absolute animate-bounce bottom-16 left-1/2 -translate-x-1/2'><BiDownArrowAlt size={40} /></div>
-     
+        <div className='absolute block animate-arrow-bounce bottom-16 left-1/2 -translate-x-1/2'><BiDownArrowAlt className='block' size={40} /></div>
+
       </section >
 
       <section className='bg-black text-white'>
