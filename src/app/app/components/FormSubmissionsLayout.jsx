@@ -43,7 +43,7 @@ export default function FormSubmissionsLayout() {
                                 const formHeading = form.form_heading
 
                                 return (
-                                    <div>
+                                    <div key={formID}>
                                         <Button onClick={() => getFormSubmissions(formID)}>{formHeading}</Button>
                                     </div>
                                 )
@@ -68,13 +68,13 @@ export default function FormSubmissionsLayout() {
                                 return (
                                     <>
 
-                                        <div className="w-fit p-4 bg-gray-200 flex flex-col gap-y-2 divide-y-2 divide-black">
+                                        <div key={formID} className="w-fit p-4 bg-gray-200 flex flex-col gap-y-2 divide-y-2 divide-black">
                                             Submission #{count + 1}
                                             {responses.length != 0 &&
                                                 responses.map((response) => {
 
                                                     return (
-                                                        <div>
+                                                        <div key={response.field_id}>
                                                             <p className="font-semibold text-xs">{response.question}</p>
                                                             <p className="text-sm">{response.response}</p>
                                                         </div>
