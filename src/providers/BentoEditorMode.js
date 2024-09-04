@@ -16,20 +16,25 @@ export const BentoEditorProvider = ({ children }) => {
     const [selectedSection, updateSelectedSection] = useAtom(currentSelectedSection)
     const [editorMode, setEditorMode] = useState('bento');
     const [editorDevice, setEditorDevice] = useState('desktop');
-
-  
+    const [sideBarOpen, setSideBarOpen] = useState(false)
 
     useEffect(() => {
         updateSelectedSection({})
     }, [editorMode])
 
+    const toggleSideBar = () => {
+        setSideBarOpen(!sideBarOpen);
+    };
     return (
         <BentoEditorContext.Provider
             value={{
                 setEditorMode,
                 editorMode,
                 editorDevice,
-                setEditorDevice
+                setEditorDevice,
+                selectedSection,
+                toggleSideBar,
+                sideBarOpen
             }}
         >
             {children}

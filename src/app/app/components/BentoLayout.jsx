@@ -18,6 +18,8 @@ import GridLayout from 'react-grid-layout';
 import { WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import { MdModeEdit } from "react-icons/md";
+
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
@@ -42,13 +44,9 @@ const BentoPage = () => {
     const { openSectionEditor } = useSectionEditor()
     const router = useRouter();
 
-
-
     function updateUserLayoutAtom(newLayout) {
 
-
         const updatedLayout = userLayout.slice()
-
 
         newLayout.forEach(layout => {
 
@@ -105,9 +103,11 @@ const BentoPage = () => {
 
     return (
         <section className="pt-6 px-0 md:px-24">
+            <h2 className='px-5 md:px-0 text-2xl font-semibold'>Layout :</h2>
+
             <div>
                 <ResponsiveGridLayout
-                    className={`layout  ${editorDevice == 'mobile' && 'w-[400px]'} mx-auto transition px-0 border-2 border-black overflow-hidden`}
+                    className={`layout  ${editorDevice == 'mobile' && 'w-[400px]'} mx-auto transition px-0 rounded-xl md:border-2 border-[#303030] overflow-hidden`}
                     layout={userLayout}
                     onLayoutChange={onLayoutChange}
                     cols={12}
@@ -138,8 +138,9 @@ const BentoPage = () => {
                                     onMouseDown={stopPropagation}
                                     onTouchStart={stopPropagation}
                                     id={bentoID} key={bentoID} className={`${editorMode == 'bento' && 'draggable'}`} data-grid={bentoGrid} >
-                                    <Button className='bento-edit-btn absolute top-3 left-3 z-[10] bg-black rounded-full text-xs p-1 px-2' onClick={() => handleSectionClick(section)}>
-                                        Edit
+                                    <Button className='border border-white bento-edit-btn absolute top-3 left-3 z-[10] bg-black rounded-full text-xs p-1 px-2' onClick={() => handleSectionClick(section)}>
+                                        <MdModeEdit color='white' size={20} />
+
                                     </Button>
                                     <div className='scale-[0.96] w-full h-full'>
                                         {

@@ -21,7 +21,7 @@ import Head from "next/head";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4vC_F5_6dtbDqY3rbfk_P_djFdE3i1QY",
-  authDomain: "platform-me-58583.firebaseapp.com",
+  authDomain: "platform-me-58583.firebaseapp.com" ,
   projectId: "platform-me-58583",
   storageBucket: "platform-me-58583.appspot.com",
   messagingSenderId: "181866199229",
@@ -46,6 +46,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <Head>
         <title>Platform.Me</title>
+        <link rel="icon" href="/icon-white.svg" sizes="any" />
       </Head>
       <body className={space_grotesk.variable}>
         {children}

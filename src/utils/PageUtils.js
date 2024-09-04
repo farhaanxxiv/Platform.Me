@@ -59,14 +59,15 @@ const PageUtils = {
     },
     getPageName: () => {
         const page = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('page')) : null;
+        console.log('page in pageutils:', page);
 
-        if (typeof window !== 'undefined') {
-            const page = JSON.parse(localStorage.getItem('page'));
-            if (page) {
-                const page_name = page.page_name;
-                return page_name;
-            }
+        // const page = JSON.parse(localStorage.getItem('page'));                       
+        if (page) {
+            const page_name = page.page_name;
+            return page_name;
         }
+
+        console.log('returning null')
         return null;
     },
 

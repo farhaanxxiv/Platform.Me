@@ -6,21 +6,28 @@ import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 const FormDBUtils = {
 
     'addFormSubmission': async (uid, formResponse, formHeading) => {
-        const formID = formResponse.form_id
 
+        try {
 
+            const formID = formResponse.form_id
 
-        const submissionID = FormUtils.generateSubmissionID()
+            const submissionID = FormUtils.generateSubmissionID()
 
-        //to add submission
-        const cityRef = doc(db, 'Forms', uid, 'AllForms', formID, 'Submissions', submissionID);
-        await setDoc(cityRef, formResponse, { merge: true });
+            //to add submission
+            const cityRef = doc(db, 'Forms', uid, 'AllForms', formID, 'Submissions', submissionID);
+            await setDoc(cityRef, formResponse, { merge: true });
 
-        //this is only required when creating the form, for now let it be 
-        //cost : 1 additional write per submission
-        //to add form id in the document
-        const formDetailsRef = doc(db, 'Forms', uid, 'AllForms', formID);
-        await setDoc(formDetailsRef, { form_id: formID, form_heading: formHeading }, { merge: true });
+            //this is only required when creating the form, for now let it be 
+            //cost : 1 additional write per submission
+            //to add form id in the document
+            const formDetailsRef = doc(db, 'Forms', uid, 'AllForms', formID);
+            await setDoc(formDetailsRef, { form_id: formID, form_heading: formHeading }, { merge: true });
+        } catch (e) {
+            console.error(e)
+            return false
+        }
+
+        return true
 
     },
 

@@ -40,8 +40,8 @@ export default function SectionEditor() {
 
     return (
         <>
-            <Sheet className=' overflow-y-scroll ' open={sectionEditorOpen} onOpenChange={toggleSectionEditor}>
-                <SheetContent className='py-4 overflow-y-scroll '>
+            <Sheet className='z-[9999] overflow-y-scroll ' open={sectionEditorOpen} onOpenChange={toggleSectionEditor}>
+                <SheetContent className='z-[9999] py-4 overflow-y-scroll '>
 
                     <SheetTitle className='uppercase'>{userSelectedSection.type}</SheetTitle>
                     <SheetDescription className='text-black mt-4'>

@@ -41,7 +41,6 @@ export default function BentoImage({ img }) {
     }
     img.cover = 'cover'
 
-    console.log('Rendering Bento Image')
 
     return (
         <>

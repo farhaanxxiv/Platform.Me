@@ -1,6 +1,5 @@
 'use client'
 import EnterTagline from "./components/EnterTagline"
-import Header from "./components/Header"
 import BentoLayout from "./components/BentoLayout"
 import SectionEditor from "./components/SectionEditor"
 import { SectionEditorProvider } from "@/providers/SectionEditorProvider"
@@ -16,25 +15,26 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
+
+
+
 import FormSubmissionsLayout from "./components/FormSubmissionsLayout"
+import Sidebar from "./components/Sidebar"
+import PageSettings from "./components/PageSettings"
 
 export default function App() {
 
     return (
 
-        <AuthProvider>
-            <LayoutManagerProvider>
-                <BentoEditorProvider>
-                    <SectionEditorProvider>
-                        <FormEditorProvider>
 
-                            <LayoutEditPage />
+        <SectionEditorProvider>
+            <FormEditorProvider>
 
-                        </FormEditorProvider>
-                    </SectionEditorProvider>
-                </BentoEditorProvider>
-            </LayoutManagerProvider>
-        </AuthProvider>
+                <LayoutEditPage />
+
+            </FormEditorProvider>
+        </SectionEditorProvider>
+
     )
 
 }
@@ -61,33 +61,14 @@ function LayoutEditPage() {
             {
                 loadingState ?
                     <>
-
-                        <Header />
-
-                        <Tabs
-                            defaultValue="layout"
-                            className="">
-                            <div className="px-20">
-
-                                <TabsList>
-                                    <TabsTrigger value="layout">Layout</TabsTrigger>
-                                    <TabsTrigger value="form-submissions">Form Submissions</TabsTrigger>
-                                </TabsList>
-                            </div>
-
-                            <TabsContent value="layout">
+                        <div className="flex mt-12">
+                            <div className="w-full">
+                                <PageSettings />
                                 <EditorHeader />
                                 <BentoLayout />
-                            </TabsContent>
-                            <TabsContent value="form-submissions">
-                                <FormSubmissionsLayout />
-                            </TabsContent>
-                        </Tabs>
-
-
+                            </div>
+                        </div>
                         <SectionEditor />
-
-
                     </>
                     :
                     <p > <b> Loading State :  </b>(Synchronising Local & DB States)</p>

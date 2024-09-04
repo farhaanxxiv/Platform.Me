@@ -9,9 +9,12 @@ import { toast } from "@/components/ui/use-toast";
 import { useLayoutManager } from "@/providers/LayoutManager";
 import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/css";
+import { useSectionEditor } from "@/providers/SectionEditorProvider";
 
 export default function TextEditor({ section }) {
     const { userLayout, updateUserLayout } = useLayoutManager()
+    const { closeSectionEditor } = useSectionEditor()
+
 
     const [text, setText] = useState(section.text)
     const [bgColor, setBgColor] = useColor(section.bgColor ? section.bgColor : "rgb(0 0 0)");
@@ -64,7 +67,7 @@ export default function TextEditor({ section }) {
                 </Label>
             </div>
             <div>
-                <Label>
+                <Label onClick={() => closeSectionEditor()}>
                     Text Color
                     <ColorPicker height={100} hideInput={true} color={textColor} onChange={setTextColor} />
                 </Label>

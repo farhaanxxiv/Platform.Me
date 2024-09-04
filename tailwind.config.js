@@ -54,6 +54,9 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      fontSize: {
+        xxs: '0.6rem'
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -81,7 +84,7 @@ module.exports = {
         },
       },
       animation: {
-        'arrow-bounce':'1s bounce-home-arrow infinite alternate',
+        'arrow-bounce': '1s bounce-home-arrow infinite alternate',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

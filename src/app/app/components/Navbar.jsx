@@ -25,8 +25,14 @@ import { useSearchParams } from "next/navigation"
 import { useSectionEditor } from "@/providers/SectionEditorProvider"
 import { useFormEditor } from "@/providers/FormEditorProvider"
 import { useLayoutManager } from "@/providers/LayoutManager"
+import { TbNewSection } from "react-icons/tb";
 
-
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { CiImageOn } from "react-icons/ci";
 import { MdOutlineTextsms } from "react-icons/md";
 
@@ -73,13 +79,13 @@ export default function UserNavbar() {
 
   return (
 
-    <div className="px-3">
+    <div className="">
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="default" className='w-full'>Add Card + </Button>
+          <Button variant="secondary" className='w-fit text-sm border border-[#808080] bg-white'> <TbNewSection size={20} /></Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
+        <DropdownMenuContent className="z-[9999] w-56">
           <DropdownMenuLabel>Sections</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>

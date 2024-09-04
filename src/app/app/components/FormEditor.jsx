@@ -52,7 +52,7 @@ export default function FormEditor({ section }) {
     const [formLayout, setFormLayout] = useState([]);
     const [reactLayout, setReactLayout] = useState([]);
 
-    const [formHeading, setFormHeading] = useState('')
+    const [formHeading, setFormHeading] = useState(section.heading)
 
     function updateForm() {
 
