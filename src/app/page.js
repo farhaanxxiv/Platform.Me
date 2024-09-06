@@ -124,11 +124,9 @@ function HomeComponent() {
         <div className='grid md:grid-cols-2 gap-12 '>
           <div className=' top-1/2 left-1/2 w-full '>
 
-            <p className='flex gradient-border-container-1 mb-4 w-fit mx-auto md:mx-0'>
-       
-              <h1 className=' h-fit my-auto font-light text-xl'></h1>
+            <h1 className='flex gradient-border-container-1 mb-4 w-fit mx-auto md:mx-0'>
               <span className=''>Platform.Me</span>
-            </p>
+            </h1>
             <h2 className=" leading-tight text-blackstroke-2 text-4xl md:text-6xl font-light ">
               Create Your Page In
               <br />
@@ -162,9 +160,9 @@ function HomeComponent() {
                       }
                     </>
                     :
-                    <div className=''>
-                      <h3 className='font-semibold text-lg md:text-3xl w-1/2 mx-auto'>Sign Up Now To Start Building Your Page</h3>
-                      <Button className='mt-6 text-sm md:text-lg' onClick={() => { signInWithFirebase() }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
+                    <div className='mt-8'>
+                      <h3 className='font-semibold text-sm md:text-xl '>Instant Sign Up To Start Building Your Page</h3>
+                      <Button variant='secondary' className='mt-4 text-sm md:text-md' onClick={() => { signInWithFirebase() }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
                       <p className='text-xs mt-2'>*No Credit Card Required</p>
                     </div>
               }
@@ -206,7 +204,7 @@ function HomeComponent() {
       </section>
 
       <section className='bg-black shadow-[inset_0px_50px_50px_-50px_#303030] text-white'>
-      <h2 className='font-semibold text-3xl md:text-5xl md:text-center leading-normal'>What Can It Be Used For ?  </h2>
+        <h2 className='font-semibold text-3xl md:text-5xl md:text-center leading-normal'>What Can It Be Used For ?  </h2>
         <p className='md:text-center text-lg md:text-xl mt-6 font-medium'>You can build these <span className='bg-black text-white px-2 py-1'> instantly</span></p>
         <div className='flex flex-wrap md:justify-center gap-3 mt-12'>
           <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
@@ -244,13 +242,31 @@ function HomeComponent() {
 
       <section className='bg-black text-white'>
         <h2 className='font-bold text-3xl md:text-5xl md:text-center leading-normal'>Why Us ? </h2>
-        <ul className="list-disc mt-4">
-          <div className="grid md:grid-cols-2 md:gap-y-2">
-            <li className='text-lg md:text-xl mt-6 font-medium'>Easy Drag & Drop Layout</li>
-            <li className='text-lg md:text-xl mt-6 font-medium'>Completely Free</li>
-            <li className='text-lg md:text-xl mt-6 font-medium'>Need Not Worry About Page Going Down if Inactive</li>
-          </div>
-        </ul>
+        <div>
+          <ul className="list-disc mt-4">
+            <li className='text-lg mt-6 font-medium'>
+
+              Easy Drag & Drop Layout
+              <p className='text-[#d0d0d0] text-sm'>
+                Easily customize your website with our intuitive drag and drop interface.
+              </p>
+
+            </li>
+
+            <li className='text-lg mt-6 font-medium'>Completely Free
+              <p className='text-[#d0d0d0] text-sm'>
+                Our platform is 100% free to use, no hidden fees or subscriptions.
+
+              </p>
+
+            </li>
+            <li className='text-lg mt-6 font-medium'>Need Not Worry About Page Going Down if Inactive
+              <p className='text-[#d0d0d0] text-sm'>
+                Our platform ensures your website stays up and running, even when you're not actively using it.
+              </p>
+            </li>
+          </ul>
+        </div>
       </section >
     </>
 

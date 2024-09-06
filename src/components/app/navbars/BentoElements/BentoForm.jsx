@@ -9,6 +9,7 @@ import { MdOutlineDone } from "react-icons/md";
 
 
 export default function BentoForm({ form, page_user_id }) {
+    console.log('form :', form);
     const formFields = form.form_fields
     const formHeading = form.heading
     const initialValuesFormik = {}
@@ -25,7 +26,6 @@ export default function BentoForm({ form, page_user_id }) {
         }
     });
 
-    console.log('initial values', initialValuesFormik)
 
     const formik = useFormik({
         initialValues: initialValuesFormik,
@@ -99,54 +99,52 @@ export default function BentoForm({ form, page_user_id }) {
                     <form onSubmit={formik.handleSubmit}>
                         <div className="flex flex-col gap-4 ">
                             {formFields != null ? formFields.map((field) => {
-                                console.log(field.type)
+                                const { id, type, inputName, layout } = field;
+                                const fieldStyle = {
+                                    order: layout.y, // Use the y coordinate to set the order in the flex container
+                                };
+
                                 return (
-
-                                    field.type == 'name' ?
-
-                                        <Input
-                                            name={field.id}
-                                            variant='outline'
-                                            type='text'
-                                            placeholder='Enter Your Name'
-                                            className='w-full border-[#202020]'
-                                            onChange={formik.handleChange}
-                                            value={formik.values[field.id]}
-                                        />
-                                        :
-                                        field.type == 'phone' ?
+                                    <div key={id} className="form-field" style={fieldStyle}>
+                                        {type === 'name' && (
                                             <Input
-                                                name={field.id}
+                                                name={id}
                                                 variant='outline'
-                                                type={field.type}
+                                                type='text'
+                                                placeholder='Enter Your Name'
+                                                className='w-full border-[#202020]'
+                                                onChange={formik.handleChange}
+                                                value={formik.values[id]}
+                                            />
+                                        )}
+                                        {type === 'phone' && (
+                                            <Input
+                                                name={id}
+                                                variant='outline'
+                                                type='text' // Assuming phone input is text, adjust if needed
                                                 placeholder='Enter Your Number'
                                                 className='w-full border-[#202020]'
                                                 onChange={formik.handleChange}
-                                                value={formik.values[field.id]}
+                                                value={formik.values[id]}
                                             />
-                                            :
-                                            field.type == 'custom' ?
-                                                <Input
-                                                    name={field.id}
-                                                    variant='outline'
-                                                    type={field.type}
-                                                    placeholder={field.inputName}
-                                                    className='w-full border-[#202020]'
-                                                    onChange={formik.handleChange}
-                                                    value={formik.values[field.id]}
-                                                />
-                                                :
-                                                <Input
-                                                    type='number'
-                                                    placeholder='Enter Your Number'
-                                                    className='w-full border-[#202020]'
-                                                />
-
-                                )
-
-                            }) :
+                                        )}
+                                        {type === 'custom' && (
+                                            <Input
+                                                name={id}
+                                                variant='outline'
+                                                type='text'
+                                                placeholder={inputName}
+                                                className='w-full border-[#202020]'
+                                                onChange={formik.handleChange}
+                                                value={formik.values[id]}
+                                            />
+                                        )}
+                                    </div>
+                                );
+                            }) : (
                                 <p>Click Here, To Add Fields</p>
-                            }
+                            )}
+
                         </div>
                         <Button disabled={formSubmitting || formSubmitted} type='submit' className='w-full mt-4'>
                             {formFailure ? 'Please Try Again'

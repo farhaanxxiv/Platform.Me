@@ -1,6 +1,6 @@
 
 import { useAtom } from "jotai"
-    
+
 const yPosition = 9999
 const BentoUtils = {
     createSection: () => {
@@ -28,7 +28,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 },
                 mobile: {
                     //need to find a gap here. must use cp lol

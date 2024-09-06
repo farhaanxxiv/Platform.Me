@@ -33,11 +33,18 @@ import FormInput from "@/components/app/navbars/FormElements/FormInput"
 import BentoUtils from "@/utils/BentoUtils"
 import { useAtom } from "jotai"
 import { currentUserLayout } from "@/states/ui_state"
-import { GripVertical } from "lucide-react"
+import { DeleteIcon, GripVertical, Trash } from "lucide-react"
 import { useEffect, useState } from "react"
 import FormUtils from "@/utils/FormUtils"
 import { useSectionEditor } from "@/providers/SectionEditorProvider"
 import { useLayoutManager } from "@/providers/LayoutManager"
+
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+import FormSettings from "@/components/app/navbars/FormElements/FormSettings"
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
@@ -90,6 +97,7 @@ export default function FormEditor({ section }) {
                 }
             }
         });
+        console.log('toUpdateFormFields :', toUpdateFormFields);
 
         setFormLayout(toUpdateFormFields)
     }
@@ -161,6 +169,55 @@ export default function FormEditor({ section }) {
     }
 
 
+    function deleteFormFieldById(idToDelete) {
+        console.log('editingFormSection before:', editingFormSection);
+
+        // Create a new copy of form_fields array with the item removed
+        const updatedFormFields = editingFormSection.form_fields.filter(field => field.id !== idToDelete);
+
+        // Create a new copy of the editingFormSection object with the updated form_fields
+        const updatedEditingFormSection = {
+            ...editingFormSection,
+            form_fields: updatedFormFields
+        };
+
+        console.log('updatedFormFields:', updatedFormFields);
+        console.log('updatedEditingFormSection:', updatedEditingFormSection);
+
+        // Update state with the new object
+        setEditingFormSection(updatedEditingFormSection);
+    }
+
+
+    function updateFormFieldRequired(idToUpdate, isRequired) {
+        // Log input values
+        console.log('idToUpdate:', idToUpdate);
+        console.log('isRequired:', isRequired);
+
+        // Log current state
+        console.log('Current editingFormSection:', editingFormSection);
+
+        // Map through form_fields to update the specific field
+        const updatedFormFields = editingFormSection.form_fields.map(field => {
+            if (field.id === idToUpdate) {
+                return { ...field, required: isRequired };
+            }
+            return field;
+        });
+        console.log('Updated form_fields:', updatedFormFields);
+
+        // Create a new copy of the editingFormSection object with the updated form_fields
+        const updatedEditingFormSection = {
+            ...editingFormSection,
+            form_fields: updatedFormFields
+        };
+        console.log('Updated editingFormSection:', updatedEditingFormSection);
+
+        // Update state
+        setEditingFormSection(updatedEditingFormSection);
+    }
+
+
     return (
         <>
 
@@ -174,13 +231,13 @@ export default function FormEditor({ section }) {
                 />
             </Label>
             <br />
-            <div className="bg-[#00000022] p-3 rounded-lg">
+            <div className="shadow-[0px_0px_5px_#d0d0d0] p-3 rounded-lg">
                 <DropdownMenu>
 
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className='w-full'>New Field</Button>
+                        <Button variant="default" className='w-full'>New Field</Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56">
+                    <DropdownMenuContent className="z-[9999] w-56">
                         <DropdownMenuGroup>
 
                             <DropdownMenuItem onClick={() => createName()}>
@@ -214,9 +271,17 @@ export default function FormEditor({ section }) {
                             editingFormSection?.form_fields.map((field) => {
                                 console.log(field);
 
+                                const fieldID = field.id
+
                                 return (
-                                    <div className="flex border border-black rounded-lg p-3" key={field.id} data-grid={field.layout}>
-                                        <GripVertical className="hover:cursor-grab draggable h-fit my-auto block" color="#a0a0a0" />
+                                    <div className="flex border align-middle border-black rounded-lg p-3" key={fieldID} data-grid={field.layout}>
+                                        <div className="flex flex-col align-middle">
+                                            <GripVertical className="hover:cursor-grab draggable h-fit my-auto block" color="#a0a0a0" />
+
+                                            <div className="z-[9999]">
+                                                <FormSettings updateFormFieldRequired={updateFormFieldRequired} deleteFormFieldById={deleteFormFieldById} formFieldRequired={field.required ? true : false} fieldID={fieldID} />
+                                            </div>
+                                        </div>
 
                                         <FormInput type={field.type} getCustomFieldData={getCustomFieldData} field={field} />
                                     </div>

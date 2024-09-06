@@ -115,6 +115,7 @@ const BentoPage = () => {
                     draggableHandle=".draggable"
                     isResizable={editorMode == 'bento' ? true : false}
                     draggableCancel='.bento-edit-btn'
+                    resizeHandles={['s', 'w', 'e', 'n']}
 
 
                 >
@@ -137,7 +138,7 @@ const BentoPage = () => {
                                 <div
                                     onMouseDown={stopPropagation}
                                     onTouchStart={stopPropagation}
-                                    id={bentoID} key={bentoID} className={`${editorMode == 'bento' && 'draggable'}`} data-grid={bentoGrid} >
+                                    id={bentoID} key={bentoID} className={`border border-black  ${editorMode == 'bento' && 'draggable'}`} data-grid={bentoGrid} >
                                     <Button className='border border-white bento-edit-btn absolute top-3 left-3 z-[10] bg-black rounded-full text-xs p-1 px-2' onClick={() => handleSectionClick(section)}>
                                         <MdModeEdit color='white' size={20} />
 

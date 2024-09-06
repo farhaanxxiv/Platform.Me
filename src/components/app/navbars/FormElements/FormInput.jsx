@@ -62,7 +62,7 @@ export default function FormInput({ type, getCustomFieldData, field }) {
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Select Field Type" />
                                     </SelectTrigger>
-                                    <SelectContent>
+                                    <SelectContent className='z-[9999]'>
                                         <SelectItem value="text">Text</SelectItem>
                                         <SelectItem value="number">Number</SelectItem>
                                     </SelectContent>

@@ -9,8 +9,11 @@ import { toast } from "@/components/ui/use-toast";
 import { useLayoutManager } from "@/providers/LayoutManager";
 import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/css";
+import { useSectionEditor } from "@/providers/SectionEditorProvider";
 export default function SectionSectionEditor({ section }) {
     const { userLayout, updateUserLayout } = useLayoutManager()
+    const { closeSectionEditor } = useSectionEditor()
+
 
     const [heading, setHeading] = useState(section.heading)
 
@@ -29,12 +32,13 @@ export default function SectionSectionEditor({ section }) {
         for (let i = 0; i < finalLayout.length; i++) {
             if (finalLayout[i].id == section.id) {
                 finalLayout[i].heading = heading
-                
+
             }
         }
 
         console.log('Layout After Updating Heading of Section', finalLayout)
         updateUserLayout(finalLayout)
+        closeSectionEditor()
 
     }
 
@@ -53,7 +57,7 @@ export default function SectionSectionEditor({ section }) {
 
             <Button onClick={() => updateHeading()} className='mt-2 ml-auto w-fit block' variant=''>Save</Button>
 
- 
+
 
         </div>
     )
