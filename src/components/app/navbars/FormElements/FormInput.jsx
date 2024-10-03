@@ -50,6 +50,7 @@ export default function FormInput({ type, getCustomFieldData, field }) {
                                     type='text'
                                     onChange={handleChangeName}
                                     value={inputName}
+                                    
                                 />
                             </Label>
                             <br />
@@ -74,8 +75,13 @@ export default function FormInput({ type, getCustomFieldData, field }) {
                                 placeholder='Enter Your Number'
                                 type='number'
                             />
-                            :
-                            <p>Invalid Input Type,Please Delete And Create New One</p>
+                            : type == 'email' ?
+                                < Input
+                                    placeholder='Enter Your E-Mail'
+                                    type='email'
+                                />
+                                :
+                                <p>Invalid Input Type,Please Delete And Create New One</p>
             }
 
         </>

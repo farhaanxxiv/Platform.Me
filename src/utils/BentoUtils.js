@@ -28,7 +28,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n']
+                    'resizeHandles': ['s', 'n']
                 },
                 mobile: {
                     //need to find a gap here. must use cp lol
@@ -47,7 +47,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'n']
                 }
             }
         }
@@ -78,7 +78,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 },
                 mobile: {
                     //need to find a gap here. must use cp lol
@@ -97,7 +97,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 }
             }
         }
@@ -128,7 +128,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 },
                 'mobile': {
                     //need to find a gap here. must use cp lol
@@ -147,7 +147,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 }
             }
         }
@@ -178,7 +178,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 },
                 mobile: {
                     "w": 7,
@@ -196,7 +196,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 }
             }
         }
@@ -226,7 +226,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 },
                 mobile: {
                     "w": 7,
@@ -244,7 +244,7 @@ const BentoUtils = {
                     'isDraggable': true,
                     'isResizable': '',
                     'static': false,
-                    'resizeHandles': ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']
+                    'resizeHandles': ['s', 'w', 'e', 'n']
                 }
             }
         }
@@ -271,10 +271,6 @@ const BentoUtils = {
 
         return uniqueId;
     },
-    deleteSection: (sectionID) => {
-
-        console.log(sectionID)
-    }
 }
 
 

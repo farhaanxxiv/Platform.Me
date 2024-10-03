@@ -2,6 +2,7 @@ import { currentSelectedSection } from '@/states/ui_state';
 import { setCurrentScreen } from 'firebase/analytics';
 import { useAtom } from 'jotai';
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import useWindowSize from './useWindowSize';
 
 // Create a context object
 const BentoEditorContext = createContext();
@@ -17,6 +18,15 @@ export const BentoEditorProvider = ({ children }) => {
     const [editorMode, setEditorMode] = useState('bento');
     const [editorDevice, setEditorDevice] = useState('desktop');
     const [sideBarOpen, setSideBarOpen] = useState(false)
+    const { width } = useWindowSize()
+
+    useEffect(() => {
+        if (width < 500) {
+            setEditorDevice('mobile')
+        }
+    }, [width]);
+
+
 
     useEffect(() => {
         updateSelectedSection({})

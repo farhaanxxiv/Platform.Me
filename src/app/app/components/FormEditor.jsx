@@ -111,7 +111,7 @@ export default function FormEditor({ section }) {
 
         const uid = FormUtils.generateUniqueId()
 
-        const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'name', id: uid }]
+        const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'name', id: uid, required: true }]
         setEditingFormSection({
             ...editingFormSection,
             form_fields: updatedFormFields
@@ -123,7 +123,19 @@ export default function FormEditor({ section }) {
 
         const uid = FormUtils.generateUniqueId()
 
-        const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'phone', id: uid }]
+        const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'phone', id: uid, required: true }]
+        setEditingFormSection({
+            ...editingFormSection,
+            form_fields: updatedFormFields
+        })
+
+    }
+
+    function creaetEmail() {
+
+        const uid = FormUtils.generateUniqueId()
+
+        const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'email', id: uid, required: true }]
         setEditingFormSection({
             ...editingFormSection,
             form_fields: updatedFormFields
@@ -135,7 +147,7 @@ export default function FormEditor({ section }) {
 
         const uid = FormUtils.generateUniqueId()
 
-        const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'custom', id: uid, inputName: '', inputType: '' }]
+        const updatedFormFields = [...editingFormSection.form_fields, { 'type': 'custom', id: uid, inputName: '', inputType: '', required: false }]
         setEditingFormSection({
             ...editingFormSection,
             form_fields: updatedFormFields
@@ -170,8 +182,6 @@ export default function FormEditor({ section }) {
 
 
     function deleteFormFieldById(idToDelete) {
-        console.log('editingFormSection before:', editingFormSection);
-
         // Create a new copy of form_fields array with the item removed
         const updatedFormFields = editingFormSection.form_fields.filter(field => field.id !== idToDelete);
 
@@ -181,8 +191,6 @@ export default function FormEditor({ section }) {
             form_fields: updatedFormFields
         };
 
-        console.log('updatedFormFields:', updatedFormFields);
-        console.log('updatedEditingFormSection:', updatedEditingFormSection);
 
         // Update state with the new object
         setEditingFormSection(updatedEditingFormSection);
@@ -190,12 +198,7 @@ export default function FormEditor({ section }) {
 
 
     function updateFormFieldRequired(idToUpdate, isRequired) {
-        // Log input values
-        console.log('idToUpdate:', idToUpdate);
-        console.log('isRequired:', isRequired);
 
-        // Log current state
-        console.log('Current editingFormSection:', editingFormSection);
 
         // Map through form_fields to update the specific field
         const updatedFormFields = editingFormSection.form_fields.map(field => {
@@ -204,14 +207,14 @@ export default function FormEditor({ section }) {
             }
             return field;
         });
-        console.log('Updated form_fields:', updatedFormFields);
+        console.log('updatedFormFields :', updatedFormFields);
 
         // Create a new copy of the editingFormSection object with the updated form_fields
         const updatedEditingFormSection = {
             ...editingFormSection,
             form_fields: updatedFormFields
         };
-        console.log('Updated editingFormSection:', updatedEditingFormSection);
+        console.log('updatedEditingFormSection :', updatedEditingFormSection);
 
         // Update state
         setEditingFormSection(updatedEditingFormSection);
@@ -247,6 +250,9 @@ export default function FormEditor({ section }) {
                             <DropdownMenuItem onClick={() => createPhone()}>
                                 Phone
                             </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => creaetEmail()}>
+                                Email
+                            </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => createCustom()}>
                                 Custom
                             </DropdownMenuItem>
@@ -263,6 +269,8 @@ export default function FormEditor({ section }) {
                     draggableHandle=".draggable"
                     resizeHandle={false}
                     isResizable={false}
+                    rowHeight={200}
+
                 >
                     {
                         (editingFormSection.length !== 0 ||
@@ -274,13 +282,11 @@ export default function FormEditor({ section }) {
                                 const fieldID = field.id
 
                                 return (
-                                    <div className="flex border align-middle border-black rounded-lg p-3" key={fieldID} data-grid={field.layout}>
-                                        <div className="flex flex-col align-middle">
-                                            <GripVertical className="hover:cursor-grab draggable h-fit my-auto block" color="#a0a0a0" />
+                                    <div className="flex flex-col border align-middle border-black rounded-lg p-3" key={fieldID} data-grid={field.layout}>
+                                        <div className="flex gap-x-1 align-middle mb-2">
+                                            <GripVertical className="hover:cursor-grab draggable h-fit  block" color="#a0a0a0" />
 
-                                            <div className="z-[9999]">
-                                                <FormSettings updateFormFieldRequired={updateFormFieldRequired} deleteFormFieldById={deleteFormFieldById} formFieldRequired={field.required ? true : false} fieldID={fieldID} />
-                                            </div>
+                                            <FormSettings updateFormFieldRequired={updateFormFieldRequired} deleteFormFieldById={deleteFormFieldById} formFieldRequired={field.required ? true : false} fieldID={fieldID} />
                                         </div>
 
                                         <FormInput type={field.type} getCustomFieldData={getCustomFieldData} field={field} />

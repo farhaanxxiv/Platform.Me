@@ -68,7 +68,7 @@ function SideBarInternal() {
     return (
         <>
 
-            <div className="space-y-6 p-2 py-4 mt-12 ">
+            <div className="space-y-6 p-2 py-4 mt-12 md:mt-16 ">
                 <Link href='/'>
                     <div>
                         <Image

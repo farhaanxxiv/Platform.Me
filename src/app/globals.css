@@ -213,10 +213,19 @@ article.yt-lite {
 .react-grid-item>.react-resizable-handle.react-resizable-handle-e,
 .react-grid-item>.react-resizable-handle.react-resizable-handle-n {
   background-color: black;
-  top: 0;
   transform: rotate(225deg);
   color: white;
   height: 11px !important;
   width: 11px !important;
   border: 1px solid white;
+}
+
+.react-grid-item>.react-resizable-handle.react-resizable-handle-s {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.react-grid-item>.react-resizable-handle.react-resizable-handle-w {
+  left: 0;
+  transform: rotate(135deg);
 }

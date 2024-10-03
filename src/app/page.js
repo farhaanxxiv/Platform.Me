@@ -153,7 +153,8 @@ function HomeComponent() {
                           <Button className='font-bold' variant='secondary' onClick={() => router.push('/app')}>
                             {userData == null ? ' Create Page' : 'Open Editor'}
                           </Button>
-                          <Button className='font-bold' variant='default' onClick={() => router.push('/app')}>
+
+                          <Button className='font-bold' variant='default' onClick={() => auth.signOut()}>
                             Logout
                           </Button>
                         </div>

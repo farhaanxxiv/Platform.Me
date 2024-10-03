@@ -77,36 +77,54 @@ export default function PageSettings() {
     const [pageSlugEdit, setPageSlugEdit] = useState(false)
 
     function setPageNameGlobal() {
-        const newPageName = document.getElementById('page_name_input').value
+        const newPageName = document.getElementById('page_name_input').value;
 
-        setPageName(newPageName)
-        setPageNameEdit(false)
+        // Update local states
+        setPageName(newPageName);
+        setPageNameEdit(false);
 
-        const user_page = userPage
-        user_page.page_name = newPageName
-        updateUserPage(user_page)
-        console.log('user_page :', user_page);
+        // Create a new object by spreading the current userPage and updating the page_name
+        const updatedUserPage = {
+            ...userPage, // Copy the existing properties
+            page_name: newPageName // Update only the page_name
+        };
+
+        // Call updateUserPage with the new updated object
+        updateUserPage(updatedUserPage);
+
+        // Log the updated user_page
+        console.log('updatedUserPage:', updatedUserPage);
     }
 
+
     function setPageTaglineGlobal() {
-        const newPageTagline = document.getElementById('page_tagline_input').value
+        const newPageTagline = document.getElementById('page_tagline_input').value;
 
-        setPageTagline(newPageTagline)
-        setPageTaglineEdit(false)
+        // Update local states
+        setPageTagline(newPageTagline);
+        setPageTaglineEdit(false);
 
-        const user_page = userPage
-        user_page.page_tagline = newPageTagline
-        updateUserPage(user_page)
+        // Create a new object by spreading the current userPage and updating the page_tagline
+        const updatedUserPage = {
+            ...userPage, // Copy the existing properties
+            page_tagline: newPageTagline // Update only the page_tagline
+        };
+
+        // Call updateUserPage with the updated object
+        updateUserPage(updatedUserPage);
     }
 
     function setPageSlugGlobal() {
-        const newPageSlug = document.getElementById('page_slug_input').value
+        const newPageSlug = document.getElementById('page_slug_input').value;
 
-        setPageSlug(newPageSlug)
-        setPageSlugEdit(false)
+        // Update local states
+        setPageSlug(newPageSlug);
+        setPageSlugEdit(false);
 
-        updateUserSlug(newPageSlug)
+        // Call updateUserSlug to update the slug
+        updateUserSlug(newPageSlug);
     }
+
 
     return (
         <section className="pt-6 px-5 md:px-24 py-4  border-black">
@@ -190,7 +208,7 @@ export default function PageSettings() {
                 </div>
 
 
-              
+
             </div>
         </section>
     )

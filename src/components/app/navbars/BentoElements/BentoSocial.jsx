@@ -47,7 +47,7 @@ export default function BentoSocial({ social }) {
             onClick={ifEditPage() ? (e) => e.preventDefault() : undefined}
             style={ifEditPage() ? { pointerEvents: "none", cursor: "default" } : {}}
         >
-            <div style={bg} className={`h-full w-full rounded-3xl border-2 border-solid ${social_media == 'github' && 'border-white'} border-black shadow-[3px_3px_black]`}>
+            <div style={bg} className={`h-full w-full rounded-3xl border-2 border-solid ${social_media == 'github' && 'border-[#404040]'} border-black shadow-[3px_3px_black]`}>
                 {social_media === 'instagram' ? (
                     <div className="w-full h-full  m-auto invert">
                         <InstagramLogoIcon className="p-3  w-full h-full aspect-square " />

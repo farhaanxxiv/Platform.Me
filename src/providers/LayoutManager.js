@@ -23,9 +23,9 @@ export const LayoutManagerProvider = ({ children }) => {
     const [enableSave, setEnableSave] = useState(false)
 
     useEffect(() => {
-        if (user != null) {
+        setEnableSave(true)
 
-            console.log('made change')
+        if (user != null) {
 
             const sanitizedPage = Object.fromEntries(
                 Object.entries(userPage).map(([key, value]) => [key, value !== undefined ? value : null])
@@ -40,18 +40,14 @@ export const LayoutManagerProvider = ({ children }) => {
 
             const newHash = Layout.getLocalHash();
 
-            if (newHash != hash) {
-                setEnableSave(true)
-            }
+            // if (newHash != hash) {
+            setEnableSave(true)
+            // }
         }
 
 
-    }, [userLayout, userPage, userSlug])
+    }, [userLayout, userPage, userSlug, userData])
 
-
-    useEffect(() => {
-        console.log('Layout updated')
-    }, [userLayout])
 
     async function updateLayoutInDB(uid) {
 

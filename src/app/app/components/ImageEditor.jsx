@@ -12,6 +12,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { Progress } from "@/components/ui/progress";
+import GlobalUtils from "@/utils/GlobalUtils";
 
 
 export default function ImageEditor({ section }) {
@@ -54,6 +55,11 @@ export default function ImageEditor({ section }) {
         },
     });
 
+    function getFileExtensionFromName(fileName) {
+        return fileName.split('.').pop();
+
+    }
+
     function updateImageURL(values) {
 
         const finalLayout = userLayout
@@ -71,7 +77,8 @@ export default function ImageEditor({ section }) {
     const handleUpload = async () => {
         if (selectedImage) {
             setUploading(true);
-            const imageRef = ref(storage, `BentoImages/${selectedImage.name}`);
+            //for image name selectedImage.name
+            const imageRef = ref(storage, `BentoImages/${GlobalUtils.uuid()}.${getFileExtensionFromName(selectedImage.name)}`);
             const uploadTask = uploadBytesResumable(imageRef, selectedImage);
 
             uploadTask.on(

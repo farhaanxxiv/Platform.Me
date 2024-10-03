@@ -82,10 +82,17 @@ export default function Page() {
     function toggleNavbar() {
         setNavbarOpen(!navbarOpen)
     }
+    const bgStyles = {
+        background: 'rgb(0,0,0)',
+        background: '-moz-linear-gradient(49deg, rgba(0,0,0,1) 0%, rgba(26,26,26,1) 21%, rgba(15,15,15,1) 64%, rgba(27,27,27,1) 100%)',
+        background: '-webkit-linear-gradient(49deg, rgba(0,0,0,1) 0%, rgba(26,26,26,1) 21%, rgba(15,15,15,1) 64%, rgba(27,27,27,1) 100%)',
+        background: 'linear-gradient(49deg, rgba(0,0,0,1) 0%, rgba(26,26,26,1) 21%, rgba(15,15,15,1) 64%, rgba(27,27,27,1) 100%)',
+        filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#1b1b1b",GradientType=1)'
+    };
 
     return (
-        <>
-            <section className="pt-40 px-0 md:px-24 overflow-x-hidden relative">
+        <div style={bgStyles}>
+            <section  className="pt-12 px-0 md:px-32 overflow-x-hidden relative">
                 {sections.length != 0 &&
                     <div className={`rounded-tl-xl p-4 border-solid border-2 z-[9999] bg-white border-black  fixed bottom-0 right-0`} onClick={toggleNavbar}><RxHamburgerMenu /></div>
                 }
@@ -156,6 +163,6 @@ export default function Page() {
 
             </section>
             <MainFooter />
-        </>
+        </div>
     );
 }
