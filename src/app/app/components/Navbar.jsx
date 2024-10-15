@@ -45,11 +45,14 @@ export default function UserNavbar() {
   const { toggleSectionEditor } = useSectionEditor()
   const { openFormEditor } = useFormEditor()
 
-
+  function scrollToBottom(element) {
+    element.scroll({ top: element.scrollHeight, behavior: 'smooth' });
+  }
 
   function createImage() {
     const imgLayout = BentoUtils.createImageSection()
     updateUserLayout([...userLayout, imgLayout])
+    scrollToBottom(document.getElementById('layout_editor_container'))
   }
 
   function createForm() {

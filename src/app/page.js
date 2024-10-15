@@ -151,7 +151,7 @@ function HomeComponent() {
                         <div className='flex flex-col gap-2 w-fit'>
                           <p className='text-xs flex '><FaUser size={15} />&nbsp;<b>{user.email}</b></p>
                           <Button className='font-bold' variant='secondary' onClick={() => router.push('/app')}>
-                            {userData == null ? ' Create Page' : 'Open Editor'}
+                            {userData == null ? 'Create Page' : 'Open Editor'}
                           </Button>
 
                           <Button className='font-bold' variant='default' onClick={() => auth.signOut()}>

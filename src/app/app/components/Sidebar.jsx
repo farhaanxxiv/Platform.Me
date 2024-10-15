@@ -24,6 +24,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { AuthProvider } from "@/providers/AuthProvider";
 import Image from "next/image";
 import { useEffect } from "react";
+import { BiStore } from "react-icons/bi";
 
 
 
@@ -81,18 +82,22 @@ function SideBarInternal() {
 
                     </div>
                 </Link>
+
                 <p className="underline text-xs text-white font-semibold">Pages</p>
 
                 <Link onClick={toggleSideBar} className="block" href='/app'>
                     <LuLayoutDashboard className={`block mx-auto ${path == '/app' && 'bg-white p-1 rounded-sm'}`} color={`${path == '/app' ? 'black' : 'white'}`} size={30} />
                     <p className="text-white text-xxs text-center font-semibold mt-1">Layout</p>
-
                 </Link>
 
                 <Link onClick={toggleSideBar} className="block" href='/app/forms'>
                     <BsFileEarmarkSpreadsheet className={`block mx-auto ${path == '/app/forms' && 'bg-white p-1 rounded-sm'}`} color={`${path == '/app/forms' ? 'black' : 'white'}`} size={30} />
                     <p className="text-white text-xxs text-center font-semibold mt-1">Forms</p>
+                </Link>
 
+                <Link onClick={toggleSideBar} className="block" href='/app/store'>
+                    <BiStore className={`block mx-auto ${path == '/app/store' && 'bg-white p-1 rounded-sm'}`} color={`${path == '/app/store' ? 'black' : 'white'}`} size={30} />
+                    <p className="text-white text-xxs text-center font-semibold mt-1">Store</p>
                 </Link>
 
             </div>

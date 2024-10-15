@@ -212,7 +212,7 @@ export default function BentoForm({ form, page_user_id }) {
                                 <p>Click Here, To Add Fields</p>
                             )}
                         </div>
-                        <Button disabled={formSubmitting || formSubmitted} type='submit' className='w-full mt-4'>
+                        <Button variant='default' disabled={formSubmitting || formSubmitted} type='submit' className='w-full mt-4'>
                             {formFailure ? 'Please Try Again'
                                 :
                                 formSubmitting ?

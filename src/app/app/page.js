@@ -62,7 +62,7 @@ function LayoutEditPage() {
             {
                 loadingState ?
                     <>
-                        <div className="flex mt-12">
+                        <div id="layout_editor_container" className="flex mt-12">
                             <div className="w-full">
                                 <PageSettings />
                                 <EditorHeader />
