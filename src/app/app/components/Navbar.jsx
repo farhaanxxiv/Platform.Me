@@ -54,6 +54,11 @@ export default function UserNavbar() {
     updateUserLayout([...userLayout, imgLayout])
     scrollToBottom(document.getElementById('layout_editor_container'))
   }
+  function createHeadingParagraphSection() {
+    const headingParagraphLayout = BentoUtils.createHeadingParagraphSection()
+    updateUserLayout([...userLayout, headingParagraphLayout])
+  }
+
 
   function createForm() {
     const formLayout = BentoUtils.createFormSection()
@@ -114,6 +119,10 @@ export default function UserNavbar() {
             <DropdownMenuItem onClick={() => createForm()}>
               Form
               <DropdownMenuShortcut>---</DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => createHeadingParagraphSection()}>
+              Heading & Paragraph
+              <DropdownMenuShortcut>H</DropdownMenuShortcut>
             </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>Social Media</DropdownMenuSubTrigger>

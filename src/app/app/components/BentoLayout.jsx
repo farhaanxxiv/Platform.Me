@@ -19,6 +19,7 @@ import { WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { MdModeEdit } from "react-icons/md";
+import BentoHeadingParagraph from '@/components/app/navbars/BentoElements/BentoHeadingParagraph';
 
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
@@ -154,8 +155,10 @@ const BentoPage = () => {
                                                         section.type == 'text' ?
                                                             <BentoText text={section} /> :
                                                             section.type == 'section' ?
-                                                                <BentoSection section={section} />
-                                                                : <p>Invalid Bento Type</p>
+                                                                <BentoText text={section} /> :
+                                                                section.type == 'heading_paragraph' ?
+                                                                    <BentoHeadingParagraph section={section} />
+                                                                    : <p>Invalid Bento Type</p>
                                         }
                                     </div>
                                 </div>

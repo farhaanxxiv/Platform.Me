@@ -271,6 +271,57 @@ const BentoUtils = {
 
         return uniqueId;
     },
+    createHeadingParagraphSection: () => {
+
+        const uid = BentoUtils.generateUniqueId()
+        const form = {
+            'id': uid,
+            'type': 'heading_paragraph',
+            'heading': '',
+            'paragraph': '',
+            'layout': {
+                'desktop': {
+                    //need to find a gap here. must use cp lol
+                    "w": 7,
+                    "h": 6,
+                    "x": 0,
+                    "y": yPosition,
+                    "i": uid,
+                    "moved": false,
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': '',
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n']
+                },
+                'mobile': {
+                    //need to find a gap here. must use cp lol
+                    "w": 7,
+                    "h": 6,
+                    "x": 0,
+                    "y": yPosition,
+                    "i": uid,
+                    "moved": false,
+                    "static": false,
+                    "minW": 1,
+                    "maxW": 12,
+                    "minH": 1,
+                    "maxH": 100000,
+                    'isBounded': true,
+                    'isDraggable': true,
+                    'isResizable': '',
+                    'static': false,
+                    'resizeHandles': ['s', 'w', 'e', 'n']
+                }
+            }
+        }
+        return form
+    },
 }
 
 

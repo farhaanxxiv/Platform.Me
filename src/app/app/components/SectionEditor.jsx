@@ -17,6 +17,7 @@ import SocialEditor from "./SocialEditor"
 import { useLayoutManager } from "@/providers/LayoutManager"
 import TextEditor from "./TextEditor"
 import SectionSectionEditor from "./SectionSectionEditor"
+import HeadingParagraphEditor from "./HeadingParagraphEditor"
 
 
 export default function SectionEditor() {
@@ -54,16 +55,19 @@ export default function SectionEditor() {
                                         <SocialEditor section={userSelectedSection} />
                                         : userSelectedSection.type == 'text' ?
                                             <TextEditor section={userSelectedSection} />
-                                            : userSelectedSection.type == 'section' ?
-                                                <SectionSectionEditor section={userSelectedSection} />
-                                                : <p>No Section Selected</p>
+                                            : userSelectedSection.type == 'heading_paragraph' ?
+                                                <HeadingParagraphEditor section={userSelectedSection} />
+                                                : userSelectedSection.type == 'section' ?
+                                                    <SectionSectionEditor section={userSelectedSection} />
+                                                    : <p>No Section Selected</p>
                         }
-
 
                         <Button
                             onClick={() => { deleteSection(userSelectedSection.id); closeSectionEditor() }}
                             variant='destructive'
-                            className='w-full mt-3'>Delete Section</Button>
+                            className='w-full mt-3'>
+                            Delete Section
+                        </Button>
 
                     </SheetDescription>
                 </SheetContent>

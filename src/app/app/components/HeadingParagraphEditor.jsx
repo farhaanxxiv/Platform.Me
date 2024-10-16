@@ -1,53 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import GlobalUtils from "@/utils/GlobalUtils";
-import { useAtom } from "jotai";
-import { useState } from "react";
-import { currentSelectedSection, currentUserLayout } from "@/states/ui_state"
-import { toast } from "@/components/ui/use-toast";
+import { useEffect, useState } from "react";
 import { useLayoutManager } from "@/providers/LayoutManager";
-import { ColorPicker, useColor } from "react-color-palette";
-import "react-color-palette/css";
 import { useSectionEditor } from "@/providers/SectionEditorProvider";
+import RichTextEditor from "@/components/app/RichTextEditor";
 
-export default function SectionSectionEditor({ section }) {
+export default function HeadingParagraphEditor({ section }) {
+
     const { userLayout, updateUserLayout } = useLayoutManager()
     const { closeSectionEditor } = useSectionEditor()
 
-
     const [heading, setHeading] = useState(section.heading)
-
-
+    const [paragraphContent, setParagraphContent] = useState(section.paragraph || '');
 
     function handleChange(e) {
         const newText = e.currentTarget.value
-        console.log('newText :', newText);
         setHeading(newText)
     }
 
     function updateHeading() {
-
         const finalLayout = userLayout.slice()
 
         for (let i = 0; i < finalLayout.length; i++) {
             if (finalLayout[i].id == section.id) {
-                finalLayout[i].heading = heading
-
+                finalLayout[i].heading = heading;
+                finalLayout[i].paragraph = paragraphContent;
             }
         }
 
-        console.log('Layout After Updating Heading of Section', finalLayout)
         updateUserLayout(finalLayout)
         closeSectionEditor()
-
     }
 
+    useEffect(() => {
+        console.log('paragraphContent :', paragraphContent);
+
+    }, [paragraphContent])
 
     return (
-
         <div className="">
-
             <Label>
                 Enter Heading Here
                 <Input
@@ -56,10 +48,12 @@ export default function SectionSectionEditor({ section }) {
                 />
             </Label>
 
+            <RichTextEditor
+                content={paragraphContent}
+                onChange={(content) => setParagraphContent(content)}
+            />
+
             <Button onClick={() => updateHeading()} className='mt-2 ml-auto w-fit block' variant=''>Save</Button>
-
-
-
         </div>
     )
 }

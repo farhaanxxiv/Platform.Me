@@ -5,7 +5,7 @@ import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
 import { EditorProvider, useCurrentEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const MenuBar = () => {
     const { editor } = useCurrentEditor()
@@ -200,10 +200,29 @@ const extensions = [
     }),
 ]
 
-export default function RichTextEditor() {
+export default function RichTextEditor({ content, onChange }) {
+
+    const [editorContent, setEditorContent] = useState(content || '');
+
+    useEffect(() => {
+
+        if (onChange) {
+
+            console.log('editorContent :', editorContent);
+            onChange(editorContent);
+
+        }
+
+    }, [editorContent, onChange]);
+
     return (
         <>
-            <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={'ads'}></EditorProvider>
+            <EditorProvider
+                slotBefore={<MenuBar />}
+                extensions={extensions}
+                content={content}
+                onUpdate={({ editor }) => setEditorContent(editor.getHTML())}
+            />
         </>
     )
 }
