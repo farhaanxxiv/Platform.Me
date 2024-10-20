@@ -279,6 +279,8 @@ const BentoUtils = {
             'type': 'heading_paragraph',
             'heading': '',
             'paragraph': '',
+            'button_link': '',
+            'button_text': '',
             'layout': {
                 'desktop': {
                     //need to find a gap here. must use cp lol

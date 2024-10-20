@@ -13,11 +13,24 @@ export default function HeadingParagraphEditor({ section }) {
 
     const [heading, setHeading] = useState(section.heading)
     const [paragraphContent, setParagraphContent] = useState(section.paragraph || '');
+    const [buttonLink, setButtonLink] = useState(section.button_link)
+    const [buttonText, setButtonText] = useState(section.button_text)
 
     function handleChange(e) {
         const newText = e.currentTarget.value
         setHeading(newText)
     }
+
+    function handleButtonText(e) {
+        const newText = e.currentTarget.value
+        setButtonText(newText)
+    }
+
+    function handleButtonLink(e) {
+        const newLink = e.currentTarget.value
+        setButtonLink(newLink)
+    }
+
 
     function updateHeading() {
         const finalLayout = userLayout.slice()
@@ -26,6 +39,9 @@ export default function HeadingParagraphEditor({ section }) {
             if (finalLayout[i].id == section.id) {
                 finalLayout[i].heading = heading;
                 finalLayout[i].paragraph = paragraphContent;
+                finalLayout[i].button_link = buttonLink;
+                finalLayout[i].button_text = buttonText;
+
             }
         }
 
@@ -45,6 +61,23 @@ export default function HeadingParagraphEditor({ section }) {
                 <Input
                     onChange={handleChange}
                     value={heading}
+                />
+            </Label>
+
+
+            <Label>
+                Enter Button Link
+                <Input
+                    onChange={handleButtonLink}
+                    value={buttonLink}
+                />
+            </Label>
+
+            <Label>
+                Enter Button Text (optional)
+                <Input
+                    onChange={handleButtonText}
+                    value={buttonText}
                 />
             </Label>
 
