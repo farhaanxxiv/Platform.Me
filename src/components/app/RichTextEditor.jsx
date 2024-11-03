@@ -226,3 +226,5 @@ export default function RichTextEditor({ content, onChange }) {
         </>
     )
 }
+
+RichTextEditor.displayName = "RichTextEditor";
