@@ -263,7 +263,7 @@ function HomeComponent() {
             </li>
             <li className='text-lg mt-6 font-medium'>Need Not Worry About Page Going Down if Inactive
               <p className='text-[#d0d0d0] text-sm'>
-                Our platform ensures your website stays up and running, even when you're not actively using it.
+                Our platform ensures your website stays up and running, even when you&apos;re not actively using it.
               </p>
             </li>
           </ul>

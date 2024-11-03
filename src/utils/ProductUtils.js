@@ -2,7 +2,7 @@ const ProductUtils = {
 
     'createProduct': (productName, productImages) => {
 
-        const productName = 'name'
+        productName = 'name'
 
         const json = {
             'product_name': '',
