@@ -401,7 +401,7 @@ function HomeComponent() {
           <br />
           If you need a page for yourself ASAP, <b>Platform.Me</b> is here
         </p>
-        <ResponsiveGridLayout
+        {/* <ResponsiveGridLayout
           className={`layout mx-auto transition px-0 rounded-xl md:border-2 border-[#303030] overflow-hidden`}
           layout={layout}
           onLayoutChange={(newLayout) => setLayout(newLayout)}
@@ -439,7 +439,7 @@ function HomeComponent() {
             </div>
           </div>
 
-        </ResponsiveGridLayout >
+        </ResponsiveGridLayout > */}
 
 
       </section>
