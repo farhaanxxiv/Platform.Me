@@ -94,7 +94,6 @@ const BentoPage = () => {
     }
 
     useEffect(() => {
-        console.log('editorDevice :', editorDevice);
         router.refresh()
     }, [editorDevice])
 
@@ -117,7 +116,6 @@ const BentoPage = () => {
                     isResizable={editorMode == 'bento' ? true : false}
                     draggableCancel='.bento-edit-btn'
                     resizeHandles={['s', 'w', 'e', 'n']}
-
 
                 >
                     {
@@ -142,7 +140,6 @@ const BentoPage = () => {
                                     id={bentoID} key={bentoID} className={`border border-black  ${editorMode == 'bento' && 'draggable'}`} data-grid={bentoGrid} >
                                     <Button className='border border-white bento-edit-btn absolute top-3 left-3 z-[10] bg-black rounded-full text-xs p-1 px-2' onClick={() => handleSectionClick(section)}>
                                         <MdModeEdit color='white' size={20} />
-
                                     </Button>
                                     <div className='scale-[0.96] w-full h-full'>
                                         {

@@ -1,0 +1,12 @@
+{
+    "primaryColor": "hexCode",
+    "secondaryColor": "hexCode",
+    "accentColor": "hexCode",
+    "roundness": "rem",
+    "primaryFont":"",
+    "secondaryFont":"",
+    "accentFont":"",
+    "pageSpacing":""
+
+
+}

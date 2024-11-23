@@ -22,6 +22,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Button } from "@/components/ui/button"
 import GlobalUtils from "@/utils/GlobalUtils"
 import Link from "next/link"
+import Hero from "@/themes/components/hero/Hero"
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
@@ -92,7 +93,8 @@ export default function Page() {
 
     return (
         <div style={bgStyles}>
-            <section  className="pt-12 px-0 md:px-32 overflow-x-hidden relative">
+            <Hero />
+            <section className="pt-12 px-0 md:px-32 overflow-x-hidden relative">
                 {sections.length != 0 &&
                     <div className={`rounded-tl-xl p-4 border-solid border-2 z-[9999] bg-white border-black  fixed bottom-0 right-0`} onClick={toggleNavbar}><RxHamburgerMenu /></div>
                 }
