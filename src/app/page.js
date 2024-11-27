@@ -1,5 +1,10 @@
 'use client'
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import { useAtom } from 'jotai'
 import { RiCamera3Line } from "react-icons/ri";
 import { BsSunglasses } from "react-icons/bs";
@@ -39,6 +44,8 @@ import BentoImage from '@/components/app/navbars/BentoElements/Image';
 import BentoSocial from '@/components/app/navbars/BentoElements/BentoSocial';
 import BentoHeadingParagraph from '@/components/app/navbars/BentoElements/BentoHeadingParagraph';
 import Link from 'next/link';
+import { TbJewishStar } from "react-icons/tb";
+import { FaArrowRight } from "react-icons/fa6";
 
 export default function Home() {
 
@@ -58,6 +65,33 @@ function HomeComponent() {
   const { user, loading } = useAuth()
   const [websiteName, setWebsiteName] = useAtom(user_company)
   const [fetchingUserLoader, setFetchingUserLoader] = useState(true)
+
+  const features = [{
+    "heading": 'E-Commerce',
+    "paragraph": 'Nulla dolore sunt aliquip amet aliqua qui ipsum velit quis consequat.',
+    "bullets": [
+      'Add Products',
+      'Customers can enquire through Whatsapp/E-Mail',
+      'Product/Search Analytics',
+      'Inventory Management',
+      'Payment Gateway Integration',
+      'Weekly Reports'
+    ]
+
+  },
+  {
+    "heading": 'Theme Customization',
+    "paragraph": 'Dolor pariatur minim commodo proident adipisicing est laboris ipsum sint minim consequat ipsum.',
+    "bullets": [
+      'Add Products',
+      'Customers can enquire through Whatsapp/E-Mail',
+      'Product/Search Analytics',
+      'Inventory Management',
+      'Payment Gateway Integration',
+      'Weekly Reports'
+    ]
+
+  }]
 
 
   function signInWithFirebase() {
@@ -373,8 +407,8 @@ function HomeComponent() {
             <Image
               width={1600}
               height={900}
-              className='w-full object-cover block my-auto h-fit'
-              src={'/assets/images/hero-image.png'}
+              className='bg-pastel-yellow p-12 border border-black rounded-3xl w-full object-cover block my-auto h-fit'
+              src={'/assets/images/hero-tp.png'}
             />
             {/* <LiteYouTubeEmbed
               id="yqWX86uT5jM"
@@ -386,22 +420,32 @@ function HomeComponent() {
 
       </section >
 
-      <section className='bg-black text-white '>
-        <h2 className='text-center md:text-left  text-3xl md:text-5xl  leading-normal font-semibold'>
-          What Is&nbsp;
+      <section className='bg-pastel-blue text-black '>
+        <div className='grid md:grid-cols-2 gap-x-6 gap-y-6'>
+          <div>
+            <h2 className='text-center md:text-left  text-3xl md:text-4xl  leading-normal font-semibold'>
+              What Is&nbsp;
+              <span className='font-inherit block md:inline px-4 relative  mx-auto w-fit'>
+                <span aria-hidden='true' className='font-inherit absolute w-full block left-1/2 -translate-x-1/2 inset-0 -rotate-1 bg-black '>
+                </span>
+                <span className='font-inherit  invert z-[10]'>Platform.Me ?</span>
+              </span>
 
-          <span className='block md:inline px-4 relative  mx-auto w-fit'>
-            <span aria-hidden='true' className='absolute w-full block left-1/2 -translate-x-1/2 inset-0 -rotate-1 bg-white '>
-            </span>
-            <span className=' invert z-[10]'>Platform.Me ?</span>
-          </span>
+            </h2>
+            <p className='text-center text-sm md:text-left md:text-md lg:text-lg mt-6 font-medium'>
+              Platform.Me is your personal space on the web where you can showcase who you are, what you do, or what you create. Whether you're an entrepreneur, a creative professional, or someone who wants a unique online presence, Platform.Me helps you build a stunning page in minutes.
+            </p>
 
-        </h2>
-        <p className='text-center text-sm md:text-left md:text-md lg:text-lg mt-6 font-light'>You can create a page for yourself where you can showcase <b> yourself</b> /<b> your business</b> /<b> your portfolio</b> by sharing your page&apos;s link.
-          <br />
-          <br />
-          If you need a page for yourself ASAP, <b>Platform.Me</b> is here
-        </p>
+          </div>
+          <div className='flex flex-wrap gap-3 justify-center md:justify-left'>
+            <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Highlight Your Achievements</p>
+            <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Showcase Your Business Offerings</p>
+            <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Create a Professional Portfolio</p>
+            <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Share Contact Details with Ease</p>
+            <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Express Your Unique Style</p>
+          </div>
+
+        </div>
         {/* <ResponsiveGridLayout
           className={`layout mx-auto transition px-0 rounded-xl md:border-2 border-[#303030] overflow-hidden`}
           layout={layout}
@@ -445,6 +489,88 @@ function HomeComponent() {
 
       </section>
 
+      <section className="bg-white">
+
+        <h2 className="text-2xl md:text-4xl font-semibold">Websites created with Platform.me</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 mt-10 gap-4">
+
+          <Link className="group overflow-hidden odd:shadow-[3px_3px_#f1ee83] even:shadow-[3px_3px_#bbecff] rounded-lg" href={'https://www.google.com'} target="_blank">
+            <div className="relative  p-4  pt-8 rounded-lg border border-black">
+              <div className="group-hover:md:top-0 bg-white transition-all absolute top-[105%] left-0 right-0 bottom-0 w-full h-full z-20  rounded-lg">
+                <div className="w-full h-full relative">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <span className="font-semibold">Open Website</span>
+                  </div>
+                </div>
+              </div>
+              <FaArrowRight size={25} className="z-30 -rotate-45 absolute top-4 right-4" />
+
+              <Image
+                height={700}
+                width={1200}
+                src='/assets/images/hero-tp.png'
+              />
+              <p className="text-center mt-3 font-semibold text-sm bg-white border border-black text-black p-1 px-3 rounded w-fit mx-auto">Wishlist</p>
+            </div>
+          </Link>
+          <Link className="group overflow-hidden odd:shadow-[3px_3px_#f1ee83] even:shadow-[3px_3px_#bbecff] rounded-lg" href={'https://www.google.com'} target="_blank">
+            <div className="relative  p-4  pt-8 rounded-lg border border-black">
+              <div className="group-hover:md:top-0 bg-white transition-all absolute top-[105%] left-0 right-0 bottom-0 w-full h-full z-20  rounded-lg">
+                <div className="w-full h-full relative">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <span className="font-semibold">Open Website</span>
+                  </div>
+                </div>
+              </div>
+              <FaArrowRight size={25} className="z-30 -rotate-45 absolute top-4 right-4" />
+
+              <Image
+                height={700}
+                width={1200}
+                src='/assets/images/hero-tp.png'
+              />
+              <p className="text-center mt-3 font-semibold text-sm bg-white border border-black text-black p-1 px-3 rounded w-fit mx-auto">Wishlist</p>
+            </div>
+          </Link>  <Link className="group overflow-hidden odd:shadow-[3px_3px_#f1ee83] even:shadow-[3px_3px_#bbecff] rounded-lg" href={'https://www.google.com'} target="_blank">
+            <div className="relative  p-4  pt-8 rounded-lg border border-black">
+              <div className="group-hover:md:top-0 bg-white transition-all absolute top-[105%] left-0 right-0 bottom-0 w-full h-full z-20  rounded-lg">
+                <div className="w-full h-full relative">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <span className="font-semibold">Open Website</span>
+                  </div>
+                </div>
+              </div>
+              <FaArrowRight size={25} className="z-30 -rotate-45 absolute top-4 right-4" />
+
+              <Image
+                height={700}
+                width={1200}
+                src='/assets/images/hero-tp.png'
+              />
+              <p className="text-center mt-3 font-semibold text-sm bg-white border border-black text-black p-1 px-3 rounded w-fit mx-auto">Wishlist</p>
+            </div>
+          </Link>  <Link className="group overflow-hidden odd:shadow-[3px_3px_#f1ee83] even:shadow-[3px_3px_#bbecff] rounded-lg" href={'https://www.google.com'} target="_blank">
+            <div className="relative  p-4  pt-8 rounded-lg border border-black">
+              <div className="group-hover:md:top-0 bg-white transition-all absolute top-[105%] left-0 right-0 bottom-0 w-full h-full z-20  rounded-lg">
+                <div className="w-full h-full relative">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <span className="font-semibold">Open Website</span>
+                  </div>
+                </div>
+              </div>
+              <FaArrowRight size={25} className="z-30 -rotate-45 absolute top-4 right-4" />
+
+              <Image
+                height={700}
+                width={1200}
+                src='/assets/images/hero-tp.png'
+              />
+              <p className="text-center mt-3 font-semibold text-sm bg-white border border-black text-black p-1 px-3 rounded w-fit mx-auto">Wishlist</p>
+            </div>
+          </Link>
+        </div>
+      </section>
+
       <section className='bg-black shadow-[inset_0px_50px_50px_-50px_#303030] text-white'>
         <h2 className='font-semibold text-3xl md:text-5xl md:text-center leading-normal'>What Can It Be Used For ?  </h2>
         <p className='md:text-center text-sm md:text-md lg:text-lg mt-3 md:mt-6 font-medium'>You can build these<span className='bg-black text-white py-1'> instantly</span></p>
@@ -477,10 +603,89 @@ function HomeComponent() {
             <IoShareSocialOutline className='my-auto' />
             <p className='font-medium'>Share Social Media Links</p>
           </div>
-
+          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
+            <TbJewishStar className='my-auto' />
+            <p className='font-medium'>Wish List</p>
+          </div>
         </div>
 
       </section >
+
+      <section className="overflow-visible">
+        <div className="grid lg:grid-cols-3 gap-y-6 gap-x-6 h-full">
+          <div className="relative shrink-0 h-full min-h-full">
+            <h2 className="h-fit sticky top-20 left-0 text-2xl md:text-4xl font-semibold">What's Included?🔎</h2>
+          </div>
+          <div className="space-y-4 col-span-2">
+
+            <div className="sticky top-16 lg:relative border border-black p-8 bg-pastel-green space-y-5">
+              <h2 className="text-2xl md:text-4xl font-semibold">E-Commerce</h2>
+              <p className="">
+                Dolor pariatur minim commodo proident adipisicing est laboris ipsum sint minim consequat ipsum.
+              </p>
+
+              <div className="space-y-2 ">
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Add Products</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Product/Search Analytics</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Customers can enquire through Whatsapp/E-Mail</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Inventory Management</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Payment Gateway Integration</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Weekly Reports</p>
+              </div>
+
+              <Image
+                height={200}
+                width={100}
+                className="absolute w-[4rem] md:w-[8rem] bottom-0 right-0"
+                src='/assets/images/e-commerce.png'
+              />
+
+            </div>
+
+            <div className="sticky top-20 lg:relative border border-black p-8 bg-pastel-cream space-y-5">
+              <h2 className="text-2xl md:text-4xl font-semibold">Theme Customization</h2>
+              <p className="mt-2">
+                Dolor pariatur minim commodo proident adipisicing est laboris ipsum sint minim consequat ipsum.
+              </p>
+
+              <div className="space-y-2 ">
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Add your Brand Colors</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Choose from Themes</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Font and Typography Control</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Home and Product Pages</p>
+              </div>
+
+              <Image
+                height={200}
+                width={100}
+                className="absolute w-[3rem] md:w-[6rem] bottom-0 right-0"
+                src='/assets/images/theme.png'
+              />
+            </div>
+
+            <div className="sticky top-24 lg:relative border border-black p-8 bg-pastel-purple space-y-5">
+              <h2 className="text-2xl md:text-4xl font-semibold">No-code</h2>
+              <p className="mt-2">
+                Dolor pariatur minim commodo proident adipisicing est laboris ipsum sint minim consequat ipsum.
+              </p>
+
+              <div className="space-y-2 ">
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Drag and Drop Elements</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Elements like Forms, Images, Videos and more</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Real-time Preview</p>
+              </div>
+              <Image
+                height={200}
+                width={100}
+                className="absolute w-[4rem] md:w-[6rem] bottom-0 right-0"
+                src='/assets/images/drag-and-drop.png'
+              />
+            </div>
+
+          </div>
+
+        </div>
+      </section>
 
       <section className='bg-black text-white'>
         <h2 className='font-bold text-3xl md:text-5xl md:text-center leading-normal'>Why Us ? </h2>
@@ -510,6 +715,32 @@ function HomeComponent() {
           </ul>
         </div>
       </section >
+
+      <section className="flex flex-col md:flex-row shrink-0 gap-x-6 gap-y-6">
+        <h2 className="text-4xl font-semibold"> FAQ'S</h2>
+        <Accordion type="single" collapsible className="-mt-3 w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It comes with default styles that matches the other
+              components&apos; aesthetic.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It&apos;s animated by default, but you can disable it if you
+              prefer.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
     </>
 
   );
