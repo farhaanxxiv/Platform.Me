@@ -38,6 +38,7 @@ import GridLayout from 'react-grid-layout';
 import BentoImage from '@/components/app/navbars/BentoElements/Image';
 import BentoSocial from '@/components/app/navbars/BentoElements/BentoSocial';
 import BentoHeadingParagraph from '@/components/app/navbars/BentoElements/BentoHeadingParagraph';
+import Link from 'next/link';
 
 export default function Home() {
 
@@ -302,7 +303,7 @@ function HomeComponent() {
       <HomeHeader />
       {/* <BackgroundLines /> */}
 
-      <section className='text-center md:text-left bg-black text-white  relative overflow-hidden'>
+      <section className='text-center md:text-left bg-white text-black  relative overflow-hidden'>
 
         {/* <svg className='opacity-[0.1] absolute -top-[100%] md:-top-[60%] left-0 rotate-[-180deg]' width="598" height="764" viewBox="0 0 598 764" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M597.754 7.28092C489.053 -9.28692 256.037 0.134947 193.576 170.365C115.5 383.153 309.856 553.552 1.21313 762.398" stroke="black" stroke-width="3" />
@@ -314,25 +315,23 @@ function HomeComponent() {
         {/* absolute  -translate-x-1/2 -translate-y-1/2 */}
 
         <div className='grid md:grid-cols-2 gap-12 relative'>
-          <div className='absolute inset-x-0 -top-20 flex items-start justify-center h-screen w-full overflow-hidden blur-3xl left-1/2 -translate-x-1/2'>
-            <svg viewBox="0 0 6039 6264" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-20 max-h-[60%] mt-[-100px]"><path d="M3866.32 4124.5L5487.32 5048L6038.32 4780.5L5324.82 4287.5L0.815676 0L2367.32 3119.5L3995.82 6263.5H4619.82L3866.32 4124.5Z" fill="#ffffff"></path></svg>
-          </div>
+          {/* <div className='absolute inset-x-0 -top-20 flex items-start justify-center h-screen w-full overflow-hidden blur-3xl left-1/2 -translate-x-1/2'>
+            <svg viewBox="0 0 6039 6264" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-20 max-h-[60%] mt-[-100px]"><path d="M3866.32 4124.5L5487.32 5048L6038.32 4780.5L5324.82 4287.5L0.815676 0L2367.32 3119.5L3995.82 6263.5H4619.82L3866.32 4124.5Z" fill="#ffffff"></path></svg>
+          </div> */}
 
           <div className=' top-1/2 left-1/2 w-full '>
 
             <h1 className='mt-6 md:mt-0 flex gradient-border-container-1 mb-4 w-fit mx-auto md:mx-0'>
-              <span className=''>Platform.Me</span>
+              <span className='text-black'>Platform.Me</span>
             </h1>
-            <h2 className=" text-blackstroke-2 text-4xl md:text-6xl font-extrabold ">
+            <h2 className=" text-blackstroke-2 text-4xl md:text-6xl font-light ">
               Create Your Page In
               <br />
-              <span className='font-light'> 60 Seconds</span>
+              <h3 className='font-inherit font-light'> 60 Seconds</h3>
             </h2>
-            <h3 className='mt-6 md:flex'>The best way to Launch
+            <div className='mt-6 md:flex font-semibold'>The best way to Launch
               <TextTransition className='mt-2 md:mt-0 w-fit mx-auto md:mx-0  rounded-full font-semibold px-2 text-2xl -translate-y-1.5' springConfig={presets.wobbly}>{TEXTS[index % TEXTS.length]}</TextTransition>
-            </h3>
-
-
+            </div>
             <div className='mt-4 w-fit mx-auto md:mx-0 '>
 
               {
@@ -346,9 +345,11 @@ function HomeComponent() {
                         :
                         <div className='flex flex-col gap-2 w-fit'>
                           <p className='text-xs flex '><FaUser size={15} />&nbsp;<b>{user.email}</b></p>
-                          <Button className='font-bold' variant='secondary' onClick={() => router.push('/app')}>
-                            {userData == null ? 'Create Page' : 'Open Editor'}
-                          </Button>
+
+                          <Link href='/app' className='block w-full' >
+                            <Button className='font-bold w-full' variant='secondary' >
+                              {userData == null ? 'Create Page' : 'Open Editor'}
+                            </Button>                          </Link>
 
                           <Button className='font-bold' variant='default' onClick={() => auth.signOut()}>
                             Logout

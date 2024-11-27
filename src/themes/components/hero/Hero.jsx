@@ -22,7 +22,7 @@ export default function Hero() {
     const alpha = '40'  //opacity of gradient
 
     const background = {
-        background: `radial-gradient(circle at 50% 0%, ${secondaryColor}${alpha},${primaryColor},${primaryColor});`
+        background: `radial-gradient(circle at 50% 0%, ${secondaryColor}${alpha},${primaryColor},${primaryColor})`
     }
 
     const btnPrimary = ''
