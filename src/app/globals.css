@@ -110,6 +110,9 @@ section {
   }
 }
 
+section.first{
+}
+
 .rcp-section {
   padding: 0;
 }
