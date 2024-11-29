@@ -55,6 +55,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { LoadingSpinner } from "@/components/ui/spinner";
 export default function Home() {
 
   return (
@@ -413,41 +414,6 @@ function HomeComponent() {
               </div>
             </div>
 
-            <div className=' w-fit mx-auto '>
-
-              {
-                loading ?
-                  <p>Loading Auth</p>
-                  :
-                  user != null ?
-                    <>
-                      {fetchingUserLoader ?
-                        <p>Fetching User</p>
-                        :
-                        <div className='flex flex-col gap-2 w-fit'>
-                          <p className='text-xs flex '><FaUser size={15} />&nbsp;<b>{user.email}</b></p>
-
-                          <Link href='/app' className='block w-full' >
-                            <Button className=' font-bold w-full' variant='default'>
-                              {userData == null ? 'Create Page' : 'Open Editor'}
-                            </Button>                          </Link>
-
-                          <Button className='font-bold bg-white border-2 border-black' variant='secondary' onClick={() => auth.signOut()}>
-                            Logout
-                          </Button>
-                        </div>
-                      }
-                    </>
-                    :
-                    <div className='mt-8'>
-                      <h3 className='font-semibold text-lg md:text-xl '>Sign Up Now & Start Building Your Page</h3>
-                      <Button variant='default' className='mt-4 text-sm md:text-md' onClick={() => { signInWithFirebase() }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
-                      <p className='text-xs mt-2'>*No Credit Card Required</p>
-                    </div>
-              }
-
-
-            </div>
 
           </div>
           <div className='h-fit my-auto'>
@@ -459,8 +425,8 @@ function HomeComponent() {
       </section >
 
       <section className='bg-pastel-blue text-black border-2 border-black'>
-        <div className='grid md:grid-cols-2 gap-x-6 gap-y-6'>
-          <div className="h-fit my-auto">
+        <div className='grid md:grid-cols-5 gap-x-6 gap-y-6'>
+          <div className="h-fit my-auto md:col-span-3">
             <h2 className='text-center md:text-left  text-3xl md:text-5xl  leading-normal font-semibold'>
               What Is&nbsp;
               <span className='font-inherit block md:inline px-4 relative  mx-auto w-fit'>
@@ -470,29 +436,79 @@ function HomeComponent() {
               </span>
 
             </h2>
-
+            <p className='text-center text-sm md:text-left md:text-md lg:text-lg mt-6 font-medium'>
+              Platform.Me is your personal space on the web where you can showcase who you are, what you do, or what you create. Whether you&apos;re an entrepreneur, a creative professional, or someone who wants a unique online presence, Platform.Me helps you build a stunning page in minutes.
+            </p>
 
           </div>
-          <div>
-            {/* <Image
+          {/* <Image
               width={1600}
               height={900}
               // style={gridBG}
               className='w-[80%] rounded-3xl object-cover block my-auto h-fit'
               src={'/assets/images/hero-tp.png'}
             /> */}
-            <p className='text-center text-sm md:text-left md:text-md lg:text-lg mt-6 font-medium'>
-              Platform.Me is your personal space on the web where you can showcase who you are, what you do, or what you create. Whether you&apos;re an entrepreneur, a creative professional, or someone who wants a unique online presence, Platform.Me helps you build a stunning page in minutes.
-            </p>
-          </div>
-          {/* <div className='flex flex-wrap gap-3 justify-center md:justify-left'>
+
+
+          <div className="w-fit mx-auto text-center h-fit my-auto  md:col-span-2">
+            {(!loading && user!=null &&  !fetchingUserLoader) || (!loading && user==null) &&
+              <>
+                <p className="font-semibold text-2xl"> {user != null && !fetchingUserLoader ? 'Continue Building' : 'Start Creating Today'} </p>
+                <Image
+                  width={100}
+                  height={200}
+                  src={'/assets/images/arrow.png'}
+                  className="w-4 block mx-auto"
+                />
+              </>
+            }
+
+            <div className=' w-fit mx-auto h-fit my-auto border-2 border-black p-4 rounded bg-white'>
+              {
+                loading ?
+
+                  <p className="flex gap-x-2"><LoadingSpinner /> Loading Auth  </p>
+                  :
+                  user != null ?
+                    <>
+                      {fetchingUserLoader ?
+                        <p className="flex gap-x-2"><LoadingSpinner />Fetching User</p>
+                        :
+                        <>
+
+                          <div className='flex flex-col gap-2 w-fit h-fit'>
+                            <p className='text-xs flex '><FaUser size={15} />&nbsp;<b>{user.email}</b></p>
+
+                            <Link href='/app' className='block w-full' >
+                              <Button className=' font-bold w-full' variant='default'>
+                                {userData == null ? 'Create Page' : 'Open Editor'}
+                              </Button>                          </Link>
+
+                            <Button className='font-bold bg-white border-2 border-black' variant='secondary' onClick={() => auth.signOut()}>
+                              Logout
+                            </Button>
+                          </div>
+                        </>
+                      }
+                    </>
+                    :
+                    <div className=' h-fit w-fit mx-auto flex flex-col justify-center text-center'>
+                      {/* <p className='font-semibold text-lg md:text-xl '>Easy Sign Up</p> */}
+                      <Button variant='default' className=' mx-auto w-fit mt-1 md:mt-2 text-base md:text-md' onClick={() => { signInWithFirebase() }}><FaGoogle /> &nbsp;&nbsp; Sign In With Google  </Button>
+                      <p className='text-xs mt-2'>*No Credit Card Required</p>
+                    </div>
+              }
+
+
+            </div>
+            {/* <div className='flex flex-wrap gap-3 justify-center md:justify-left'>
             <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Highlight Your Achievements</p>
             <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Showcase Your Business Offerings</p>
             <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Create a Professional Portfolio</p>
             <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Share Contact Details with Ease</p>
             <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Express Your Unique Style</p>
           </div> */}
-
+          </div>
         </div>
         {/* <ResponsiveGridLayout
           className={`layout mx-auto transition px-0 rounded-xl md:border-2 border-[#303030] overflow-hidden`}
@@ -694,32 +710,32 @@ function HomeComponent() {
         </div>
       </section>
 
-      <section className='bg-pastel-purple border-2 border-black text-black'>
+      <section className='bg-[#f2e6ff] border border-black text-black'>
         <h2 className='font-bold text-3xl md:text-5xl md:text-center leading-normal'>What makes us different?</h2>
-        <div className="mt-0 md:mt-12">
-          <div className="mt-4 grid lg:grid-cols-8 gap-6 lg:gap-12">
+        <div className="mt-4 md:mt-12">
+          <div className=" grid lg:grid-cols-8 gap-6 lg:gap-12">
             <div className='text-lg mt-6 font-medium space-y-4 lg:col-span-4'>
 
               <h3 className="text-2xl md:text-3xl font-semibold  decoration-pastel-blue"> Easy Drag & Drop Layout</h3>
-              <p className='text-black text-sm md:text-base'>
+              <p className='text-black text-base md:text-base'>
                 Easily customize your website with our intuitive drag and drop interface.
               </p>
-              <video className="border-2 bg-[#d1a6ff] p-3 w-full aspect-video border-black" src="/assets/videos/drag-n-drop.mp4" loop autoPlay muted playsInline></video>
+              <video className="border-2 bg-white p-3 w-full aspect-video border-black" src="/assets/videos/drag-n-drop.mp4" loop autoPlay muted playsInline></video>
 
             </div>
             <div className='text-lg mt-6 font-medium space-y-4 lg:col-span-4'>
 
               <h3 className="text-2xl md:text-3xl font-semibold ">Optional mobile and desktops layouts</h3>
-              <p className='text-black text-sm md:text-base'>
+              <p className='text-black text-base md:text-base'>
                 Preview and adjust your design for different screen sizes in a single click.
               </p>
-              <video className="border-2 bg-[#d1a6ff] p-3 w-full aspect-video border-black" src="/assets/videos/responsive.mp4" loop autoPlay muted playsInline></video>
+              <video className="border-2 bg-white p-3 w-full aspect-video border-black" src="/assets/videos/responsive.mp4" loop autoPlay muted playsInline></video>
 
             </div>
             <div className='text-lg mt-6 font-medium space-y-4 lg:col-span-4'>
 
               <h3 className="text-2xl md:text-3xl font-semibold underline decoration-pastel-purple">Need Not Worry About Page Going Down if Inactive</h3>
-              <p className='text-black text-sm md:text-base'>
+              <p className='text-black text-base md:text-base'>
                 Our platform ensures your website stays up and running, even when you&apos;re not actively using it.
               </p>
               <Image src="/assets/images/uptime-2.png" width={500} height={500} className="w-[40%] h-fit block mx-auto py-12" />
@@ -762,14 +778,14 @@ function HomeComponent() {
 function HomeHeader() {
   return (
 
-    <section className=' fixed  text-black  top-0 left-0 right-0 py-4 z-[9999] backdrop-blur-lg'>
+    <section className=' fixed mix-blend-difference  text-white  top-0 left-0 right-0 py-4 z-[9999] '>
 
       <div className='flex gap-x-2 align-middle'>
 
         <Image
           width={30}
           height={30}
-          src='/assets/logos/logo-primary.png'
+          src='/assets/logos/logo-secondary.png'
         />
         <p className="font-semibold my-auto">Platform.Me</p>
       </div>
