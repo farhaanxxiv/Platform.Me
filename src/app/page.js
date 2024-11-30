@@ -28,7 +28,7 @@ import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useSession } from "next-auth/react"
 import PageUtils from '@/utils/PageUtils';
-import { FaGoogle } from 'react-icons/fa';
+import { FaBookOpen, FaConnectdevelop, FaGoogle, FaGraduationCap, FaPlus } from 'react-icons/fa';
 import { AuthContextProvider, AuthProvider, useAuth } from '@/providers/AuthProvider';
 import { signInWithPopup } from 'firebase/auth';
 import { auth } from './layout';
@@ -56,6 +56,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { LoadingSpinner } from "@/components/ui/spinner";
+import { TbNorthStar } from "react-icons/tb";
+
 export default function Home() {
 
   return (
@@ -66,6 +68,9 @@ export default function Home() {
     </AuthProvider>
   )
 }
+
+import { MdStorefront } from "react-icons/md";
+import { GiMusicalNotes } from "react-icons/gi";
 
 function HomeComponent() {
 
@@ -101,7 +106,6 @@ function HomeComponent() {
     ]
 
   }]
-
 
   function signInWithFirebase() {
 
@@ -152,6 +156,68 @@ function HomeComponent() {
     return () => clearTimeout(intervalId);
   }, []);
 
+  const useCases = [
+    {
+      icon: PiSuitcase,
+      title: 'Validate Your Business Idea',
+      description: 'Quickly create a professional landing page to test market interest and collect early customer feedback.'
+    },
+    {
+      icon: BiCodeAlt,
+      title: 'Developer Portfolio',
+      description: 'Showcase your projects, skills, and professional journey with a stunning, easy-to-update portfolio.'
+    },
+    {
+      icon: RiCamera3Line,
+      title: 'Photography Showcase',
+      description: 'Create a visually stunning gallery to display your photography work and attract potential clients.'
+    },
+    {
+      icon: BsSunglasses,
+      title: 'Model & Creative Portfolio',
+      description: 'Build a professional portfolio to highlight your visual work and personal brand.'
+    },
+    {
+      icon: CgFileAdd,
+      title: 'Lead Generation',
+      description: 'Design high-converting landing pages with integrated forms to capture and nurture potential leads.'
+    },
+    {
+      icon: IoShareSocialOutline,
+      title: 'Centralized Link Hub',
+      description: 'Create a single page to share all your social media, contact, and professional links.'
+    },
+    {
+      icon: FaGraduationCap,
+      title: 'Online Course Landing',
+      description: 'Promote your educational content, workshops, and online courses with a professional page.'
+    },
+    {
+      icon: MdStorefront,
+      title: 'Small Business Website',
+      description: 'Establish an online presence with a simple, elegant website for local businesses and startups.'
+    },
+    {
+      icon: FaBookOpen,
+      title: 'Personal Blog/Writer Portfolio',
+      description: 'Publish your writing, showcase your work, and build your personal brand as a content creator.'
+    },
+    {
+      icon: GiMusicalNotes,
+      title: 'Artist & Musician Profiles',
+      description: 'Design a professional site to showcase your music, tour dates, and connect with fans.'
+    },
+    {
+      icon: FaConnectdevelop,
+      title: 'Freelancer Professional Page',
+      description: 'Create a comprehensive profile highlighting your services, skills, and professional achievements.'
+    },
+    {
+      icon: FaPlus,
+      title: 'And More...',
+      description: 'Create a comprehensive profile highlighting your services, skills, and professional achievements.'
+    }
+  ];
 
   const ResponsiveGridLayout = WidthProvider(GridLayout);
 
@@ -375,56 +441,45 @@ function HomeComponent() {
       <HomeHeader />
       {/* <BackgroundLines /> */}
 
-      <section style={background} className='h-[100vh] pt-[6rem] first text-center   bg-white text-black  relative overflow-hidden'>
+      <section style={background} className='h-[90vh] md:h-[100vh] pt-[6rem] first text-center   bg-white text-black  relative overflow-hidden'>
 
-        <div style={patternStyle} className="h-[100vh]  w-full absolute top-1/2 left-0 right-0 -translate-y-1/2 z-0 "></div>
-        {/* <svg className='opacity-[0.1] absolute -top-[100%] md:-top-[60%] left-0 rotate-[-180deg]' width="598" height="764" viewBox="0 0 598 764" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M597.754 7.28092C489.053 -9.28692 256.037 0.134947 193.576 170.365C115.5 383.153 309.856 553.552 1.21313 762.398" stroke="black" stroke-width="3" />
-        </svg>
+        <div style={patternStyle} className="h-[90vh] md:h-[100vh]  w-full absolute top-1/2 left-0 right-0 -translate-y-1/2 z-0 "></div>
 
-        <svg className='opacity-[0.1] absolute -bottom-[90%] md:-bottom-[60%] right-0 rotate-[-180deg]' width="598" height="764" viewBox="0 0 598 764" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M597.754 7.28092C489.053 -9.28692 256.037 0.134947 193.576 170.365C115.5 383.153 309.856 553.552 1.21313 762.398" stroke="black" stroke-width="3" />
-        </svg> */}
-        {/* absolute  -translate-x-1/2 -translate-y-1/2 */}
 
         <div className='w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 grid  gap-6 '>
-          {/* <div className='absolute inset-x-0 -top-20 flex items-start justify-center h-screen w-full overflow-hidden blur-3xl left-1/2 -translate-x-1/2'>
-            <svg viewBox="0 0 6039 6264" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-20 max-h-[60%] mt-[-100px]"><path d="M3866.32 4124.5L5487.32 5048L6038.32 4780.5L5324.82 4287.5L0.815676 0L2367.32 3119.5L3995.82 6263.5H4619.82L3866.32 4124.5Z" fill="#ffffff"></path></svg>
-          </div> */}
+
 
           <div className=' w-fit mx-auto space-y-6 md:space-y-8 relative h-fit'>
 
-            {/* <h1 className='md:mt-0 flex bg-pastel-yellow px-3 py-1 rounded-full border-2 border-black font-semibold text-xs mb-4 w-fit mx-auto md:mx-0'>
-              <span className='text-black'>Platform.Me</span>
-            </h1> */}
+
             <div className="space-y-10 md:space-y-12 gap-x-4 text-blackstroke-2">
 
               <h2 className="w-fit mx-auto text-5xl md:text-7xl font-semibold md:font-normal"> <span className="relative font-heading italic">&nbsp;&nbsp;&nbsp;Fastest
-                <div className="absolute -left-5 lg:-left-2 top-2 md:top-6 translate-y-2 lg:translate-y-1.5 translate-x-2 w-6 h-6 md:h-8 flex flex-col justify-evenly">
+                <div className="absolute -left-5 lg:-left-2 top-2 md:top-6 translate-y-4 lg:translate-y-3 translate-x-2 w-6 h-6 md:h-8 flex flex-col justify-evenly">
                   <div className="animate-move-left-right odd:animate-move-left-right-odd h-0.5 w-full bg-pastel-purple"></div>
                   <div className="animate-move-left-right odd:animate-move-left-right-odd h-0.5 w-full bg-emerald-500"></div>
                   <div className="animate-move-left-right odd:animate-move-left-right-odd h-0.5 w-full bg-[#ffbfa3]"></div>
                   <div className="animate-move-left-right odd:animate-move-left-right-odd h-0.5 w-full bg-[#9ce3ff]"></div>
                 </div>
               </span><br className="md:" /> No-Code<br /> <span className="hidden md:inline font-heading">Website</span>  <p className="inline-block border-2 border-dotted border-black leading-[1] md:leading-[0.8] mt-2 md:mt-0 p-2 md:p-0 md:pb-1 bg-pastel-yellow font-heading relative"> <span className="font-heading md:hidden"> Website</span> <br className="md:hidden" />Builder <LuMousePointer fill="black" className="w-7 md:w-10 absolute -bottom-5 -right-4 md:-bottom-12 md:-right-8" /></p></h2>
-              {/* <br /> */}
-              {/* <h3 className='font-inherit font-base'> 60 Seconds</h3> */}
-              <div className=' relative text-lg md:text-xl  font-semibold before: [&_*]:!font-inherit w-fit mx-auto font-heading'>The best way to Launch
+
+              <p className="w-[90%] mx-auto md:w-full font-semibold text-lg leading-relaxed">Create stunning <span className="bg-pastel-green text-black px-1"> websites</span>, <span className="bg-pastel-cream text-black px-1">portfolios</span>, <span className="bg-pastel-purple text-black px-1"> stores</span>, and <span className="bg-orange-300 text-black px-1"> blogs</span> - <span className="bg-pastel-blue "> all in one place</span></p>
+              {/* <div className=' relative text-lg md:text-xl  font-semibold before: [&_*]:!font-inherit w-fit mx-auto font-heading'>The best way to Launch
                 <TextTransition className=' block md:mt-0 w-fit mx-auto rounded-full font-medium px-2 text-2xl translate-y-1' springConfig={presets.wobbly}>{TEXTS[index % TEXTS.length]}</TextTransition>
-              </div>
+              </div> */}
+
             </div>
-
-
+            <Link className="block" href={'#home-login'}>
+              <Button>Get Started</Button>
+            </Link>
           </div>
-          <div className='h-fit my-auto'>
 
-
-          </div>
         </div>
+        <div className='absolute block animate-arrow-bounce bottom-16 left-1/2 -translate-x-1/2'><BiDownArrowAlt className='block' size={40} /></div>
 
       </section >
 
-      <section className='bg-pastel-blue text-black border-2 border-black'>
+      <section className='bg-pastel-blue text-black border-black relative'>
         <div className='grid md:grid-cols-5 gap-x-6 gap-y-6'>
           <div className="h-fit my-auto md:col-span-3">
             <h2 className='text-center md:text-left  text-3xl md:text-5xl  leading-normal font-semibold'>
@@ -441,17 +496,11 @@ function HomeComponent() {
             </p>
 
           </div>
-          {/* <Image
-              width={1600}
-              height={900}
-              // style={gridBG}
-              className='w-[80%] rounded-3xl object-cover block my-auto h-fit'
-              src={'/assets/images/hero-tp.png'}
-            /> */}
 
 
+          <div className="absolute bottom-full md:bottom-[120%]" id="home-login"></div>
           <div className="w-fit mx-auto text-center h-fit my-auto  md:col-span-2">
-            {(!loading && user!=null &&  !fetchingUserLoader) || (!loading && user==null) &&
+            {(!loading && user != null && !fetchingUserLoader) || (!loading && user == null) &&
               <>
                 <p className="font-semibold text-2xl"> {user != null && !fetchingUserLoader ? 'Continue Building' : 'Start Creating Today'} </p>
                 <Image
@@ -509,6 +558,15 @@ function HomeComponent() {
             <p className='text-sm md:text-lg shadow-[2px_2px_black] select-none hover:bg-black hover:text-white transition whitespace-nowrap h-fit bg-white rounded-md p-1 px-2 w-fit border border-black '>Express Your Unique Style</p>
           </div> */}
           </div>
+
+          <div className="md:col-span-5 mt-8">
+            <Image
+              height={700}
+              width={1200}
+              src='/assets/images/hero-tp.png'
+              className="block mx-auto md:w-1/2"
+            />
+          </div>
         </div>
         {/* <ResponsiveGridLayout
           className={`layout mx-auto transition px-0 rounded-xl md:border-2 border-[#303030] overflow-hidden`}
@@ -553,15 +611,16 @@ function HomeComponent() {
 
       </section>
 
-      <section className="bg-white">
+      <section className="bg-[#f7f3ef] border-t border-b border-black">
 
-        <div className="grid gap-y-10  md:grid-cols-2 md:gap-x-12 lg:gap-x-4 mt-10 gap-4  max-w-full">
+        <div className="grid gap-y-10  md:grid-cols-2 md:gap-x-16 lg:gap-x-4 mt-10 gap-4  max-w-full">
           <div className="h-fit my-auto">
-            <h2 className="text-3xl md:text-5xl font-semibold">Websites created with Platform.me</h2>
+            <span className="bg-pastel-yellow w-fit py-0.5 rounded-full px-3 border border-black flex gap-x-2 "> <TbNorthStar size={20} className=" my-auto" />Unleash Your Creativity</span>
+            <h2 className="text-3xl md:text-5xl font-semibold mt-4">Websites created with Platform.me</h2>
           </div>
 
-          <div className="max-w-[85dvw] md:max-w-full mx-auto">
-            <Carousel className="bg-pastel-green w-full min-w-full px-4 md:px-0">
+          <div className="max-w-[85dvw] md:w-[80%] mx-auto md:ml-auto">
+            <Carousel className="bg-white border border-black rounded w-full min-w-full px-4 md:px-0">
               <CarouselContent>
                 {Array.from({ length: 5 }).map((_, index) => (
                   <CarouselItem key={index} className=''>
@@ -594,42 +653,20 @@ function HomeComponent() {
         </div>
       </section>
 
-      <section className='bg-black shadow-[inset_0px_50px_50px_-50px_#303030] text-white'>
+      <section className='bg-pastel-green text-black border-black'>
         <h2 className='font-semibold text-3xl md:text-5xl md:text-center leading-normal'>What Can It Be Used For ?  </h2>
-        <p className='md:text-center text-sm md:text-md lg:text-lg mt-3 md:mt-6 font-medium'>You can build these<span className='bg-black text-white py-1'> instantly</span></p>
+        <p className='md:text-center text-base md:text-md lg:text-lg mt-3 md:mt-6 font-medium'>You can build these <span className='bg-black text-white  px-1'>instantly</span></p>
         <div className='flex flex-wrap md:justify-center gap-3 mt-12'>
-          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
-            <PiSuitcase className='my-auto' />
-            <p className='font-medium'>Validate Your New Business Idea</p>
-          </div>
-
-          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
-            <BiCodeAlt className='my-auto' />
-            <p className='font-medium'>Developer Portfolio</p>
-          </div>
-
-          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
-            <RiCamera3Line className='my-auto' />
-            <p className='font-medium'>To Showcase Your Photography</p>
-          </div>
-
-          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
-            <BsSunglasses className='my-auto' />
-            <p className='font-medium'>Model Portfolio</p>
-          </div>
-
-          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
-            <CgFileAdd className='my-auto' />
-            <p className='font-medium'>Lead Generation (Coming Soon)</p>
-          </div>
-          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
-            <IoShareSocialOutline className='my-auto' />
-            <p className='font-medium'>Share Social Media Links</p>
-          </div>
-          <div className='bg-black flex gap-2 text-white p-4 py-2 rounded-xl w-fit border border-[#404040]'>
-            <TbJewishStar className='my-auto' />
-            <p className='font-medium'>Wish List</p>
-          </div>
+          {useCases.map((useCase, index) => (
+            <div
+              key={index}
+              className='hover:cursor-default bg-white flex items-start gap-2 text-black p-1 px-2 rounded-md border border-[#404040] hover:shadow-lg transition-all duration-300'
+            >
+              <useCase.icon className='block my-auto text-xl flex-shrink-0' />
+              <p className='font-normal text-base '>{useCase.title}</p>
+              {/* <p className='text-sm text-gray-600'>{useCase.description}</p> */}
+            </div>
+          ))}
         </div>
 
       </section >
@@ -641,16 +678,17 @@ function HomeComponent() {
           </div>
           <div className="space-y-4 col-span-2">
 
-            <div className="sticky top-16 lg:relative border border-black p-8 bg-pastel-green space-y-5">
+            {/* E-Commerce Section */}
+            <div className="shadow-[5px_5px_#e2c6ff] sticky top-16 lg:top-0 lg:relative border border-black p-8 bg-[#fafafa] space-y-5">
               <h2 className="text-2xl md:text-4xl font-semibold">E-Commerce</h2>
-              <p className="">
-                Dolor pariatur minim commodo proident adipisicing est laboris ipsum sint minim consequat ipsum.
+              <p>
+                Build and manage your online store effortlessly with powerful tools designed for modern businesses.
               </p>
 
-              <div className="space-y-2 ">
+              <div className="space-y-2">
                 <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Add Products</p>
                 <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Product/Search Analytics</p>
-                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Customers can enquire through Whatsapp/E-Mail</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Customers can enquire through WhatsApp/E-Mail</p>
                 <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Inventory Management</p>
                 <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Payment Gateway Integration</p>
                 <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Weekly Reports</p>
@@ -659,93 +697,107 @@ function HomeComponent() {
               <Image
                 height={200}
                 width={100}
-                className="absolute w-[4rem] md:w-[8rem] bottom-0 right-0"
+                className="border bg-pastel-purple p-2 absolute w-[4rem] md:w-[6rem] top-0 !mt-0 right-0"
                 src='/assets/images/e-commerce.png'
               />
-
             </div>
 
-            <div className="sticky top-20 lg:relative border border-black p-8 bg-pastel-cream space-y-5">
+            {/* Theme Customization Section */}
+            <div className="shadow-[5px_5px_#ffd3c0] sticky top-20 lg:top-0 lg:relative border border-black p-8 bg-[#fafafa] space-y-5">
               <h2 className="text-2xl md:text-4xl font-semibold">Theme Customization</h2>
               <p className="mt-2">
-                Dolor pariatur minim commodo proident adipisicing est laboris ipsum sint minim consequat ipsum.
+                Personalize your website’s look and feel to match your brand identity with ease.
               </p>
 
-              <div className="space-y-2 ">
-                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Add your Brand Colors</p>
-                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Choose from Themes</p>
+              <div className="space-y-2">
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Add Your Brand Colors</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Choose from Pre-made Themes</p>
                 <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Font and Typography Control</p>
-                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Home and Product Pages</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Customize Home and Product Pages</p>
               </div>
 
               <Image
                 height={200}
                 width={100}
-                className="absolute w-[3rem] md:w-[6rem] bottom-0 right-0"
-                src='/assets/images/theme.png'
+                className="bg-pastel-cream p-2 absolute w-[4rem] md:w-[6rem] top-0 !mt-0 right-0"
+                src='/assets/images/games.png'
               />
             </div>
 
-            <div className="sticky top-24 lg:relative border border-black p-8 bg-pastel-purple space-y-5">
-              <h2 className="text-2xl md:text-4xl font-semibold">No-code</h2>
+            {/* No-Code Section */}
+            <div className="shadow-[5px_5px_#f1ee83] sticky top-24 lg:top-0 lg:relative border border-black p-8 bg-[#fafafa] space-y-5">
+              <h2 className="text-2xl md:text-4xl font-semibold">No-Code Builder</h2>
               <p className="mt-2">
-                Dolor pariatur minim commodo proident adipisicing est laboris ipsum sint minim consequat ipsum.
+                Empower yourself to create stunning websites without writing a single line of code.
               </p>
 
-              <div className="space-y-2 ">
+              <div className="space-y-2">
                 <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Drag and Drop Elements</p>
-                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Elements like Forms, Images, Videos and more</p>
-                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Real-time Preview</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Add Forms, Images, Videos, and More</p>
+                <p className="flex gap-x-2 text-sm md:text-base"><FaArrowRight size={15} className="block translate-y-1" />Real-time Preview of Changes</p>
               </div>
+
               <Image
                 height={200}
                 width={100}
-                className="absolute w-[4rem] md:w-[6rem] bottom-0 right-0"
-                src='/assets/images/drag-and-drop.png'
+                className="bg-pastel-yellow p-2 absolute w-[4rem] md:w-[6rem] top-0 !mt-0 right-0"
+                src='/assets/images/drag-and-dropp.png'
               />
             </div>
 
           </div>
-
         </div>
       </section>
 
-      <section className='bg-[#f2e6ff] border border-black text-black'>
-        <h2 className='font-bold text-3xl md:text-5xl md:text-center leading-normal'>What makes us different?</h2>
-        <div className="mt-4 md:mt-12">
-          <div className=" grid lg:grid-cols-8 gap-6 lg:gap-12">
-            <div className='text-lg mt-6 font-medium space-y-4 lg:col-span-4'>
+      <section className='bg-pastel-skin border border-black text-black'>
+        <h2 className='font-bold text-3xl md:text-5xl text-center leading-normal'>
+          Powerful Features, Seamless Experience.
+        </h2>
+        <p className="text-center mt-3 md:mt-6 font-normal">Explore the tools designed to simplify website creation, ensure reliability, and enhance flexibility across all devices.</p>
+        <div className="mt-8 md:mt-16">
+          <div className="grid lg:grid-cols-8 gap-6 lg:gap-8">
+            <div className='bg-white  text-lg font-medium lg:col-span-5'>
 
-              <h3 className="text-2xl md:text-3xl font-semibold  decoration-pastel-blue"> Easy Drag & Drop Layout</h3>
-              <p className='text-black text-base md:text-base'>
-                Easily customize your website with our intuitive drag and drop interface.
-              </p>
-              <video className="border-2 bg-white p-3 w-full aspect-video border-black" src="/assets/videos/drag-n-drop.mp4" loop autoPlay muted playsInline></video>
-
+              <h3 className="text-2xl border border-black md:text-3xl bg-[#202020] text-white py-2 pb-3 px-3 font-semibold"> Easy Drag & Drop Layout</h3>
+              <div className="px-3 border border-black">
+                <p className='my-4 mb-3 text-black text-base md:text-base font-semibold'>
+                  Easily customize your website with our intuitive drag and drop interface.
+                </p>
+                <video className=" bg-white  w-full aspect-video border-black" src="/assets/videos/drag-n-drop.mp4" loop autoPlay muted playsInline></video>
+              </div>
             </div>
-            <div className='text-lg mt-6 font-medium space-y-4 lg:col-span-4'>
+            <div className='bg-white h-fit  text-lg  font-medium lg:col-span-3'>
 
-              <h3 className="text-2xl md:text-3xl font-semibold ">Optional mobile and desktops layouts</h3>
-              <p className='text-black text-base md:text-base'>
-                Preview and adjust your design for different screen sizes in a single click.
-              </p>
-              <video className="border-2 bg-white p-3 w-full aspect-video border-black" src="/assets/videos/responsive.mp4" loop autoPlay muted playsInline></video>
+              <h3 className="text-2xl border border-black md:text-3xl bg-[#202020] text-white py-2 pb-3 px-3 font-semibold">
+                Need Not Worry About Page Going Down if Inactive
+              </h3>
+              <div className="px-3 border border-black">
+                <p className='my-4 mb-3 text-black text-base md:text-base font-semibold'>
+                  Our platform ensures your website stays up and running, even when you're not actively using it.
 
+                </p>
+                <Image src="/assets/images/uptime-2.png" width={500} height={500} className="w-[40%] h-fit block mx-auto py-12" />
+              </div>
             </div>
-            <div className='text-lg mt-6 font-medium space-y-4 lg:col-span-4'>
+            <div className='bg-white text-lg  font-medium lg:col-span-4'>
 
-              <h3 className="text-2xl md:text-3xl font-semibold underline decoration-pastel-purple">Need Not Worry About Page Going Down if Inactive</h3>
-              <p className='text-black text-base md:text-base'>
-                Our platform ensures your website stays up and running, even when you&apos;re not actively using it.
-              </p>
-              <Image src="/assets/images/uptime-2.png" width={500} height={500} className="w-[40%] h-fit block mx-auto py-12" />
+              <h3 className="text-2xl border border-black md:text-3xl bg-[#202020] text-white py-2 pb-3 px-3 font-semibold">
+                Optional mobile and desktops layouts
+              </h3>
+              <div className="px-3 border border-black">
+                <p className='my-4 mb-3 text-black text-base md:text-base font-semibold'>
+                  Preview and adjust your design for different screen sizes in a single click.
+                </p>
+                <video className=" bg-white  w-full aspect-video border-black" src="/assets/videos/responsive.mp4" loop autoPlay muted playsInline></video>
+              </div>
             </div>
+
 
           </div>
         </div>
       </section >
 
-      <section className="flex flex-col md:flex-row shrink-0 gap-x-6 gap-y-6">
+      {/* <section className="flex flex-col md:flex-row shrink-0 gap-x-6 gap-y-6">
         <h2 className="text-3xl md:text-5xl font-semibold"> FAQ&apos;S</h2>
         <Accordion type="single" collapsible className="-mt-3 w-full">
           <AccordionItem value="item-1">
@@ -769,7 +821,9 @@ function HomeComponent() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </section>
+      </section> */}
+      <HomeFooter />
+
     </>
 
   );
@@ -790,6 +844,40 @@ function HomeHeader() {
         <p className="font-semibold my-auto">Platform.Me</p>
       </div>
 
+    </section>
+
+  )
+}
+
+function HomeFooter() {
+  return (
+
+    <section className='  text-white  bg-[#151515] space-y-12'>
+
+      <div className="grid lg:grid-cols-5 gap-y-12">
+        <h2 className=" lg:col-span-3 font-semibold text-4xl"> Helping you build powerful websites effortlessly</h2>
+        <div className="h-fit my-auto lg:col-span-2">
+          <Link className="text-lg" href={'#home-login'}>
+            Get Started
+          </Link>
+        </div>
+      </div>
+      <div className="h-0.5 bg-white w-full"></div>
+      <div className="grid lg:grid-cols-5 gap-y-12">
+
+        <div className='flex gap-x-2 align-middle lg:col-span-3'>
+
+          <Image
+            width={70}
+            height={70}
+            src='/assets/logos/logo-secondary.png'
+          />
+          <p className="font-semibold text-3xl my-auto">Platform.Me</p>
+        </div>
+        <div className="lg:col-span-2 h-fit my-auto">
+          <p className="text-lg">© Platform.Me 2024</p>
+        </div>
+      </div>
     </section>
 
   )

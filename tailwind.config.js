@@ -61,7 +61,8 @@ module.exports = {
 				'pastel-blue': '#bbecff',
 				'pastel-green': '#dcfebc ',
 				'pastel-cream': '#ffd3c0',
-				'yellow:': '#ffd74a'
+				'pastel-skin': '#fffaee',
+				'yellow': '#ffd74a'
 			},
 			fontSize: {
 				xxs: '0.6rem'
