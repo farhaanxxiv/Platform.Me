@@ -773,7 +773,7 @@ function HomeComponent() {
               </h3>
               <div className="px-3 border border-black">
                 <p className='my-4 mb-3 text-black text-base md:text-base font-semibold'>
-                  Our platform ensures your website stays up and running, even when you're not actively using it.
+                  Our platform ensures your website stays up and running, even when you&apos;re not actively using it.
 
                 </p>
                 <Image src="/assets/images/uptime-2.png" width={500} height={500} className="w-[40%] h-fit block mx-auto py-12" />
