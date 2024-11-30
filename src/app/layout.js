@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
 import { getStorage } from 'firebase/storage';
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const space_grotesk = Space_Grotesk({ subsets: ["latin"], variable: '--font-space-grotesk', }
 );
@@ -21,7 +22,7 @@ import Head from "next/head";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4vC_F5_6dtbDqY3rbfk_P_djFdE3i1QY",
-  authDomain: "platform-me-58583.firebaseapp.com" ,
+  authDomain: "platform-me-58583.firebaseapp.com",
   projectId: "platform-me-58583",
   storageBucket: "platform-me-58583.appspot.com",
   messagingSenderId: "181866199229",
@@ -52,6 +53,7 @@ export default async function RootLayout({ children }) {
         {children}
         <Toaster />
       </body>
+      <SpeedInsights />
       {process.env.NODE_ENV === 'production' && <GoogleAnalytics gaId="G-0TPW3N70MF" />}
     </html>
   );
