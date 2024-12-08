@@ -633,12 +633,13 @@ function HomeComponent() {
                             </div>
                           </div>
                         </div>
-                        <FaArrowRight size={25} className="z-30 -rotate-45 absolute top-4 right-4" />
+                        {/* <FaArrowRight size={25} className="z-30 -rotate-45 absolute bottom-4 right-4" /> */}
 
                         <Image
                           height={700}
                           width={1200}
-                          src='/assets/images/hero-tp.png'
+                          src='/assets/images/sleek-store.png'
+                          className="aspect-video object-center object-cover rounded"
                         />
                         <p className="text-center mt-3 font-semibold text-sm bg-white text-black p-1 px-3 rounded w-fit mx-auto">Local Fashion Store</p>
                       </div>

@@ -14,7 +14,7 @@ export default function Hero() {
     
     */
 
-    const pulsating_gradient = true
+    // const pulsating_gradient = true 
 
     const primaryColor = '#000000'
     const secondaryColor = '#ff8723'
