@@ -27,7 +27,7 @@ export default function PageClient({ initialData }) {
     const [innerWidth, setInnerWidth] = useState(0)
     const [navbarOpen, setNavbarOpen] = useState(false)
     const [pageUserUID, setPageUserUID] = useState(initialData.userid || null)
-
+ 
     useLayoutEffect(() => {
         setInnerWidth(window.innerWidth)
     }, [])
@@ -39,7 +39,7 @@ export default function PageClient({ initialData }) {
                 .filter(section => section.type === 'section')
                 .map(section => GlobalUtils.replaceSpacesAndSpecialChars(section.heading));
             setSections(newSections);
-        }
+        } 
 
         console.log('userLayout :', userLayout);
 
